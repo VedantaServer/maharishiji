@@ -14,8 +14,6 @@ class LogInBloc extends Bloc<LogInEvent, LogInState> {
     LogInInitialEvent event,
     Emitter<LogInState> emit,
   ) async {
-    emit(state.copyWith(
-      emailController: TextEditingController(),
-    ));
+    emit(state.copyWith(emailController: TextEditingController()));
   }
 }
