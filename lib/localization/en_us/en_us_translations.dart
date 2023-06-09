@@ -1,4 +1,5 @@
 final Map<String, String> enUs = {
+  'lbl_app_name': 'Maharishi Ji',
   'msg_network_err': 'Network Error',
   'msg_something_went_wrong': 'Something Went Wrong!',
   "lbl_back": "Back",
@@ -126,7 +127,7 @@ final Map<String, String> enUs = {
   "msg_consequat_velit4":
       "Consequat velit qui adipisicing sunt do reprehenderit ad laborum tempor ullamco exercitation.",
   "lbl_email": "Email",
-  "lbl_log_in2": "Log In",
+  "lbl_log_in2": "Log In Now!",
   "lbl_search": "Search",
   "lbl_1": "1",
   "lbl_2": "2",

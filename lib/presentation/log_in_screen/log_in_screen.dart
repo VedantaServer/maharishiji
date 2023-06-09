@@ -1,3 +1,5 @@
+
+import 'dart:convert';
 import 'bloc/log_in_bloc.dart';
 import 'models/log_in_model.dart';
 import 'package:flutter/material.dart';
@@ -5,14 +7,16 @@ import 'package:maharishiji/core/app_export.dart';
 import 'package:maharishiji/core/utils/validation_functions.dart';
 import 'package:maharishiji/widgets/custom_button.dart';
 import 'package:maharishiji/widgets/custom_text_form_field.dart';
+import 'package:http/http.dart' as http;
 
+LogInScreen createState() => LogInScreen();
 class LogInScreen extends StatelessWidget {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+
   static Widget builder(BuildContext context) {
     return BlocProvider<LogInBloc>(
-      create: (context) => LogInBloc(LogInState(
-        logInModelObj: LogInModel(),
+      create: (context) => LogInBloc(LogInState(logInModelObj: LogInModel(),
       ))
         ..add(LogInInitialEvent()),
       child: LogInScreen(),
@@ -31,7 +35,7 @@ class LogInScreen extends StatelessWidget {
             width: double.maxFinite,
             padding: getPadding(
               left: 16,
-              top: 18,
+              top: 80,
               right: 16,
               bottom: 18,
             ),
@@ -39,7 +43,7 @@ class LogInScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  "lbl_log_in2".tr,
+                  "lbl_app_name".tr,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left,
                   style: AppStyle.txtInterSemiBold30,
@@ -53,11 +57,11 @@ class LogInScreen extends StatelessWidget {
                       controller: emailController,
                       hintText: "lbl_email".tr,
                       margin: getMargin(
-                        top: 28,
+                        top: 60,
                       ),
                       variant: TextFormFieldVariant.OutlineGray20001,
                       shape: TextFormFieldShape.RoundedBorder8,
-                      fontStyle: TextFormFieldFontStyle.InterMedium16,
+                      fontStyle: TextFormFieldFontStyle.InterMedium16Black900,
                       textInputAction: TextInputAction.done,
                       textInputType: TextInputType.emailAddress,
                       validator: (value) {
@@ -70,39 +74,32 @@ class LogInScreen extends StatelessWidget {
                     );
                   },
                 ),
-                Container(
-                  margin: getMargin(
-                    top: 16,
-                  ),
-                  padding: getPadding(
-                    left: 16,
-                    top: 14,
-                    right: 16,
-                    bottom: 14,
-                  ),
-                  decoration: AppDecoration.outlineGray20001.copyWith(
-                    borderRadius: BorderRadiusStyle.roundedBorder8,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "lbl_password".tr,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.left,
-                        style: AppStyle.txtInterMedium16Gray400,
+                BlocSelector<LogInBloc, LogInState, TextEditingController?>(
+                  selector: (state) => state.passwordController,
+                  builder: (context, passwordController) {
+                    return CustomTextFormField(
+                      focusNode: FocusNode(),
+                      autofocus: true,
+                      controller: passwordController,
+                      hintText: "lbl_password".tr,
+                      margin: getMargin(
+                        top: 28,
                       ),
-                      Text(
-                        "lbl_show".tr,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.left,
-                        style: AppStyle.txtInterMedium16,
-                      ),
-                    ],
-                  ),
+                      variant: TextFormFieldVariant.OutlineGray20001,
+                      shape: TextFormFieldShape.RoundedBorder8,
+                      fontStyle: TextFormFieldFontStyle.InterMedium16Black900,
+                      textInputAction: TextInputAction.done,
+                      textInputType: TextInputType.visiblePassword,
+                    );
+                  },
                 ),
-                Spacer(),
                 CustomButton(
+                  onTap: () {
+                     var login =  BlocProvider.of<LogInBloc>(context);
+                     print(login);
+                     _ValidateUser(context,login.state.emailController?.text,
+                                login.state.passwordController?.text);
+                  },
                   height: getVerticalSize(
                     51,
                   ),
@@ -127,4 +124,61 @@ class LogInScreen extends StatelessWidget {
       ),
     );
   }
+
+  void _ValidateUser(context,var username,var password) {
+    print('inside _vaalidate fuctnion');
+    validateUser(context,username,password);
+  }
+
+  Future<void> validateUser(context,var pusername,var ppassword) async {
+
+      String username = pusername; //"mahagroup1008@gmail.com";
+      String password =  ppassword; // "123456";
+      String basicAuth = 'Basic ' + base64.encode(utf8.encode('$username:$password'));
+
+      final response = await http.post(
+        Uri.parse('https://maharishiji.net/user/json/login'),
+        headers: <String, String>{'authorization': basicAuth},
+        body: {},
+      );
+
+      if (response.statusCode.toString() == "200") {
+        // command executed with some response
+        var responseData = json.decode(response.body);
+        ShowDialog(context,'JSON', responseData);
+        var isValidUser = responseData['msg'].toString();
+        var loggingUserName = responseData['data']['fullName'];
+        if (isValidUser == "Success") {
+          // User is valid, perform desired actions
+          ShowDialog(context,'Status' ,'Welcome '+ loggingUserName);
+        } else {
+          // User is invalid, show error message
+          ShowDialog(context,'Status', 'Invalid User Credentails');
+        }
+      } else {
+        // Error occurred while making the request
+        return ShowDialog(context, "StatusCode", response.statusCode);
+      }
+    }
+  void ShowDialog(BuildContext context, var title,var content){
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(content),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 }
+
+

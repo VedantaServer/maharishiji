@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       title: 'maharishiji',
-      initialRoute: AppRoutes.marketScreen,
+      initialRoute: AppRoutes.logInScreen,
       routes: AppRoutes.routes,
     );
   }
