@@ -1,11 +1,11 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import '/core/app_export.dart';
-import '../models/contentblocks_item_model.dart';
-import 'package:maharishiji/presentation/content_screen/models/content_model.dart';
+import '../models/dashboard_item_model.dart';
+import 'package:maharishiji/presentation/dashboard_screen/models/dashboard_model.dart';
 import 'package:sms_autofill/sms_autofill.dart';
-part 'content_event.dart';
-part 'content_state.dart';
+part 'dashboard_event.dart';
+part 'dashboard_state.dart';
 
 class ContentBloc extends Bloc<ContentEvent, ContentState> with CodeAutoFill {
   ContentBloc(ContentState initialState) : super(initialState) {

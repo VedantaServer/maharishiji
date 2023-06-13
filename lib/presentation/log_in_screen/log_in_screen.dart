@@ -1,5 +1,7 @@
 
 import 'dart:convert';
+import 'package:get_storage/get_storage.dart';
+
 import 'bloc/log_in_bloc.dart';
 import 'models/log_in_model.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +17,8 @@ class LogInScreen extends StatelessWidget {
 
   static Widget builder(BuildContext context) {
     return BlocProvider<LogInBloc>(
-      create: (context) => LogInBloc(LogInState(logInModelObj: LogInModel(),
+      create: (context) =>
+      LogInBloc(LogInState(logInModelObj: LogInModel(),
       ))
         ..add(LogInInitialEvent()),
       child: LogInScreen(),
@@ -24,8 +27,6 @@ class LogInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
     return SafeArea(
       child: Scaffold(
         backgroundColor: ColorConstant.whiteA700,
@@ -36,13 +37,18 @@ class LogInScreen extends StatelessWidget {
             width: double.maxFinite,
             padding: getPadding(
               left: 16,
-              top: 80,
+              top: 50,
               right: 16,
               bottom: 18,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                CircleAvatar(
+                  radius: 80, // adjust the radius as per your requirement
+                  backgroundImage: AssetImage(
+                      'assets/images/maharishijilogo.png'),
+                ),
                 Text(
                   "lbl_app_name".tr,
                   overflow: TextOverflow.ellipsis,
@@ -58,7 +64,7 @@ class LogInScreen extends StatelessWidget {
                       controller: emailController,
                       hintText: "lbl_email".tr,
                       margin: getMargin(
-                        top: 60,
+                        top: 10,
                       ),
                       variant: TextFormFieldVariant.OutlineGray20001,
                       shape: TextFormFieldShape.RoundedBorder8,
@@ -79,27 +85,26 @@ class LogInScreen extends StatelessWidget {
                   selector: (state) => state.passwordController,
                   builder: (context, passwordController) {
                     return CustomTextFormField(
-                      focusNode: FocusNode(),
-                      autofocus: true,
                       controller: passwordController,
                       hintText: "lbl_password".tr,
                       margin: getMargin(
-                        top: 28,
+                        top: 20,
                       ),
                       variant: TextFormFieldVariant.OutlineGray20001,
                       shape: TextFormFieldShape.RoundedBorder8,
                       fontStyle: TextFormFieldFontStyle.InterMedium16Black900,
                       //textInputAction: TextInputAction.done,
                       textInputType: TextInputType.visiblePassword,
+                      isObscureText: true,
                     );
                   },
                 ),
                 CustomButton(
                   onTap: () {
-                    var login =  BlocProvider.of<LogInBloc>(context);
-                     //print(login);
-                     _ValidateUser(context,login.state.emailController?.text,
-                                login.state.passwordController?.text);
+                    var login = BlocProvider.of<LogInBloc>(context);
+                    //print(login);
+                    _ValidateUser(context, login.state.emailController?.text,
+                        login.state.passwordController?.text);
                   },
                   height: getVerticalSize(
                     51,
@@ -126,60 +131,50 @@ class LogInScreen extends StatelessWidget {
     );
   }
 
-  void _ValidateUser(context,var username,var password) {
-    print('inside _vaalidate fuctnion');
-    validateUser(context,username,password);
+  void _ValidateUser(context, var username, var password) {
+    validateUser(context, username, password);
   }
 
-  Future<void> validateUser(context,var pusername,var ppassword) async {
+  Future<void> validateUser(context, var pusername, var ppassword) async {
+    String username = pusername; //"mahagroup1008@gmail.com";
+    String password = ppassword; // "123456";
+    String basicAuth = 'Basic ' +
+        base64.encode(utf8.encode('$username:$password'));
 
-      String username = pusername; //"mahagroup1008@gmail.com";
-      String password =  ppassword; // "123456";
-      String basicAuth = 'Basic ' + base64.encode(utf8.encode('$username:$password'));
-
-      final response = await http.post(
-        Uri.parse('https://maharishiji.net/user/json/login'),
-        headers: <String, String>{'authorization': basicAuth},
-        body: {},
-      );
-      print(response.statusCode);
-      if (response.statusCode == 200) {
-        // command executed with some response
-
-        var responseData = json.decode(response.body);
-        ShowDialog(context,'JSON', responseData);
-        var isValidUser = responseData['msg'];
-        var loggingUserName = responseData['data']['fullName'];
-        if (isValidUser == "Success") {
-          // User is valid, perform desired actions
-          print (loggingUserName);
-          ShowDialog(context,'Status' ,'Welcome '+loggingUserName);
-        } else {
-          // User is invalid, show error message
-          ShowDialog(context,'Status', 'Invalid User Credentails');
-        }
+    final response = await http.post(
+      Uri.parse('https://maharishiji.net/user/json/login'),
+      headers: <String, String>{'authorization': basicAuth},
+      body: {},
+    );
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      // command executed with some response
+      MaharishiLogin user = MaharishiLogin.fromJson(jsonDecode(response.body));
+      var responseData = json.decode(response.body);
+      //ShowDialog(context,'JSON', responseData);
+      var isValidUser = responseData['msg'];
+      var loggingUserName = responseData['data']['fullName'];
+      if (isValidUser == "Success") {
+        // User is valid, perform desired actions
+        //print(loggingUserName);
+        //return showSnakeBar(context, );
+        //final snackBar = SnackBar(content: Text('Welcome ' + user.data.fullName));
+        //ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        showWarningSnackBar(context,'Welcome ' + user.data.fullName + '. Opening Home!!!',false);
+        final box = GetStorage();
+        box.write('isUserLoggedIn', 'true');
+        NavigatorService.pushNamed(
+          AppRoutes.dashboardScreen,
+        );
+      } else {
+        // User is invalid, show error message
+        //final snackBar = SnackBar(content: Text('Invalid UserID & Password, Try again!!!'));
+        showWarningSnackBar(context, 'Invalid UserName or Password!!!',true);
       }
     }
-  void ShowDialog(BuildContext context, var title,var content){
-    print("content:"+content);
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(title),
-          content: Text(content),
-          actions: <Widget>[
-            TextButton(
-              child: Text('OK'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
+    else {
+      showWarningSnackBar(context, 'Unable to connect to server at this time!!!',true);
+    }
   }
 }
-
 

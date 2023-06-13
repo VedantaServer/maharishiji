@@ -1,6 +1,6 @@
 // ignore_for_file: must_be_immutable
 
-part of 'content_bloc.dart';
+part of 'dashboard_bloc.dart';
 
 @immutable
 abstract class ContentEvent extends Equatable {}

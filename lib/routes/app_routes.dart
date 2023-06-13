@@ -4,7 +4,7 @@ import 'package:maharishiji/presentation/cover_screen/cover_screen.dart';
 import 'package:maharishiji/presentation/sign_up_screen/sign_up_screen.dart';
 import 'package:maharishiji/presentation/log_in_screen/log_in_screen.dart';
 import 'package:maharishiji/presentation/feed_screen/feed_screen.dart';
-import 'package:maharishiji/presentation/content_screen/content_screen.dart';
+import 'package:maharishiji/presentation/dashboard_screen/dashboard_screen.dart';
 import 'package:maharishiji/presentation/market_screen/market_screen.dart';
 import 'package:maharishiji/presentation/congratulations_screen/congratulations_screen.dart';
 import 'package:maharishiji/presentation/search_screen/search_screen.dart';
@@ -32,6 +32,9 @@ import 'package:maharishiji/presentation/inputs_screen/inputs_screen.dart';
 import 'package:maharishiji/presentation/app_navigation_screen/app_navigation_screen.dart';
 
 class AppRoutes {
+
+  static const String dashboardScreen = '/dashboard_screen';
+
   static const String imagesScreen = '/images_screen';
 
   static const String coverScreen = '/cover_screen';
@@ -42,7 +45,7 @@ class AppRoutes {
 
   static const String feedScreen = '/feed_screen';
 
-  static const String contentScreen = '/content_screen';
+  static const String contentScreen = '/dashboard_screen';
 
   static const String marketScreen = '/market_screen';
 
@@ -102,7 +105,7 @@ class AppRoutes {
         signUpScreen: SignUpScreen.builder,
         logInScreen: LogInScreen.builder,
         feedScreen: FeedScreen.builder,
-        contentScreen: ContentScreen.builder,
+        contentScreen: DashboardScreen.builder,
         marketScreen: MarketScreen.builder,
         congratulationsScreen: CongratulationsScreen.builder,
         searchScreen: SearchScreen.builder,
@@ -128,6 +131,8 @@ class AppRoutes {
         inputsOneScreen: InputsOneScreen.builder,
         inputsScreen: InputsScreen.builder,
         appNavigationScreen: AppNavigationScreen.builder,
-        initialRoute: ImagesScreen.builder
+        initialRoute: ImagesScreen.builder,
+
+
       };
 }

@@ -1,4 +1,4 @@
-import '../models/contentblocks_item_model.dart';
+import '../models/dashboard_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:maharishiji/core/app_export.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -12,14 +12,19 @@ class ContentblocksItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
+
       alignment: Alignment.center,
       child: Container(
+
         width: double.maxFinite,
+
         child: Column(
+
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
+
               height: getVerticalSize(
                 240,
               ),
