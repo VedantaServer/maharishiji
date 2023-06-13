@@ -13,7 +13,6 @@ LogInScreen createState() => LogInScreen();
 class LogInScreen extends StatelessWidget {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-
   static Widget builder(BuildContext context) {
     return BlocProvider<LogInBloc>(
       create: (context) => LogInBloc(LogInState(logInModelObj: LogInModel(),
@@ -25,6 +24,8 @@ class LogInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: ColorConstant.whiteA700,
@@ -88,15 +89,15 @@ class LogInScreen extends StatelessWidget {
                       variant: TextFormFieldVariant.OutlineGray20001,
                       shape: TextFormFieldShape.RoundedBorder8,
                       fontStyle: TextFormFieldFontStyle.InterMedium16Black900,
-                      textInputAction: TextInputAction.done,
+                      //textInputAction: TextInputAction.done,
                       textInputType: TextInputType.visiblePassword,
                     );
                   },
                 ),
                 CustomButton(
                   onTap: () {
-                     var login =  BlocProvider.of<LogInBloc>(context);
-                     print(login);
+                    var login =  BlocProvider.of<LogInBloc>(context);
+                     //print(login);
                      _ValidateUser(context,login.state.emailController?.text,
                                 login.state.passwordController?.text);
                   },
@@ -141,26 +142,26 @@ class LogInScreen extends StatelessWidget {
         headers: <String, String>{'authorization': basicAuth},
         body: {},
       );
-
-      if (response.statusCode.toString() == "200") {
+      print(response.statusCode);
+      if (response.statusCode == 200) {
         // command executed with some response
+
         var responseData = json.decode(response.body);
         ShowDialog(context,'JSON', responseData);
-        var isValidUser = responseData['msg'].toString();
+        var isValidUser = responseData['msg'];
         var loggingUserName = responseData['data']['fullName'];
         if (isValidUser == "Success") {
           // User is valid, perform desired actions
-          ShowDialog(context,'Status' ,'Welcome '+ loggingUserName);
+          print (loggingUserName);
+          ShowDialog(context,'Status' ,'Welcome '+loggingUserName);
         } else {
           // User is invalid, show error message
           ShowDialog(context,'Status', 'Invalid User Credentails');
         }
-      } else {
-        // Error occurred while making the request
-        return ShowDialog(context, "StatusCode", response.statusCode);
       }
     }
   void ShowDialog(BuildContext context, var title,var content){
+    print("content:"+content);
     showDialog(
       context: context,
       builder: (BuildContext context) {

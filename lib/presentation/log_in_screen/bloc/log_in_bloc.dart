@@ -15,8 +15,9 @@ class LogInBloc extends Bloc<LogInEvent, LogInState> {
     Emitter<LogInState> emit,
   ) async {
     emit(state.copyWith(
-      emailController: TextEditingController(),
-      passwordController: TextEditingController(),
+      //default values only for teting. make sure to remove it before production
+      emailController: TextEditingController(text: 'mahagroup1008@gmail.com'),
+      passwordController: TextEditingController(text: '123456'),
     ));
   }
 }
