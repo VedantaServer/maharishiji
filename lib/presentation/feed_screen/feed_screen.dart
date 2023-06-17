@@ -9,15 +9,12 @@ import 'package:maharishiji/widgets/app_bar/appbar_subtitle.dart';
 import 'package:maharishiji/widgets/app_bar/appbar_subtitle_2.dart';
 import 'package:maharishiji/widgets/app_bar/custom_app_bar.dart';
 import 'package:maharishiji/widgets/custom_text_form_field.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
+
 
 class FeedScreen extends StatelessWidget {
   static Widget builder(BuildContext context) {
     return BlocProvider<FeedBloc>(
-      create: (context) => FeedBloc(FeedState(
-        feedModelObj: FeedModel(),
-      ))
-        ..add(FeedInitialEvent()),
+      create: (context) => FeedBloc(FeedState(feedModelObj: FeedModel(),))..add(FeedInitialEvent()),
       child: FeedScreen(),
     );
   }
@@ -26,7 +23,8 @@ class FeedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: ColorConstant.whiteA700,
+
+        backgroundColor: Colors.blueAccent,
         resizeToAvoidBottomInset: false,
         appBar: CustomAppBar(
           height: getVerticalSize(
@@ -44,11 +42,14 @@ class FeedScreen extends StatelessWidget {
                     top: 7,
                     bottom: 9,
                   ),
+                    onTap:() {
+                    Navigator.pop(context,true);
+                    }
                 ),
                 AppbarSubtitle(
                   text: "lbl_feed".tr,
                   margin: getMargin(
-                    left: 100,
+                    left: 20,
                   ),
                 ),
               ],
@@ -127,131 +128,7 @@ class FeedScreen extends StatelessWidget {
                     },
                   ),
                 ),
-                Container(
-                  height: getVerticalSize(
-                    246,
-                  ),
-                  width: double.maxFinite,
-                  margin: getMargin(
-                    top: 15,
-                  ),
-                  child: Stack(
-                    alignment: Alignment.bottomCenter,
-                    children: [
-                      Align(
-                        alignment: Alignment.topCenter,
-                        child: Container(
-                          height: getVerticalSize(
-                            227,
-                          ),
-                          width: getHorizontalSize(
-                            343,
-                          ),
-                          decoration: BoxDecoration(
-                            color: ColorConstant.gray20002,
-                            borderRadius: BorderRadius.circular(
-                              getHorizontalSize(
-                                8,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Divider(
-                              height: getVerticalSize(
-                                1,
-                              ),
-                              thickness: getVerticalSize(
-                                1,
-                              ),
-                              color: ColorConstant.blueGray200,
-                            ),
-                            Container(
-                              height: getVerticalSize(
-                                83,
-                              ),
-                              width: double.maxFinite,
-                              child: Stack(
-                                alignment: Alignment.topCenter,
-                                children: [
-                                  Align(
-                                    alignment: Alignment.center,
-                                    child: Container(
-                                      height: getVerticalSize(
-                                        83,
-                                      ),
-                                      width: double.maxFinite,
-                                      decoration: BoxDecoration(
-                                        color: ColorConstant.gray50,
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: getPadding(
-                                      top: 14,
-                                    ),
-                                    child: BlocSelector<FeedBloc, FeedState,
-                                        TextEditingController?>(
-                                      selector: (state) => state.otpController,
-                                      builder: (context, otpController) {
-                                        return PinCodeTextField(
-                                          appContext: context,
-                                          controller: otpController,
-                                          length: 5,
-                                          obscureText: false,
-                                          obscuringCharacter: '*',
-                                          keyboardType: TextInputType.number,
-                                          autoDismissKeyboard: true,
-                                          enableActiveFill: true,
-                                          inputFormatters: [
-                                            FilteringTextInputFormatter
-                                                .digitsOnly,
-                                          ],
-                                          onChanged: (value) {
-                                            otpController?.text = value;
-                                          },
-                                          pinTheme: PinTheme(
-                                            fieldHeight: getHorizontalSize(
-                                              32,
-                                            ),
-                                            fieldWidth: getHorizontalSize(
-                                              32,
-                                            ),
-                                            shape: PinCodeFieldShape.circle,
-                                            selectedFillColor:
-                                                ColorConstant.green400,
-                                            activeFillColor:
-                                                ColorConstant.green400,
-                                            inactiveFillColor:
-                                                ColorConstant.green400,
-                                            inactiveColor:
-                                                ColorConstant.fromHex(
-                                                    "#1212121D"),
-                                            selectedColor:
-                                                ColorConstant.fromHex(
-                                                    "#1212121D"),
-                                            activeColor: ColorConstant.fromHex(
-                                                "#1212121D"),
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+
               ],
             ),
           ),

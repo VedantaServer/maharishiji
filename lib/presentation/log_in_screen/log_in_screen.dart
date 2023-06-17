@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'package:get_storage/get_storage.dart';
 
@@ -12,13 +11,14 @@ import 'package:maharishiji/widgets/custom_text_form_field.dart';
 import 'package:http/http.dart' as http;
 
 LogInScreen createState() => LogInScreen();
+
 class LogInScreen extends StatelessWidget {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   static Widget builder(BuildContext context) {
     return BlocProvider<LogInBloc>(
-      create: (context) =>
-      LogInBloc(LogInState(logInModelObj: LogInModel(),
+      create: (context) => LogInBloc(LogInState(
+        logInModelObj: LogInModel(),
       ))
         ..add(LogInInitialEvent()),
       child: LogInScreen(),
@@ -29,7 +29,7 @@ class LogInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: ColorConstant.whiteA700,
+        backgroundColor: Colors.orangeAccent,
         resizeToAvoidBottomInset: false,
         body: Form(
           key: _formKey,
@@ -46,8 +46,8 @@ class LogInScreen extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 80, // adjust the radius as per your requirement
-                  backgroundImage: AssetImage(
-                      'assets/images/maharishijilogo.png'),
+                  backgroundImage:
+                      AssetImage('assets/images/maharishijilogo.png'),
                 ),
                 Text(
                   "lbl_app_name".tr,
@@ -109,12 +109,15 @@ class LogInScreen extends StatelessWidget {
                   height: getVerticalSize(
                     51,
                   ),
+                  margin: getMargin(
+                    top: 20,
+                  ),
                   text: "lbl_log_in2".tr,
                 ),
                 Padding(
                   padding: getPadding(
                     top: 16,
-                    bottom: 294,
+                    bottom: 10,
                   ),
                   child: Text(
                     "msg_forgot_your_password".tr,
@@ -138,8 +141,8 @@ class LogInScreen extends StatelessWidget {
   Future<void> validateUser(context, var pusername, var ppassword) async {
     String username = pusername; //"mahagroup1008@gmail.com";
     String password = ppassword; // "123456";
-    String basicAuth = 'Basic ' +
-        base64.encode(utf8.encode('$username:$password'));
+    String basicAuth =
+        'Basic ' + base64.encode(utf8.encode('$username:$password'));
 
     final response = await http.post(
       Uri.parse('https://maharishiji.net/user/json/login'),
@@ -160,21 +163,22 @@ class LogInScreen extends StatelessWidget {
         //return showSnakeBar(context, );
         //final snackBar = SnackBar(content: Text('Welcome ' + user.data.fullName));
         //ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        showWarningSnackBar(context,'Welcome ' + user.data.fullName + '. Opening Home!!!',false);
+        showWarningSnackBar(context,
+            'Welcome ' + user.data.fullName + '. Opening Dashboard!!!', false);
         final box = GetStorage();
         box.write('isUserLoggedIn', 'true');
+        box.write('LoggedInUser',user.data.fullName);
         NavigatorService.pushNamed(
           AppRoutes.dashboardScreen,
         );
       } else {
         // User is invalid, show error message
         //final snackBar = SnackBar(content: Text('Invalid UserID & Password, Try again!!!'));
-        showWarningSnackBar(context, 'Invalid UserName or Password!!!',true);
+        showWarningSnackBar(context, 'Invalid UserName or Password!!!', true);
       }
-    }
-    else {
-      showWarningSnackBar(context, 'Unable to connect to server at this time!!!',true);
+    } else {
+      showWarningSnackBar(
+          context, 'Unable to connect to server at this time!!!', true);
     }
   }
 }
-

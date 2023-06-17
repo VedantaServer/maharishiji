@@ -1,4 +1,9 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:maharishiji/widgets/curved_navigation_bar.dart';
+
 import '../dashboard_screen/widgets/dashboard_item_widget.dart';
+import '../log_in_screen/models/log_in_model.dart';
 import 'bloc/dashboard_bloc.dart';
 import 'models/dashboard_model.dart';
 import 'models/dashboard_item_model.dart';
@@ -11,7 +16,11 @@ import 'package:maharishiji/widgets/app_bar/custom_app_bar.dart';
 import 'package:maharishiji/widgets/custom_text_form_field.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
+
 class DashboardScreen extends StatelessWidget {
+  int _page = 0;
+  GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+
   static Widget builder(BuildContext context) {
     return BlocProvider<ContentBloc>(
       create: (context) => ContentBloc(ContentState(
@@ -22,136 +31,123 @@ class DashboardScreen extends StatelessWidget {
     );
   }
 
+  Future<bool> _onWillPop() async {
+    return false; //<-- SEE HERE
+  }
   @override
   Widget build(BuildContext context) {
+    final FullName = GetStorage().read('LoggedInUser');
+
     return SafeArea(
       child: Scaffold(
-
-        backgroundColor: ColorConstant.orange300,
         resizeToAvoidBottomInset: false,
         appBar: CustomAppBar(
           height: getVerticalSize(
-            62,
+            82,
           ),
           title: Padding(
             padding: getPadding(
-              left: 16,
+              left: 2,
             ),
             child: Row(
-              children: [
-                AppbarSubtitle(
-                  text: 'Welcome..',
-                  margin: getMargin(
-                    left: 76,
-                  ),
+              children: <Widget>[
+                CircleAvatar(
+                  radius: 30, // adjust the radius as per your requirement
+                  backgroundImage: NetworkImage(
+                      'https://www.maharishividyamandir.com/images/chairman.jpg'),
                 ),
+                Flexible(child: new Text(" $FullName!"))
               ],
             ),
           ),
         ),
-        body:
-    ClipPath(
-    clipper: CustomShapeClipper(),
-      child:Container(
-          width: double.maxFinite,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+        backgroundColor: Colors.deepOrangeAccent,
+        body: Container(
+          color: Colors.deepOrangeAccent,
+          child: Stack(
             children: [
-              BlocSelector<ContentBloc, ContentState, TextEditingController?>(
-                selector: (state) => state.searchController,
-                builder: (context, searchController) {
-                  return CustomTextFormField(
-                    //focusNode: FocusNode(),
-                   // autofocus: true,
-                    controller: searchController,
-                    hintText: "lbl_search".tr,
-                    margin: getMargin(
-                      left: 16,
-                      top: 21,
-                      right: 16,
-                    ),
-                    variant: TextFormFieldVariant.OutlineGray20001,
-                    fontStyle: TextFormFieldFontStyle.InterMedium16,
-                  );
-                },
+              Padding(
+                padding: const EdgeInsets.only(bottom: 2.0),
+                child: ClipPath(
+                  clipper: HeaderClipper(),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 320.0,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            fit: BoxFit.fill,
+                            image: NetworkImage(
+                                "https://maharishiji.net/image/HOME_GALLERY/202010/TwyL_sMl4_Maharishi5.jpg"))),
+                  ),
+                ),
               ),
-              Container(
-                height: getVerticalSize(
-                  600,
-                ),
-                width: double.maxFinite,
-                margin: getMargin(
-                  top: 16,
-                ),
-                child: Stack(
-                  alignment: Alignment.bottomCenter,
-                  children: [
-                    Align(
-                      alignment: Alignment.center,
-                      child: Padding(
-                        padding: getPadding(
-                          left: 16,
-                          right: 16,
-                        ),
-                        child: BlocSelector<ContentBloc, ContentState,
-                            ContentModel?>(
-                          selector: (state) => state.contentModelObj,
-                          builder: (context, contentModelObj) {
-                            return ListView.separated(
-                              physics: BouncingScrollPhysics(),
-                              shrinkWrap: true,
-                              separatorBuilder: (
-                                context,
-                                index,
-                              ) {
-                                return SizedBox(
-                                  height: getVerticalSize(
-                                    16,
-                                  ),
-                                );
-                              },
-                              itemCount: contentModelObj
-                                      ?.contentblocksItemList.length ??
-                                  0,
-                              itemBuilder: (context, index) {
-                                ContentblocksItemModel model = contentModelObj
-                                        ?.contentblocksItemList[index] ??
-                                    ContentblocksItemModel();
-                                return ContentblocksItemWidget(
-                                  model,
-                                );
-                              },
-                            );
-                          },
-                        ),
-                      ),
-                    ),
+              Padding(
+                  padding: getPadding(top: 220, left: 20, right: 20),
+                  child: Center(
+                      child: DefaultTextStyle(
+                          style: const TextStyle(
+                            fontSize: 30.0,
+                            fontFamily: 'Horizon',
+                          ),
+                          child: AnimatedTextKit(
+                            isRepeatingAnimation: true,
+                            animatedTexts: [
+                              FadeAnimatedText(
+                                'Quote by ',
+                                textStyle: TextStyle(fontSize: 40.0, fontFamily: 'Horizon'),
+                              ),
+                              ScaleAnimatedText(
+                                'By Maharishi Ji',
+                                textStyle: TextStyle(fontSize: 40.0, fontFamily: 'Horizon'),
+                              ),
+                              TypewriterAnimatedText(
+                                  '\u275D The philosophy of life is this: Life is not a struggle, not a tension... Life is bliss. It is eternal wisdom, eternal existence.\u275E'),
 
-                  ],
-                ),
-              ),
+                            ],
+                          ))))
             ],
           ),
         ),
-      ),
+        bottomNavigationBar: CurvedNavigationBar(
+          backgroundColor: Colors.deepOrangeAccent,
+          items: <Widget>[
+            Icon(Icons.person, size: 30),
+            Icon(Icons.audiotrack, size: 30),
+            Icon(Icons.video_collection, size: 30),
+            Icon(Icons.article, size: 30),
+            Icon(Icons.settings, size: 30),
+          ],
+          onTap: (index) {
+            _page = index;
+            if(_page==3)
+              {
+
+                NavigatorService.pushNamed(
+                  AppRoutes.feedScreen,
+                );
+
+              }
+          },
+        ),
       ),
     );
   }
 }
-class CustomShapeClipper extends CustomClipper<Path> {
+
+class HeaderClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    final path = Path();
-    path.lineTo(0, size.height - 100); // Start from the bottom-left corner
+    var path = Path();
+    path.lineTo(0.0, size.height - 40);
     path.quadraticBezierTo(
-        size.width / 2, size.height, size.width, size.height - 100); // Draw a curve to the bottom-right corner
-    path.lineTo(size.width, 0); // Draw a line to the top-right corner
-    path.close(); // Close the path
+        size.width / 4, size.height, size.width / 2, size.height);
+    path.quadraticBezierTo(size.width - (size.width / 4), size.height,
+        size.width, size.height - 40);
+    path.lineTo(size.width, 0.0);
+    path.close();
     return path;
   }
 
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
-
-

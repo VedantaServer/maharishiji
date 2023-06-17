@@ -45,7 +45,7 @@ final Map<String, String> enUs = {
   "msg_forgot_your_password": "Forgot your password?",
   "lbl_content": "Content",
   "msg_profile_posts_one": "Profile/Posts One",
-  "lbl_feed": "Feed",
+  "lbl_feed": "News & Articles",
   "msg_i_would_like_to":
       "I would like to receive your newsletter and other promotional information.",
   "msg_he_ll_want_to_use":

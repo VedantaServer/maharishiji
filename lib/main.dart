@@ -13,22 +13,23 @@ import 'core/utils/navigator_service.dart';
 import 'core/utils/pref_utils.dart';
 import 'localization/app_localization.dart';
 
-
 var globalMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
 void main() async {
   await GetStorage.init();
+  //GetStorage().remove('isUserLoggedIn');
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]).then((value) {
     PrefUtils().init();
     Logger.init(kReleaseMode ? LogMode.live : LogMode.debug);
-    final box = GetStorage();
-    var isLoggedIn =  GetStorage().read('isUserLoggedIn');
-    print(GetStorage().read('isUserLoggedIn'));
-    var startScreen=  isLoggedIn == 'true' ? AppRoutes.dashboardScreen :
-                     AppRoutes.logInScreen;
+
+    var isLoggedIn = GetStorage().read('isUserLoggedIn') ?? 'false';
+
+    var startScreen = isLoggedIn == 'true' ?
+        AppRoutes.dashboardScreen
+        : AppRoutes.logInScreen;
     runApp(MyApp(startScreen));
     //GetStorage().remove('isUserLoggedIn');
   });
@@ -36,15 +37,13 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   late final String _initialRoute;
-  MyApp(String startScreen)
-  {
+  MyApp(String startScreen) {
     _initialRoute = startScreen;
   }
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       navigatorKey: NavigatorService.navigatorKey,
       debugShowCheckedModeBanner: false,

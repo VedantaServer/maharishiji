@@ -71,6 +71,7 @@ class FeedItemWidget extends StatelessWidget {
                     ],
                   ),
                   Container(
+                    color: ColorConstant.gray100,
                     width: getHorizontalSize(
                       261,
                     ),
