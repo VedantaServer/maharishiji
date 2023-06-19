@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:maharishiji/presentation/images_screen/images_screen.dart';
 import 'package:maharishiji/presentation/cover_screen/cover_screen.dart';
+import 'package:maharishiji/presentation/newsEventsScreen.dart';
 import 'package:maharishiji/presentation/sign_up_screen/sign_up_screen.dart';
 import 'package:maharishiji/presentation/log_in_screen/log_in_screen.dart';
-import 'package:maharishiji/presentation/feed_screen/feed_screen.dart';
 import 'package:maharishiji/presentation/dashboard_screen/dashboard_screen.dart';
 import 'package:maharishiji/presentation/market_screen/market_screen.dart';
 import 'package:maharishiji/presentation/congratulations_screen/congratulations_screen.dart';
@@ -99,12 +99,14 @@ class AppRoutes {
 
   static const String initialRoute = '/initialRoute';
 
+  static const String newsEventsScreen = '/newsEventsScreen';
+
   static Map<String, WidgetBuilder> get routes => {
+        newsEventsScreen:NewsEventScreen.builder,
         imagesScreen: ImagesScreen.builder,
         coverScreen: CoverScreen.builder,
         signUpScreen: SignUpScreen.builder,
         logInScreen: LogInScreen.builder,
-        feedScreen: FeedScreen.builder,
         contentScreen: DashboardScreen.builder,
         marketScreen: MarketScreen.builder,
         congratulationsScreen: CongratulationsScreen.builder,
@@ -132,7 +134,5 @@ class AppRoutes {
         inputsScreen: InputsScreen.builder,
         appNavigationScreen: AppNavigationScreen.builder,
         initialRoute: ImagesScreen.builder,
-
-
       };
 }

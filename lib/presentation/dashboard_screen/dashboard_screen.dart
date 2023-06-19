@@ -1,7 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:maharishiji/widgets/curved_navigation_bar.dart';
-
 import '../dashboard_screen/widgets/dashboard_item_widget.dart';
 import '../log_in_screen/models/log_in_model.dart';
 import 'bloc/dashboard_bloc.dart';
@@ -16,17 +15,16 @@ import 'package:maharishiji/widgets/app_bar/custom_app_bar.dart';
 import 'package:maharishiji/widgets/custom_text_form_field.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-
 class DashboardScreen extends StatelessWidget {
   int _page = 0;
-  GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+
 
   static Widget builder(BuildContext context) {
-    return BlocProvider<ContentBloc>(
-      create: (context) => ContentBloc(ContentState(
-        contentModelObj: ContentModel(),
+    return BlocProvider<DashboardBloc>(
+      create: (context) => DashboardBloc(DashboardState(
+        contentModelObj: DashboardModel(),
       ))
-        ..add(ContentInitialEvent()),
+        ..add(NetworkStatusChanged()),
       child: DashboardScreen(),
     );
   }
@@ -34,10 +32,13 @@ class DashboardScreen extends StatelessWidget {
   Future<bool> _onWillPop() async {
     return false; //<-- SEE HERE
   }
+
   @override
   Widget build(BuildContext context) {
     final FullName = GetStorage().read('LoggedInUser');
-
+    var internetStatus =
+        BlocProvider.of<DashboardBloc>(context).state.networkStatus.toString();
+    print(internetStatus);
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -56,14 +57,16 @@ class DashboardScreen extends StatelessWidget {
                   backgroundImage: NetworkImage(
                       'https://www.maharishividyamandir.com/images/chairman.jpg'),
                 ),
-                Flexible(child: new Text(" $FullName!"))
+                Flexible(
+                  child: new Text(" $FullName! "),
+                ),
               ],
             ),
           ),
         ),
-        backgroundColor: Colors.deepOrangeAccent,
+        backgroundColor: Colors.orange.shade700,
         body: Container(
-          color: Colors.deepOrangeAccent,
+          color:Colors.orange.shade700,
           child: Stack(
             children: [
               Padding(
@@ -82,29 +85,47 @@ class DashboardScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                  padding: getPadding(top: 220, left: 20, right: 20),
-                  child: Center(
-                      child: DefaultTextStyle(
-                          style: const TextStyle(
-                            fontSize: 30.0,
-                            fontFamily: 'Horizon',
+                padding: getPadding(top: 220, left: 20, right: 20),
+                child: Center(
+                  child: DefaultTextStyle(
+                      style: const TextStyle(
+                        fontSize: 30.0,
+                        fontFamily: 'Horizon',
+                      ),
+                      child: AnimatedTextKit(
+                        isRepeatingAnimation: true,
+                        animatedTexts: [
+                          FadeAnimatedText(
+                            'Quote by ',
+                            textStyle: TextStyle(
+                                fontSize: 40.0, fontFamily: 'Horizon'),
                           ),
-                          child: AnimatedTextKit(
-                            isRepeatingAnimation: true,
-                            animatedTexts: [
-                              FadeAnimatedText(
-                                'Quote by ',
-                                textStyle: TextStyle(fontSize: 40.0, fontFamily: 'Horizon'),
-                              ),
-                              ScaleAnimatedText(
-                                'By Maharishi Ji',
-                                textStyle: TextStyle(fontSize: 40.0, fontFamily: 'Horizon'),
-                              ),
-                              TypewriterAnimatedText(
-                                  '\u275D The philosophy of life is this: Life is not a struggle, not a tension... Life is bliss. It is eternal wisdom, eternal existence.\u275E'),
-
-                            ],
-                          ))))
+                          ScaleAnimatedText(
+                            'By Maharishi Ji',
+                            textStyle: TextStyle(
+                                fontSize: 40.0, fontFamily: 'Horizon'),
+                          ),
+                          TypewriterAnimatedText(
+                              '\u275D The philosophy of life is this: Life is not a struggle, not a tension... Life is bliss. It is eternal wisdom, eternal existence.\u275E'),
+                        ],
+                      )),
+                ),
+              ),
+              Padding(
+                  padding: getPadding(
+                      top: MediaQuery.of(context).size.height-275,
+                      left:MediaQuery.of(context).size.width - 80),
+                  child: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                            image: AssetImage(
+                                'assets/icon/' + internetStatus + '.png'),
+                            fit: BoxFit.fill),
+                      )))
             ],
           ),
         ),
@@ -119,14 +140,11 @@ class DashboardScreen extends StatelessWidget {
           ],
           onTap: (index) {
             _page = index;
-            if(_page==3)
-              {
-
-                NavigatorService.pushNamed(
-                  AppRoutes.feedScreen,
-                );
-
-              }
+            if (_page == 3) {
+              NavigatorService.pushNamed(
+                AppRoutes.newsEventsScreen,
+              );
+            }
           },
         ),
       ),

@@ -2,34 +2,30 @@
 
 part of 'dashboard_bloc.dart';
 
-class ContentState extends Equatable {
-  ContentState({
-    this.searchController,
-    this.otpController,
-    this.contentModelObj,
-  });
+class DashboardState extends Equatable {
+  DashboardState(
+      {this.searchController,
+      this.otpController,
+      this.contentModelObj,
+      this.networkStatus});
 
+  String? networkStatus;
   TextEditingController? searchController;
-
   TextEditingController? otpController;
-
-  ContentModel? contentModelObj;
+  DashboardModel? contentModelObj;
 
   @override
-  List<Object?> get props => [
-        searchController,
-        otpController,
-        contentModelObj,
-      ];
-  ContentState copyWith({
-    TextEditingController? searchController,
-    TextEditingController? otpController,
-    ContentModel? contentModelObj,
-  }) {
-    return ContentState(
-      searchController: searchController ?? this.searchController,
-      otpController: otpController ?? this.otpController,
-      contentModelObj: contentModelObj ?? this.contentModelObj,
-    );
+  List<Object?> get props =>
+      [searchController, otpController, contentModelObj, networkStatus];
+  DashboardState copyWith(
+      {TextEditingController? searchController,
+      TextEditingController? otpController,
+      DashboardModel? contentModelObj,
+      String? networkStatus}) {
+    return DashboardState(
+        searchController: searchController ?? this.searchController,
+        otpController: otpController ?? this.otpController,
+        contentModelObj: contentModelObj ?? this.contentModelObj,
+        networkStatus: networkStatus ?? this.networkStatus);
   }
 }

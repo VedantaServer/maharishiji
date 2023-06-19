@@ -5,13 +5,13 @@ import 'dashboard_item_model.dart';
 
 /// This class defines the variables used in the [dashboard_screen],
 /// and is typically used to hold data that is passed between different parts of the application.
-class ContentModel extends Equatable {
-  ContentModel({this.contentblocksItemList = const []});
+class DashboardModel extends Equatable {
+  DashboardModel({this.contentblocksItemList = const []});
 
   List<ContentblocksItemModel> contentblocksItemList;
 
-  ContentModel copyWith({List<ContentblocksItemModel>? contentblocksItemList}) {
-    return ContentModel(
+  DashboardModel copyWith({List<ContentblocksItemModel>? contentblocksItemList}) {
+    return DashboardModel(
       contentblocksItemList:
           contentblocksItemList ?? this.contentblocksItemList,
     );
