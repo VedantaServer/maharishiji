@@ -14,7 +14,6 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState>
   DashboardBloc(DashboardState initialState) : super(initialState) {
     on<ContentInitialEvent>(_onInitialize);
     on<ChangeOTPEvent>(_changeOTP);
-    on<NetworkStatusChanged>(_networkChanged);
     on<NetworkStatusMonitor>(_monitorNetwork);
   }
 
@@ -27,23 +26,20 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState>
       NetworkStatusChanged event, Emitter<DashboardState> emit) async {
     final connectivityResult = await (Connectivity().checkConnectivity());
     emit(state.copyWith(
-        networkStatus:
-        connectivityResult == ConnectivityResult.none ? 'NoInternet' : 'Internet'));
+        networkStatus: connectivityResult == ConnectivityResult.none
+            ? 'NoInternet'
+            : 'Internet'));
   }
-  _monitorNetwork(NetworkStatusMonitor event, Emitter<DashboardState> emit) async{
+
+  _monitorNetwork(
+      NetworkStatusMonitor event, Emitter<DashboardState> emit) async {
     ConnectivityResult _connectionStatus = ConnectivityResult.none;
     final Connectivity _connectivity = Connectivity();
-
-    late StreamSubscription<ConnectivityResult> _connectivitySubscription;
-
-    _connectivitySubscription =
-        _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
-  }
-
-  Future<void> _updateConnectionStatus(ConnectivityResult result) async {
-    emit(state.copyWith(
-        networkStatus:
-            result == ConnectivityResult.none ? 'NoInternet' : 'Internet'));
+    _connectivity.onConnectivityChanged.listen((event) {
+      emit(state.copyWith(
+          networkStatus:
+              event == ConnectivityResult.none ? 'NoInternet' : 'Internet'));
+    });
   }
 
   _changeOTP(
@@ -73,5 +69,4 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState>
       contentblocksItemList: fillContentblocksItemList(),
     )));
   }
-
 }

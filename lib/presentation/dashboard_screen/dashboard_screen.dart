@@ -36,9 +36,14 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final FullName = GetStorage().read('LoggedInUser');
-    var internetStatus =
-        BlocProvider.of<DashboardBloc>(context).state.networkStatus.toString();
-    print(internetStatus);
+
+    String internetStatus = 'Internet';
+    final Connectivity _connectivity = Connectivity();
+    _connectivity.onConnectivityChanged.listen((event) {
+      internetStatus =
+      ConnectivityResult.none == event ? 'NoInternet' : 'Internet';
+    });
+
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,

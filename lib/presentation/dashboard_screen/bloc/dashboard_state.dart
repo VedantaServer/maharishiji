@@ -17,6 +17,7 @@ class DashboardState extends Equatable {
   @override
   List<Object?> get props =>
       [searchController, otpController, contentModelObj, networkStatus];
+
   DashboardState copyWith(
       {TextEditingController? searchController,
       TextEditingController? otpController,
@@ -26,6 +27,6 @@ class DashboardState extends Equatable {
         searchController: searchController ?? this.searchController,
         otpController: otpController ?? this.otpController,
         contentModelObj: contentModelObj ?? this.contentModelObj,
-        networkStatus: networkStatus ?? this.networkStatus);
+        networkStatus: networkStatus != null ? 'Internet' : this.networkStatus);
   }
 }

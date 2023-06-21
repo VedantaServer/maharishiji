@@ -41,7 +41,8 @@ class DataLoadedState extends NewsState {
 
 class DataLoadedSuccess extends NewsState {
   final List<NewsEventsModel> listModel;
-  DataLoadedSuccess(this.listModel);
+  final bool hasReachedMax;
+  DataLoadedSuccess(this.listModel,  this.hasReachedMax);
   @override
   List<Object> get props => [listModel];
 }
@@ -56,14 +57,13 @@ class DataLoadingErrorState extends NewsState {
 //now lets create a block also, whcih will hold both state and events.
 class NewsBloc extends Bloc<NewsEvent, NewsState> {
   final _service = ApiClient();
-
   NewsBloc(NewsState newsState) : super(DataLoadingState()) {
     on<DataLoading>((event, emit) => _callApi(event, emit));
   }
 
   _callApi(DataLoading event, Emitter<NewsState> emit) async {
     try {
-      var partUrl = '/news-and-events/json/min/20/1/10';
+      var partUrl = '/news-and-events/json/min/20/1/20';
       var response = await _service.callApiService(partUrl);
 
       if (response == null) {
@@ -73,7 +73,10 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
         List listOfData = responseJson['data'];
         //if get list from api use List not var here else var use
         var data = listOfData.map((e) => NewsEventsModel.fromJson(e)).toList();
-        emit(DataLoadedSuccess(data));
+
+        //emit or send data if found then add else just emit first time.
+        emit(DataLoadedSuccess(data,false));
+
       }
     } catch (error) {
       emit(DataLoadingErrorState('Error while loading Data..'));
