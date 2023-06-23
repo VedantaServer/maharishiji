@@ -78,7 +78,7 @@ class AppRoutes {
   static const String newsEventsScreen = '/newsEventsScreen';
 
   static Map<String, WidgetBuilder> get routes => {
-        newsEventsScreen:NewsEventScreen.builder,
+        //newsEventsScreen:NewsEventScreen.builder,
         coverScreen: CoverScreen.builder,
         signUpScreen: SignUpScreen.builder,
         logInScreen: LogInScreen.builder,

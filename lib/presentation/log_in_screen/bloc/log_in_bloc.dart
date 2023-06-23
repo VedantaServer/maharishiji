@@ -9,13 +9,14 @@ class LogInBloc extends Bloc<LogInEvent, LogInState> {
   LogInBloc(LogInState initialState) : super(initialState) {
     on<LogInInitialEvent>(_onInitialize);
   }
-
   _onInitialize(
     LogInInitialEvent event,
     Emitter<LogInState> emit,
   ) async {
     emit(state.copyWith(
-      //default values only for teting. make sure to remove it before production
+      //default values only for testing. make sure to remove it before production
+      //mahagroup1008@gmail.com
+      //123456
       emailController: TextEditingController(text: 'mahagroup1008@gmail.com'),
       passwordController: TextEditingController(text: '123456'),
     ));

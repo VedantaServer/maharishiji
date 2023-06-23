@@ -1,5 +1,8 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:maharishiji/presentation/audioScreen.dart';
+import 'package:maharishiji/presentation/chatGPTScreen.dart';
+import 'package:maharishiji/presentation/newsEventsScreen.dart';
 import 'package:maharishiji/widgets/curved_navigation_bar.dart';
 import '../dashboard_screen/widgets/dashboard_item_widget.dart';
 import '../log_in_screen/models/log_in_model.dart';
@@ -18,7 +21,6 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 class DashboardScreen extends StatelessWidget {
   int _page = 0;
 
-
   static Widget builder(BuildContext context) {
     return BlocProvider<DashboardBloc>(
       create: (context) => DashboardBloc(DashboardState(
@@ -35,13 +37,13 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final FullName = GetStorage().read('LoggedInUser');
+    final _fullName = GetStorage().read('LoggedInUser');
 
     String internetStatus = 'Internet';
     final Connectivity _connectivity = Connectivity();
     _connectivity.onConnectivityChanged.listen((event) {
       internetStatus =
-      ConnectivityResult.none == event ? 'NoInternet' : 'Internet';
+          ConnectivityResult.none == event ? 'NoInternet' : 'Internet';
     });
 
     return SafeArea(
@@ -63,7 +65,7 @@ class DashboardScreen extends StatelessWidget {
                       'https://www.maharishividyamandir.com/images/chairman.jpg'),
                 ),
                 Flexible(
-                  child: new Text(" $FullName! "),
+                  child: new Text(" $_fullName! "),
                 ),
               ],
             ),
@@ -71,7 +73,7 @@ class DashboardScreen extends StatelessWidget {
         ),
         backgroundColor: Colors.orange.shade700,
         body: Container(
-          color:Colors.orange.shade700,
+          color: Colors.orange.shade700,
           child: Stack(
             children: [
               Padding(
@@ -118,8 +120,8 @@ class DashboardScreen extends StatelessWidget {
               ),
               Padding(
                   padding: getPadding(
-                      top: MediaQuery.of(context).size.height-275,
-                      left:MediaQuery.of(context).size.width - 80),
+                      top: MediaQuery.of(context).size.height - 275,
+                      left: MediaQuery.of(context).size.width - 80),
                   child: Container(
                       width: 40,
                       height: 40,
@@ -138,6 +140,7 @@ class DashboardScreen extends StatelessWidget {
           backgroundColor: Colors.deepOrangeAccent,
           items: <Widget>[
             Icon(Icons.person, size: 30),
+            Icon(Icons.chat, size: 30),
             Icon(Icons.audiotrack, size: 30),
             Icon(Icons.video_collection, size: 30),
             Icon(Icons.article, size: 30),
@@ -145,11 +148,18 @@ class DashboardScreen extends StatelessWidget {
           ],
           onTap: (index) {
             _page = index;
-            if (_page == 3) {
-              NavigatorService.pushNamed(
-                AppRoutes.newsEventsScreen,
-              );
-            }
+
+            if (_page == 1) {
+              Navigator.push(context,MaterialPageRoute(
+                builder: (context) => ChatGPTScreen(),));}
+            if (_page == 2) {
+              Navigator.push(context,MaterialPageRoute(
+                builder: (context) => AudioListenScreen(),));}
+            if (_page == 4) {
+              Navigator.push(context,MaterialPageRoute(
+                  builder: (context) => NewsEventPage(),
+                ),);}
+
           },
         ),
       ),

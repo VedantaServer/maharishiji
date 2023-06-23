@@ -1,17 +1,21 @@
+//import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'dart:convert';
 import '../data/apiClient/api_client.dart';
+import 'package:audioplayers/audioplayers.dart';
 
-class NewsEventPage extends StatefulWidget {
-  const NewsEventPage({Key? key}) : super(key: key);
+class AudioListenScreen extends StatefulWidget {
+  const AudioListenScreen({Key? key}) : super(key: key);
   @override
-  State<NewsEventPage> createState() => _NewsEventPageState();
+  State<AudioListenScreen> createState() => _AudioListenState();
 }
 
-class _NewsEventPageState extends State<NewsEventPage> {
+class _AudioListenState extends State<AudioListenScreen> {
   final _service = ApiClient();
+  final player = AudioPlayer();
   int _page = 0;
   final int _limit = 5;
   bool _isFirstLoadRunning = true;
@@ -21,7 +25,7 @@ class _NewsEventPageState extends State<NewsEventPage> {
 
   void _loadData(bool firstLoad) async {
     try {
-      var partUrl = '/news-and-events/json/min/20/$_page/$_limit';
+      var partUrl = '/audio/json/min/60/$_page/$_limit';
       final res = await _service.callApiService(partUrl);
       var responseJson = json.decode(utf8.decode(res.bodyBytes));
       setState(() {
@@ -47,7 +51,7 @@ class _NewsEventPageState extends State<NewsEventPage> {
       });
       _page += 1; // Increase _page by 1
       try {
-        var partUrl = '/news-and-events/json/min/20/$_page/$_limit';
+        var partUrl = '/audio/json/min/60/$_page/$_limit';
         //print('loading for more...'+ partUrl);
         final res = await _service.callApiService(partUrl);
         var responseJson = json.decode(utf8.decode(res.bodyBytes));
@@ -91,7 +95,7 @@ class _NewsEventPageState extends State<NewsEventPage> {
             onPressed: () => Navigator.of(context).pop(),
           ),
           backgroundColor: Colors.orange,
-          title: Text('News & Events'),
+          title: Text('Maharishi Ji Audio'),
         ),
         body: _isFirstLoadRunning
             ? const Center(
@@ -107,7 +111,8 @@ class _NewsEventPageState extends State<NewsEventPage> {
                           itemCount: _posts.length,
                           controller: _controller,
                           itemBuilder: (_, index) => Card(
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20)),
                                 elevation: 15,
                                 margin: const EdgeInsets.all(10.0),
                                 child: Column(
@@ -125,12 +130,27 @@ class _NewsEventPageState extends State<NewsEventPage> {
                                           10.0, 12.0, 16.0, 8.0),
                                       child: Column(
                                         children: [
-                                          Text(
-                                            '${_posts[index]['name']}',
-                                            textAlign: TextAlign.center,
-                                            style: const TextStyle(
-                                                fontSize: 25,)
-                                          ),
+                                          Text('${_posts[index]['name']}',
+                                              textAlign: TextAlign.center,
+                                              style: const TextStyle(
+                                                fontSize: 25,
+                                              )),
+                                          Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                ElevatedButton(
+                                                    onPressed: () {
+                                                      playAudio(_posts[index]
+                                                          ['audioFile']);
+                                                    },
+                                                    child: Icon(
+                                                        Icons
+                                                            .play_arrow_rounded,
+                                                        size: 30)),
+                                              ]),
                                         ],
                                       ),
                                     ),
@@ -155,5 +175,17 @@ class _NewsEventPageState extends State<NewsEventPage> {
                       ),
                   ],
                 )));
+  }
+
+  Future<void> playAudio(audioUrl) async {
+    try {
+      audioUrl ='https://maharishiji.net/stream/AUDIO/202306/pqgW_Dainik_Faladesh_22_June_2023.wav';
+      //await player.play(UrlSource(audioUrl));
+      //await assetsAudioPlayer.open(
+       // Audio.network(audioUrl),
+      //);
+    } catch (t) {
+      //mp3 unreachable
+    }
   }
 }
