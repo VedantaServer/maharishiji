@@ -17,7 +17,7 @@ class ApiClient {
     // device.write('LoggedInPassword', password);
     String basicAuth ='Basic ' + base64.encode(utf8.encode('$username:$password'));
     //Expectation is that each module will send send part of request
-    //  print(baseUrl + partUrl);
+     print(baseUrl + partUrl);
     var url = Uri.parse(baseUrl + partUrl);
     var response = await http.get(url, headers: <String, String>{'authorization': basicAuth});
       //print('Response status: ${response.statusCode}');

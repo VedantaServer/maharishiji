@@ -10,6 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'core/utils/logger.dart';
 import 'core/utils/pref_utils.dart';
 import 'localization/app_localization.dart';
+import 'presentation/onboarding_page.dart';
 
 var globalMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
@@ -24,19 +25,22 @@ void main() async {
     PrefUtils().init();
     Logger.init(kReleaseMode ? LogMode.live : LogMode.debug);
     var isLoggedIn = GetStorage().read('isUserLoggedIn') ?? 'false';
+    var isOnBoarding = GetStorage().read('isOnBoarding') ?? 'notDone';
     var startScreen = isLoggedIn == 'true'
         ? AppRoutes.dashboardScreen
         : AppRoutes.logInScreen;
-
-    if (isLoggedIn == 'true')
-      runApp(DashboardApp());
-    else
-      runApp(LoginApp(startScreen));
+    print('onboard' + isOnBoarding);
+    if (isOnBoarding == 'notDone') {
+      runApp(OnBoardingApp());
+    } else {
+      if (isLoggedIn == 'true')
+        runApp(DashboardApp());
+      else
+        runApp(LoginApp(startScreen));
+    }
     //GetStorage().remove('isUserLoggedIn');
   });
 }
-
-
 
 class LoginApp extends StatelessWidget {
   late final String _initialRoute;
@@ -91,7 +95,7 @@ class DashboardApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       title: 'Maharishi Ji',
-       home: DashboardScreen(),
+      home: DashboardScreen(),
     );
   }
 }

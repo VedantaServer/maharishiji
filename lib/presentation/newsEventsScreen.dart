@@ -33,7 +33,9 @@ class _NewsEventPageState extends State<NewsEventPage> {
         print('Something went wrong');
       }
     }
-
+    setState(() {
+      _isFirstLoadRunning = false; //this can always stay false during the life
+    });
   }
 
   void _loadMore() async {
