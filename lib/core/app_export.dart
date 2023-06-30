@@ -13,6 +13,5 @@ export 'package:maharishiji/widgets/custom_image_view.dart';
 export 'package:maharishiji/core/errors/exceptions.dart';
 export 'package:maharishiji/core/network/network_info.dart';
 export 'package:maharishiji/core/utils/logger.dart';
-export 'package:maharishiji/core/utils/navigator_service.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:maharishiji/core/utils/date_time_utils.dart';

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a0acc3cf-9aec-4687-8d45-59d5e3f01367" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../lib/presentation/dashboardScreen.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lib/presentation/homeScreen.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lib/presentation/settingsScreen.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lib/presentation/videoScreen.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lib/presentation/webRegisterScreen.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lib/widgets/common.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/debug/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/debug/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/network_security_config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/xml/network_security_config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/profile/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/profile/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/core/app_export.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/core/app_export.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/core/errors/exceptions.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/core/errors/exceptions.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/core/utils/navigator_service.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/core/utils/progress_dialog_utils.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/data/apiClient/api_client.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/data/apiClient/api_client.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/localization/app_localization.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/localization/app_localization.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/app_navigation_screen/app_navigation_screen.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/audioScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/audioScreen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/dashboard_screen/bloc/dashboard_bloc.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/dashboard_screen/bloc/dashboard_event.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/dashboard_screen/bloc/dashboard_state.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/dashboard_screen/dashboard_screen.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/dashboard_screen/models/dashboard_item_model.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/dashboard_screen/models/dashboard_model.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/dashboard_screen/widgets/dashboard_item_widget.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/drawer_bottomsheet/drawer_bottomsheet.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/log_in_screen/bloc/log_in_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/log_in_screen/bloc/log_in_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/log_in_screen/log_in_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/log_in_screen/log_in_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/log_in_screen/models/log_in_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/log_in_screen/models/log_in_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/newsEventsScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/newsEventsScreen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/onboarding_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/presentation/onboarding_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/sign_up_screen/bloc/sign_up_bloc.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/sign_up_screen/bloc/sign_up_event.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/sign_up_screen/bloc/sign_up_state.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/sign_up_screen/models/sign_up_model.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/presentation/sign_up_screen/sign_up_screen.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/routes/app_routes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/routes/app_routes.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/curved_navigation_bar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/curved_navigation_bar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/widget_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../test/widget_test.dart" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2Rv3kw0Sj9c1q3mWd1TZ2lZ8Kzl" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="cidr.known.project.marker" value="true" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a0acc3cf-9aec-4687-8d45-59d5e3f01367" name="Changes" comment="" />
+      <created>1688116874272</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1688116874272</updated>
+    </task>
+    <servers />
+  </component>
+</project>

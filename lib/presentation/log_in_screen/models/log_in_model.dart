@@ -13,7 +13,6 @@ class LogInModel extends Equatable {
   List<Object?> get props => [];
 }
 
-
 class MaharishiLogin {
   MaharishiLogin({
     required this.msg,
@@ -26,7 +25,7 @@ class MaharishiLogin {
   late final int code;
   late final Data data;
 
-  MaharishiLogin.fromJson(Map<String, dynamic> json){
+  MaharishiLogin.fromJson(Map<String, dynamic> json) {
     msg = json['msg'];
     isError = json['isError'];
     code = json['code'];
@@ -69,7 +68,7 @@ class Data {
   late final List<SubscriptionPayment> subscriptionPayment;
   late final List<Roles> roles;
 
-  Data.fromJson(Map<String, dynamic> json){
+  Data.fromJson(Map<String, dynamic> json) {
     fullName = json['fullName'];
     userStatus = json['userStatus'];
     password = json['password'];
@@ -79,8 +78,10 @@ class Data {
     countryName = null;
     cityName = json['cityName'];
     image = null;
-    subscriptionPayment = List.from(json['subscriptionPayment']).map((e)=>SubscriptionPayment.fromJson(e)).toList();
-    roles = List.from(json['roles']).map((e)=>Roles.fromJson(e)).toList();
+    subscriptionPayment = List.from(json['subscriptionPayment'])
+        .map((e) => SubscriptionPayment.fromJson(e))
+        .toList();
+    roles = List.from(json['roles']).map((e) => Roles.fromJson(e)).toList();
   }
 
   Map<String, dynamic> toJson() {
@@ -94,8 +95,9 @@ class Data {
     _data['countryName'] = countryName;
     _data['cityName'] = cityName;
     _data['image'] = image;
-    _data['subscriptionPayment'] = subscriptionPayment.map((e)=>e.toJson()).toList();
-    _data['roles'] = roles.map((e)=>e.toJson()).toList();
+    _data['subscriptionPayment'] =
+        subscriptionPayment.map((e) => e.toJson()).toList();
+    _data['roles'] = roles.map((e) => e.toJson()).toList();
     return _data;
   }
 }
@@ -130,18 +132,22 @@ class SubscriptionPayment {
   late final bool isActive;
   late final String plateform;
 
-  SubscriptionPayment.fromJson(Map<String, dynamic> json){
+  SubscriptionPayment.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     user = User.fromJson(json['user']);
     subscriptionPlan = SubscriptionPlan.fromJson(json['subscriptionPlan']);
-    subscriptionStartDate = List.castFrom<dynamic, int>(json['subscriptionStartDate']);
-    subscriptionEndDate = List.castFrom<dynamic, int>(json['subscriptionEndDate']);
+    if (json['subscriptionStartDate'] != null)
+      subscriptionStartDate =
+          List.castFrom<dynamic, int>(json['subscriptionStartDate']);
+    if (json['subscriptionEndDate'] != null)
+      subscriptionEndDate =
+          List.castFrom<dynamic, int>(json['subscriptionEndDate']);
     amount = json['amount'];
     txnNumber = json['txnNumber'];
-    postTxnNumber = json['postTxnNumber'];
-    txnStatus = json['txnStatus'];
+    if (json['postTxnNumber'] != null) postTxnNumber = json['postTxnNumber'];
+    if (json['txnStatus'] != null) txnStatus = json['txnStatus'];
     recieptNumber = json['recieptNumber'];
-    updationDate = json['updationDate'];
+    if (json['updationDate'] != null) updationDate = json['updationDate'];
     isActive = json['isActive'];
     plateform = json['plateform'];
   }
@@ -191,18 +197,19 @@ class User {
   late final List<int> subscriptionPayment;
   late final List<Roles> roles;
 
-  User.fromJson(Map<String, dynamic> json){
+  User.fromJson(Map<String, dynamic> json) {
     fullName = json['fullName'];
     userStatus = json['userStatus'];
     password = json['password'];
     email = json['email'];
     contactNumber = json['contactNumber'];
     stateName = json['stateName'];
-    countryName = null;
-    cityName = json['cityName'];
+    if (json['cityName'] != null) countryName = json['countryName'];
+    if (json['cityName'] != null) cityName = json['cityName'];
     image = null;
-    subscriptionPayment = List.castFrom<dynamic, int>(json['subscriptionPayment']);
-    roles = List.from(json['roles']).map((e)=>Roles.fromJson(e)).toList();
+    subscriptionPayment =
+        List.castFrom<dynamic, int>(json['subscriptionPayment']);
+    roles = List.from(json['roles']).map((e) => Roles.fromJson(e)).toList();
   }
 
   Map<String, dynamic> toJson() {
@@ -217,7 +224,7 @@ class User {
     _data['cityName'] = cityName;
     _data['image'] = image;
     _data['subscriptionPayment'] = subscriptionPayment;
-    _data['roles'] = roles.map((e)=>e.toJson()).toList();
+    _data['roles'] = roles.map((e) => e.toJson()).toList();
     return _data;
   }
 }
@@ -228,7 +235,7 @@ class Roles {
   });
   late final String name;
 
-  Roles.fromJson(Map<String, dynamic> json){
+  Roles.fromJson(Map<String, dynamic> json) {
     name = json['name'];
   }
 
@@ -273,7 +280,7 @@ class SubscriptionPlan {
   late final String iosKeyValue;
   late final String updationDate;
 
-  SubscriptionPlan.fromJson(Map<String, dynamic> json){
+  SubscriptionPlan.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     href = json['href'];

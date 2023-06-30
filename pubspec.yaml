@@ -28,8 +28,7 @@ dependencies:
   velocity_x:
   chat_gpt_sdk:
   introduction_screen:
-  audioplayers: ^1.0.1
-
+  just_audio: ^0.9.34
 
 
 dev_dependencies:

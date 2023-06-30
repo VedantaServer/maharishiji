@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import '../core/utils/navigator_service.dart';
 import 'en_us/en_us_translations.dart';
 import 'package:flutter/foundation.dart';
 //import 'package:flutter/cupertino.dart';
@@ -12,10 +10,6 @@ class AppLocalization {
 
   static final Map<String, Map<String, String>> _localizedValues = {'en': enUs};
 
-  static AppLocalization of() {
-    return Localizations.of<AppLocalization>(
-        NavigatorService.navigatorKey.currentContext!, AppLocalization)!;
-  }
 
   static List<String> languages() => _localizedValues.keys.toList();
   String getString(String text) =>
@@ -40,9 +34,6 @@ class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalization> {
   bool shouldReload(AppLocalizationDelegate old) => false;
 }
 
-extension LocalizationExtension on String {
-  String get tr => AppLocalization.of().getString(this);
-}
 
 void showWarningSnackBar(BuildContext context, String message,bool isRed) {
   print('showWarningSnackBar' + message);

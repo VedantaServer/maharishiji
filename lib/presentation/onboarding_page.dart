@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import 'package:maharishiji/presentation/dashboard_screen/dashboard_screen.dart';
 import 'package:maharishiji/presentation/log_in_screen/log_in_screen.dart';
 
 

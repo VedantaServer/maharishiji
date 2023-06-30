@@ -4,6 +4,7 @@ import 'package:get_storage/get_storage.dart';
 import 'dart:convert';
 import '../data/apiClient/api_client.dart';
 
+
 class NewsEventPage extends StatefulWidget {
   const NewsEventPage({Key? key}) : super(key: key);
   @override
@@ -32,9 +33,7 @@ class _NewsEventPageState extends State<NewsEventPage> {
         print('Something went wrong');
       }
     }
-    setState(() {
-      _isFirstLoadRunning = false; //this can always stay false during the life
-    });
+
   }
 
   void _loadMore() async {
@@ -86,11 +85,7 @@ class _NewsEventPageState extends State<NewsEventPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          backgroundColor: Colors.orange,
+          backgroundColor: Colors.indigo,
           title: Text('News & Events'),
         ),
         body: _isFirstLoadRunning
@@ -98,7 +93,7 @@ class _NewsEventPageState extends State<NewsEventPage> {
                 child: CircularProgressIndicator(),
               )
             : Container(
-                color: Colors.orangeAccent.shade200,
+                color: Colors.orangeAccent,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -114,7 +109,7 @@ class _NewsEventPageState extends State<NewsEventPage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     AspectRatio(
-                                      aspectRatio: 18.0 / 13.0,
+                                      aspectRatio: 15.0 / 10.0,
                                       child: Image.network(
                                         'https://maharishiji.net/image/${_posts[index]['image']}',
                                         fit: BoxFit.fill,
@@ -129,7 +124,7 @@ class _NewsEventPageState extends State<NewsEventPage> {
                                             '${_posts[index]['name']}',
                                             textAlign: TextAlign.center,
                                             style: const TextStyle(
-                                                fontSize: 25,)
+                                                fontSize: 20,)
                                           ),
                                         ],
                                       ),
@@ -154,6 +149,8 @@ class _NewsEventPageState extends State<NewsEventPage> {
                         ),
                       ),
                   ],
-                )));
+                ))
+
+    );
   }
 }

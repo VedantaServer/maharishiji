@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'package:maharishiji/presentation/cover_screen/cover_screen.dart';
 import 'package:maharishiji/presentation/newsEventsScreen.dart';
-import 'package:maharishiji/presentation/sign_up_screen/sign_up_screen.dart';
 import 'package:maharishiji/presentation/log_in_screen/log_in_screen.dart';
-import 'package:maharishiji/presentation/dashboard_screen/dashboard_screen.dart';
-import 'package:maharishiji/presentation/app_navigation_screen/app_navigation_screen.dart';
 
 class AppRoutes {
-
   static const String dashboardScreen = '/dashboard_screen';
 
   static const String imagesScreen = '/images_screen';
@@ -80,9 +75,6 @@ class AppRoutes {
   static Map<String, WidgetBuilder> get routes => {
         //newsEventsScreen:NewsEventScreen.builder,
         coverScreen: CoverScreen.builder,
-        signUpScreen: SignUpScreen.builder,
         logInScreen: LogInScreen.builder,
-        contentScreen: DashboardScreen.builder,
-        appNavigationScreen: AppNavigationScreen.builder,
       };
 }

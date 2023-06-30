@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:get_storage/get_storage.dart';
-
+import 'package:maharishiji/presentation/dashboardScreen.dart';
+import 'package:maharishiji/presentation/webRegisterScreen.dart';
 import 'bloc/log_in_bloc.dart';
 import 'models/log_in_model.dart';
 import 'package:flutter/material.dart';
@@ -50,10 +51,10 @@ class LogInScreen extends StatelessWidget {
                       AssetImage('assets/images/maharishijilogo.png'),
                 ),
                 Text(
-                  "lbl_app_name".tr,
+                  "Maharishi Ji",
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left,
-                  style: AppStyle.txtInterSemiBold30,
+                  style: TextStyle(color: Colors.indigo, fontSize: 45),
                 ),
                 BlocSelector<LogInBloc, LogInState, TextEditingController?>(
                   selector: (state) => state.emailController,
@@ -62,7 +63,7 @@ class LogInScreen extends StatelessWidget {
                       focusNode: FocusNode(),
                       autofocus: true,
                       controller: emailController,
-                      hintText: "lbl_email".tr,
+                      hintText: "Email",
                       margin: getMargin(
                         top: 10,
                       ),
@@ -86,7 +87,7 @@ class LogInScreen extends StatelessWidget {
                   builder: (context, passwordController) {
                     return CustomTextFormField(
                       controller: passwordController,
-                      hintText: "lbl_password".tr,
+                      hintText: "Password",
                       margin: getMargin(
                         top: 20,
                       ),
@@ -112,20 +113,27 @@ class LogInScreen extends StatelessWidget {
                   margin: getMargin(
                     top: 20,
                   ),
-                  text: "lbl_log_in2".tr,
+                  text: "Login Now!",
                 ),
                 Padding(
-                  padding: getPadding(
-                    top: 16,
-                    bottom: 10,
-                  ),
-                  child: Text(
-                    "msg_forgot_your_password".tr,
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.left,
-                    style: AppStyle.txtInterSemiBold16,
-                  ),
-                ),
+                    padding: getPadding(
+                      top: 16,
+                      bottom: 10,
+                    ),
+                  child:GestureDetector(
+                      onTap: () {
+                        var login = BlocProvider.of<LogInBloc>(context);
+                        //print(login);
+                        _gotoRegistration(context);
+                      },
+                      child: Text(
+                      "New Registration",
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.left,
+                      style: TextStyle(color: Colors.indigo, fontSize: 25),
+                      //style: AppStyle.txtInterSemiBold16,
+                      )
+                    )),
               ],
             ),
           ),
@@ -139,39 +147,52 @@ class LogInScreen extends StatelessWidget {
   }
 
   Future<void> validateUser(context, var pusername, var ppassword) async {
+    final device = GetStorage();
     String username = pusername; //"mahagroup1008@gmail.com";
     String password = ppassword; // "123456";
     String basicAuth =
         'Basic ' + base64.encode(utf8.encode('$username:$password'));
 
     final response = await http.post(
-      Uri.parse('https://maharishiji.net/user/json/login'),
+      Uri.parse(device.read('serverUrl') + 'user/json/login'),
       headers: <String, String>{'authorization': basicAuth},
       body: {},
     );
-    print(response.statusCode);
+    print('statusCode' + response.statusCode.toString());
     if (response.statusCode == 200) {
       // command executed with some response
-      MaharishiLogin user = MaharishiLogin.fromJson(jsonDecode(response.body));
-      var responseData = json.decode(response.body);
-      //ShowDialog(context,'JSON', responseData);
-      var isValidUser = responseData['msg'];
-      var loggingUserName = responseData['data']['fullName'];
+      print(response);
+      var responseJson = json.decode(utf8.decode(response.bodyBytes));
+      //MaharishiLogin user = MaharishiLogin.fromJson(jsonDecode(response.body));
+      var isValidUser = responseJson['msg'];
       if (isValidUser == "Success") {
+        var responseData = responseJson['data'];
+        print('response' + responseData.toString());
+        var _loggedInUser = responseData['fullName'];
+        var _loggedInUserPhoto = responseData["image"];
         // User is valid, perform desired actions
-        //print(loggingUserName);
+        print(_loggedInUser);
+        print(_loggedInUserPhoto);
         //return showSnakeBar(context, );
         //final snackBar = SnackBar(content: Text('Welcome ' + user.data.fullName));
         //ScaffoldMessenger.of(context).showSnackBar(snackBar);
         showWarningSnackBar(context,
-            'Welcome ' + user.data.fullName + '. Opening Dashboard!!!', false);
-        final box = GetStorage();
-        box.write('isUserLoggedIn', 'true');
-        box.write('LoggedInUser',user.data.fullName);
-        NavigatorService.pushNamed(
-          AppRoutes.dashboardScreen,
-        );
-      } else {
+            'Welcome ' + _loggedInUser + '. Opening Dashboard!!!', false);
+
+        device.write('isUserLoggedIn', 'true');
+        device.write('LoggedInUser', _loggedInUser);
+        device.write('LoggedInPassword', password);
+        print('photos' + _loggedInUserPhoto.toString());
+        if (_loggedInUserPhoto == null)
+          device.write(
+              'LoggedInUserPhoto',
+              _loggedInUserPhoto == null
+                  ? 'ui-design/images/user.png'
+                  : _loggedInUserPhoto);
+        //move to dashboard page now
+        Route route = MaterialPageRoute(builder: (context) => DashboardScreen());
+        Navigator.pushReplacement(context, route);
+       } else {
         // User is invalid, show error message
         //final snackBar = SnackBar(content: Text('Invalid UserID & Password, Try again!!!'));
         showWarningSnackBar(context, 'Invalid UserName or Password!!!', true);
@@ -181,4 +202,12 @@ class LogInScreen extends StatelessWidget {
           context, 'Unable to connect to server at this time!!!', true);
     }
   }
+
+  Future<void> _gotoRegistration(context) async {
+   // Route route = MaterialPageRoute(builder: (context) => WebRegistration());
+    //Navigator.pushReplacement(context, route);
+  }
 }
+
+
+

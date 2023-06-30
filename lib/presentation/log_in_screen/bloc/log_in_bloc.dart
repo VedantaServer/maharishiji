@@ -17,7 +17,7 @@ class LogInBloc extends Bloc<LogInEvent, LogInState> {
       //default values only for testing. make sure to remove it before production
       //mahagroup1008@gmail.com
       //123456
-      emailController: TextEditingController(text: 'mahagroup1008@gmail.com'),
+      emailController: TextEditingController(text: 'awdhesh@mssmail.org'),
       passwordController: TextEditingController(text: '123456'),
     ));
   }

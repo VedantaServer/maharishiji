@@ -23,7 +23,7 @@ class CurvedNavigationBar extends StatefulWidget {
     this.index = 0,
     this.color = Colors.white,
     this.buttonBackgroundColor,
-    this.backgroundColor = Colors.blueAccent,
+    this.backgroundColor = Colors.red,
     this.onTap,
     _LetIndexPage? letIndexChange,
     this.animationCurve = Curves.easeOut,
