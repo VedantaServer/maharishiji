@@ -63,7 +63,7 @@ class _NewsEventPageState extends State<NewsEventPage> {
           });
         }
       } catch (err) {
-        print('error ${err}');
+        print('error $err');
         if (kDebugMode) {
           print('Something went wrong! ${err.val}');
         }

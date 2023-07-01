@@ -1,10 +1,6 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:get_storage/get_storage.dart';
-import 'package:html/dom.dart';
-import 'package:html/dom_parsing.dart';
-import 'package:html/parser.dart';
 import 'package:http/http.dart' as http;
 
 class ApiClient {
@@ -22,7 +18,7 @@ class ApiClient {
     var response = await http.get(url, headers: <String, String>{'authorization': basicAuth});
       //print('Response status: ${response.statusCode}');
     if (response.statusCode == 200) {
-       //print('Response body: ${response.body}');
+      // print('Response body: ${response.body}');
       return  response;
     }
     return null;

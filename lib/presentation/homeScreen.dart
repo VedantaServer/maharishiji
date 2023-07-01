@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
+import 'package:velocity_x/velocity_x.dart';
 import 'dart:convert';
 import '../data/apiClient/api_client.dart';
 
@@ -19,6 +20,7 @@ class _HomeScreen extends State<HomeScreen> {
   final _userPhoto = GetStorage().read('serverUrl').toString() +
       GetStorage().read('LoggedInUserPhoto').toString();
 
+
   int _page = 0;
   final int _limit = 5;
   bool _isFirstLoadRunning = true;
@@ -26,17 +28,18 @@ class _HomeScreen extends State<HomeScreen> {
   bool _isLoadMoreRunning = false;
   List _posts = [];
 
-  void _loadData(bool firstLoad) async {
+  void _loadDataNews(bool firstLoad) async {
     try {
-      var partUrl = '/news-and-events/json/min/20/$_page/$_limit';
+      var partUrl = '/news-and-events/json/max/top2';
       final res = await _service.callApiService(partUrl);
       var responseJson = json.decode(utf8.decode(res.bodyBytes));
       setState(() {
         _posts = responseJson['data'];
       });
+      print('Record Counts' + _posts.length.toString());
     } catch (err) {
       if (kDebugMode) {
-        print('Something went wrong');
+        print('Something went wrong in home news');
       }
     }
     setState(() {
@@ -44,61 +47,22 @@ class _HomeScreen extends State<HomeScreen> {
     });
   }
 
-  void _loadMore() async {
-    if (_hasNextPage == true &&
-        _isFirstLoadRunning == false &&
-        _isLoadMoreRunning == false &&
-        _controller.position.extentAfter < 300) {
-      setState(() {
-        _isLoadMoreRunning = true; // Display a progress indicator at the bottom
-      });
-      _page += 1; // Increase _page by 1
-      try {
-        var partUrl = '/news-and-events/json/min/20/$_page/$_limit';
-        //print('loading for more...'+ partUrl);
-        final res = await _service.callApiService(partUrl);
-        var responseJson = json.decode(utf8.decode(res.bodyBytes));
-        final List fetchedPosts = responseJson['data'];
-        if (fetchedPosts.isNotEmpty) {
-          setState(() {
-            _posts.addAll(responseJson['data']);
-          });
-        } else {
-          setState(() {
-            _hasNextPage = false;
-          });
-        }
-      } catch (err) {
-        print('error ${err}');
-        if (kDebugMode) {
-          print('Something went wrong! ${err.val}');
-        }
-      }
-
-      setState(() {
-        _isLoadMoreRunning = false;
-      });
-    }
-  }
-
   late ScrollController _controller;
   @override
   void initState() {
     super.initState();
-    //_loadData(true);
+    _loadDataNews(true);
     _controller = ScrollController()..addListener(_loadMore);
   }
+  void _loadMore() async {
 
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white24,
-        appBar: AppBar(
-          backgroundColor: Colors.indigo,
-          title: Text('Dashboard'),
-        ),
+
         body: SafeArea(
-            child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.all(16.0),
             child: Column(
@@ -127,7 +91,7 @@ class _HomeScreen extends State<HomeScreen> {
                             )),
                         Text(
                           ' $_fullName!',
-                          style: TextStyle(fontSize: 20),
+                          style: TextStyle(fontSize: 15, color: Colors.indigo),
                         )
                       ],
                     )
@@ -139,11 +103,41 @@ class _HomeScreen extends State<HomeScreen> {
                   children: [
                     CardColumn(
                       icon: Icons.volume_up,
-                      title: "Today's Bhajans",
-                      content: 'link of audio/video appears here',
+                      title: "Recent News...",
+                      content: "These are most recent news available.",
                     ),
-                  ],
+                   ]
                 ),
+
+                Flexible(
+                  child: ListView.builder(
+                      itemCount: _posts.length,
+                      itemBuilder: (_, index) => Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        elevation: 15,
+                        margin: const EdgeInsets.all(10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(
+                                  10.0, 12.0, 16.0, 8.0),
+                              child: Column(
+                                children: [
+                                  Text('${_posts[index]['name']}',
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                        fontSize: 20,
+                                      )),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      )),
+                ),
+
                 SizedBox(height: 16.0),
                 CardRow(
                   color: Colors.green,
@@ -180,7 +174,7 @@ class _HomeScreen extends State<HomeScreen> {
               ],
             ),
           ),
-        )));
+         ));
   }
 }
 
@@ -297,10 +291,9 @@ class _DigitalClockState extends State<DigitalClock> {
                   Text(
                     currentDayFormatted,
                     style: TextStyle(
-                      fontSize: 36,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.indigoAccent
-                    ),
+                        fontSize: 36,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.indigoAccent),
                   ),
                   SizedBox(height: 8),
                   Text(

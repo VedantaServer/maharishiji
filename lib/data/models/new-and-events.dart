@@ -1,5 +1,4 @@
 
-import 'package:html/parser.dart';
 
 class NewsEventsModel {
   final int? id;

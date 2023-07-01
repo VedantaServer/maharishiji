@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:get_storage/get_storage.dart';
 import 'package:maharishiji/presentation/dashboardScreen.dart';
-import 'package:maharishiji/presentation/webRegisterScreen.dart';
 import 'bloc/log_in_bloc.dart';
 import 'models/log_in_model.dart';
 import 'package:flutter/material.dart';
@@ -120,20 +119,19 @@ class LogInScreen extends StatelessWidget {
                       top: 16,
                       bottom: 10,
                     ),
-                  child:GestureDetector(
-                      onTap: () {
-                        var login = BlocProvider.of<LogInBloc>(context);
-                        //print(login);
-                        _gotoRegistration(context);
-                      },
-                      child: Text(
-                      "New Registration",
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.left,
-                      style: TextStyle(color: Colors.indigo, fontSize: 25),
-                      //style: AppStyle.txtInterSemiBold16,
-                      )
-                    )),
+                    child: GestureDetector(
+                        onTap: () {
+                          var login = BlocProvider.of<LogInBloc>(context);
+                          //print(login);
+                          _gotoRegistration(context);
+                        },
+                        child: Text(
+                          "New Registration",
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.left,
+                          style: TextStyle(color: Colors.indigo, fontSize: 25),
+                          //style: AppStyle.txtInterSemiBold16,
+                        ))),
               ],
             ),
           ),
@@ -190,9 +188,10 @@ class LogInScreen extends StatelessWidget {
                   ? 'ui-design/images/user.png'
                   : _loggedInUserPhoto);
         //move to dashboard page now
-        Route route = MaterialPageRoute(builder: (context) => DashboardScreen());
+        Route route =
+            MaterialPageRoute(builder: (context) => DashboardScreen());
         Navigator.pushReplacement(context, route);
-       } else {
+      } else {
         // User is invalid, show error message
         //final snackBar = SnackBar(content: Text('Invalid UserID & Password, Try again!!!'));
         showWarningSnackBar(context, 'Invalid UserName or Password!!!', true);
@@ -204,10 +203,16 @@ class LogInScreen extends StatelessWidget {
   }
 
   Future<void> _gotoRegistration(context) async {
-   // Route route = MaterialPageRoute(builder: (context) => WebRegistration());
+     //Route route = MaterialPageRoute(builder: (context) => WebRegistration(title: 'Open Web Registration',));
     //Navigator.pushReplacement(context, route);
+    //const _url = 'https://flutter.dev';
+    //final _url = Uri.parse('https://maharishiji.net/subscribe');
+    //await launchUrl(_url);
+    //if (!await launchUrl(_url)) {
+   //   throw Exception('Could not launch $_url');
+    //}
+
+    //await launchUrlString(_url, mode: LaunchMode.externalApplication);
+
   }
 }
-
-
-

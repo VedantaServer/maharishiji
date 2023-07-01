@@ -1,123 +1,126 @@
-import 'dart:convert';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:introduction_screen/introduction_screen.dart';
-import 'package:maharishiji/presentation/log_in_screen/log_in_screen.dart';
-import '../data/apiClient/api_client.dart';
+import 'package:introduction_story/introduction_story.dart';
+import '../core/utils/size_utils.dart';
 import '../main.dart';
 import '../routes/app_routes.dart';
+import '../widgets/custom_button.dart';
 
 class OnBoardingApp extends StatelessWidget {
+  const OnBoardingApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      //navigatorKey: NavigatorService.navigatorKey,
+      title: 'Introduction Story',
+      theme: ThemeData.light(),
       debugShowCheckedModeBanner: false,
-      title: 'Maharishi Ji',
-      home: PageState(),
+      home: const HomePage(),
     );
   }
 }
 
-class PageState extends StatefulWidget {
-  const PageState({Key? key}) : super(key: key);
-  @override
-  State<PageState> createState() => _OnBoardingPage();
-}
-
-class _OnBoardingPage extends State<PageState> {
-  @override
-  final _service = ApiClient();
-  List _pages = [];
-  final List<PageViewModel> _OnBoardingPages = [];
-  void _loadData() async {
-    try {
-      var partUrl = 'home-gallery/json/all/true';
-      final res = await _service.callApiService(partUrl);
-      var responseJson = json.decode(utf8.decode(res.bodyBytes));
-      setState(() {
-        _pages = responseJson['data'];
-        for (var i = 0; i < _pages.length; i++) {
-          _OnBoardingPages.add(new PageViewModel(
-            title: _pages[i]['title'],
-            body: _pages[i]['description'],
-            image:  Image.network(
-                'https://maharishiji.net/image/' + _pages[i]['image']),
-            decoration: getPageDecoration(),
-          ));
-        }
-      });
-    } catch (err) {
-      print('Something went wrong');
-    }
-  }
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
-  void initState() {
-    super.initState();
-    _loadData();
-  }
-
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IntroductionScreen(
-        pages: _OnBoardingPages,
-        done: Text('Read', style: TextStyle(fontWeight: FontWeight.w600)),
-        onDone: () => goToHome(context),
-        showSkipButton: true,
-        skip: Text('Skip'),
-        onSkip: () => goToHome(context),
-        next: Icon(Icons.arrow_forward),
-        dotsDecorator: getDotDecoration(),
-        onChange: (index) => print('Page $index selected'),
-        globalBackgroundColor: Colors.orangeAccent,
-        nextFlex: 0,
+      backgroundColor: Colors.orangeAccent,
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: ListView.separated(
+                padding: const EdgeInsets.all(1),
+                separatorBuilder: (_, __) => const SizedBox(height: 1),
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    margin: const EdgeInsets.fromLTRB(10, 100, 10, 100),
+                    height: MediaQuery.of(context).size.height - 300,
+                    decoration: BoxDecoration(
+                      color: Colors.orangeAccent,
+                      borderRadius: BorderRadius.circular(50),
+                      image: const DecorationImage(
+                        image: AssetImage('assets/images/maharishijilogo.png'),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  );
+                },
+                itemCount: 1,
+              ),
+            ),
+            CustomButton(
+                onTap: () {
+                  _pushIntroductionStoriesScreen(context);
+                },
+                height: getVerticalSize(
+                  51,
+                ),
+                text: "Introduction",
+                margin: const EdgeInsets.fromLTRB(10, 10, 10, 10)),
+            Center(
+              child: TextButton(
+                onPressed: () {
+                  var isLoggedIn =
+                      GetStorage().read('isUserLoggedIn') ?? 'false';
+                  if (isLoggedIn == 'true' ) {
+                    runApp(DashboardApp());
+                  } else {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                          builder: (_) => LoginApp(AppRoutes.logInScreen)),
+                    );
+                  }
+                },
+                style: TextButton.styleFrom(
+                  foregroundColor: Colors.green,
+                ),
+                child: Text(
+                  'Login Now',
+                  style: TextStyle(fontSize: 30),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
-  void goToHome(context) {
-    GetStorage().write('isOnBoarding', 'done');
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (_) => LoginApp(AppRoutes.logInScreen)),
+
+  String get _featureName => 'Grocery Store';
+
+  void _pushIntroductionStoriesScreen(BuildContext context) {
+    Navigator.push<void>(
+      context,
+      PageRouteBuilder(
+        opaque: false,
+        pageBuilder: (_, __, ___) => IntroductionStoryScreen(
+          isDismissible: true,
+          stories: [
+            Story(
+              imagePath: 'assets/images/Intro1.png',
+              title: 'Maharishji Mobile App',
+              name: _featureName,
+              description:
+                  '"Maharishiji.net Mobile App & Website is dedicated to His Holiness Maharishi Mahesh Yogi Ji',
+              decoration: const StoryDecoration(lightMode: true),
+            ),
+            Story(
+              imagePath: 'assets/images/Intro2.png',
+              title: 'By Brahmachari Girish Ji',
+              name: _featureName,
+              description:
+                  '"Dedicated to His Holiness Maharishi Mahesh Yogi Ji.',
+              decoration: const StoryDecoration(lightMode: true),
+            ),
+          ],
+        ),
+      ),
     );
   }
-
-  Widget buildImage(String path) =>
-      Center(child: Image.asset(path, width: 350));
-
-  DotsDecorator getDotDecoration() => DotsDecorator(
-        color: Color(0xFFBDBDBD),
-        activeColor: Colors.indigo,
-        size: Size(10, 10),
-        activeSize: Size(22, 10),
-        activeShape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
-        ),
-      );
-  PageDecoration getPageDecoration() => PageDecoration(
-        titleTextStyle: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-        bodyTextStyle: TextStyle(fontSize: 20),
-        imagePadding: EdgeInsets.all(44),
-        pageColor: Colors.orangeAccent,
-      );
-}
-
-class ButtonWidget extends StatelessWidget {
-  final String text;
-  final VoidCallback onClicked;
-
-  const ButtonWidget({
-    required Key key,
-    required this.text,
-    required this.onClicked,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) => ElevatedButton(
-        onPressed: onClicked,
-        child: Text(
-          text,
-          style: TextStyle(color: Colors.orangeAccent, fontSize: 16),
-        ),
-      );
 }

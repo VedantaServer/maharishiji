@@ -4,13 +4,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:maharishiji/presentation/dashboardScreen.dart';
-import 'package:maharishiji/presentation/log_in_screen/log_in_screen.dart';
+import 'package:maharishiji/presentation/onboarding_page.dart';
 import 'package:maharishiji/routes/app_routes.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'core/utils/logger.dart';
 import 'core/utils/pref_utils.dart';
 import 'localization/app_localization.dart';
-import 'presentation/onboarding_page.dart';
 
 var globalMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
@@ -24,20 +22,7 @@ void main() async {
   ]).then((value) {
     PrefUtils().init();
     Logger.init(kReleaseMode ? LogMode.live : LogMode.debug);
-    var isLoggedIn = GetStorage().read('isUserLoggedIn') ?? 'false';
-    var isOnBoarding = GetStorage().read('isOnBoarding') ?? 'notDone';
-    var startScreen = isLoggedIn == 'true'
-        ? AppRoutes.dashboardScreen
-        : AppRoutes.logInScreen;
-    print('onboard' + isOnBoarding);
-    if (isOnBoarding == 'notDone') {
-      runApp(OnBoardingApp());
-    } else {
-      if (isLoggedIn == 'true')
-        runApp(DashboardApp());
-      else
-        runApp(LoginApp(startScreen));
-    }
+    runApp(OnBoardingApp());
     //GetStorage().remove('isUserLoggedIn');
   });
 }

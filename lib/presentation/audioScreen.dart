@@ -9,7 +9,6 @@ import '../data/apiClient/api_client.dart';
 import '../widgets/common.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../widgets/curved_navigation_bar.dart';
 
 class AudioListenScreen extends StatefulWidget {
   const AudioListenScreen({Key? key}) : super(key: key);
@@ -78,7 +77,7 @@ class _AudioListenState extends State<AudioListenScreen>
         var responseJson = json.decode(utf8.decode(res.bodyBytes));
         _loadAudios(responseJson);
       } catch (err) {
-        print('error ${err}');
+        print('error $err');
         if (kDebugMode) {
           print('Something went wrong! ${err.val}');
         }

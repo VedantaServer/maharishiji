@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
@@ -60,7 +59,7 @@ class _ChatGPTPageState extends State<ChatGPTScreen> {
           await chatGPT!.onChatCompletion(request: request);
       if (response != null) {
         // Convert response to JSON format
-        var content = response!.choices[0].message!.content;
+        var content = response.choices[0].message!.content;
         print('GPT' + content);
         insertNewData(content, isImage: false);
       } else {

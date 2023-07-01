@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:maharishiji/presentation/cover_screen/cover_screen.dart';
-import 'package:maharishiji/presentation/newsEventsScreen.dart';
 import 'package:maharishiji/presentation/log_in_screen/log_in_screen.dart';
 
 class AppRoutes {

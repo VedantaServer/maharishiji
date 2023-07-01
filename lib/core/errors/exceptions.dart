@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:maharishiji/main.dart';
 
 class ServerException implements Exception {}
 

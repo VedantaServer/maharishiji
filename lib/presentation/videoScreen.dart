@@ -31,7 +31,7 @@ class _VideoDisplayPage extends State<VideoDisplayPage> {
       });
     } catch (err) {
       if (kDebugMode) {
-        print('Something went wrong in getting video data. ${err}');
+        print('Something went wrong in getting video data. $err');
       }
     }
     setState(() {
