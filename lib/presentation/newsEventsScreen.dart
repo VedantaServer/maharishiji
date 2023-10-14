@@ -4,7 +4,6 @@ import 'package:get_storage/get_storage.dart';
 import 'dart:convert';
 import '../data/apiClient/api_client.dart';
 
-
 class NewsEventPage extends StatefulWidget {
   const NewsEventPage({Key? key}) : super(key: key);
   @override
@@ -76,12 +75,21 @@ class _NewsEventPageState extends State<NewsEventPage> {
   }
 
   late ScrollController _controller;
+
   @override
   void initState() {
     super.initState();
     _loadData(true);
-    _controller = ScrollController()..addListener(_loadMore);
+    _controller = ScrollController()
+      ..addListener(_loadMore);
   }
+
+  bool imageTapped = false;
+
+  void handleImageTap() {
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -92,67 +100,220 @@ class _NewsEventPageState extends State<NewsEventPage> {
         ),
         body: _isFirstLoadRunning
             ? const Center(
-                child: CircularProgressIndicator(),
-              )
+          child: CircularProgressIndicator(),
+        )
             : Container(
-                color: Colors.orangeAccent,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: ListView.builder(
-                          itemCount: _posts.length,
-                          controller: _controller,
-                          itemBuilder: (_, index) => Card(
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                                elevation: 15,
-                                margin: const EdgeInsets.all(10.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    AspectRatio(
-                                      aspectRatio: 15.0 / 10.0,
-                                      child: Image.network(
-                                        'https://maharishiji.net/image/${_posts[index]['image']}',
-                                        fit: BoxFit.fill,
-                                      ),
+            color: Colors.orangeAccent,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                      itemCount: _posts.length,
+                      controller: _controller,
+                      itemBuilder: (_, index) =>
+                          Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            elevation: 15,
+                            margin: const EdgeInsets.all(10.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                AspectRatio(
+                                  aspectRatio: 15.0 / 10.0,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute<void>(
+                                            builder: (BuildContext context) {
+                                              return _buildImageDetail(
+                                                  _posts[index]);
+                                            },
+                                          ));
+                                    },
+                                    child: Image.network(
+                                      'https://maharishiji.net/image/${_posts[index]['image']}',
+                                      fit: BoxFit.fill,
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(
-                                          10.0, 12.0, 16.0, 8.0),
-                                      child: Column(
-                                        children: [
-                                          Text(
-                                            '${_posts[index]['name']}',
-                                            textAlign: TextAlign.center,
-                                            style: const TextStyle(
-                                                fontSize: 20,)
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                              )),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(
+                                      10.0, 12.0, 16.0, 8.0),
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                          '${_posts[index]['name']} ',
+                                          textAlign: TextAlign.center,
+                                          style: const TextStyle(
+                                            fontSize: 20,)
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(
+                                      10.0, 12.0, 16.0, 8.0),
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                          'Last Updated :${_posts[index]['updationDate']}',
+                                          textAlign: TextAlign.center,
+                                          style: const TextStyle(
+                                            fontSize: 10,)
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )),
+                ),
+                if (_isLoadMoreRunning == true)
+                  const Padding(
+                    padding: EdgeInsets.only(top: 10, bottom: 40),
+                    child: Center(
+                      child: CircularProgressIndicator(),
                     ),
-                    if (_isLoadMoreRunning == true)
-                      const Padding(
-                        padding: EdgeInsets.only(top: 10, bottom: 40),
-                        child: Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                      ),
-                    if (_hasNextPage == false)
-                      Container(
-                        padding: const EdgeInsets.only(top: 30, bottom: 40),
-                        color: Colors.amber,
-                        child: const Center(
-                          child: Text('No more content, Folks!!!'),
-                        ),
-                      ),
-                  ],
-                ))
+                  ),
+                if (_hasNextPage == false)
+                  Container(
+                    padding: const EdgeInsets.only(top: 30, bottom: 40),
+                    color: Colors.amber,
+                    child: const Center(
+                      child: Text('No more content, Folks!!!'),
+                    ),
+                  ),
+              ],
+            ))
 
     );
   }
+
+  Widget _buildImageDetail(imagePath) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.indigo,
+        title: Text(imagePath['name']),
+      ),
+      body: SingleChildScrollView(
+          child:
+          Card(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20)),
+            elevation: 15,
+            margin: const EdgeInsets.all(10.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AspectRatio(
+                  aspectRatio: 15.0 / 10.0,
+                  child: GestureDetector(
+                    child: Image.network(
+                      'https://maharishiji.net/image/' + imagePath['image'],
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(
+                      10.0, 12.0, 16.0, 8.0),
+                  child: Column(
+                    children: [
+                      Text(
+                          imagePath['name'],
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(
+                            fontSize: 20,)
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(
+                      10.0, 12.0, 16.0, 8.0),
+                  child: Column(
+                    children: [
+                      HtmlText(htmlContent:"""Description :""" + imagePath['description']+""""""""
+                         ,textAlign: TextAlign.left),
+                    ],
+                  ),
+                ),
+
+                Padding(
+                  padding: EdgeInsets.fromLTRB(
+                      10.0, 12.0, 16.0, 8.0),
+
+                  child: Column(
+                    children: [
+                      Row(
+                          children: [
+                            Icon(Icons.remove_red_eye, size: 16),
+                            // Eye icon for showing data
+                            Text(
+                              imagePath['viewCount'].toString(),
+                              // Text displayed next to the eye icon
+                              style: TextStyle(fontSize: 12.0),
+                            ),
+                            Icon(Icons.share, size: 12,
+
+                            ),
+                            Text(
+                              imagePath['shareCount'].toString(),
+                              // Text displayed next to the eye icon
+                              style: TextStyle(fontSize: 12.0),
+                            ),
+                          ]
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(
+                      10.0, 12.0, 16.0, 8.0),
+                  child: Column(
+                    children: [
+                      Text(
+                          'Last Updated :' + imagePath['updationDate'],
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 10,)
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          )
+
+      ),
+    );
+  }
 }
+    class HtmlText extends StatelessWidget {
+      final String htmlContent;
+      final TextAlign textAlign;
+      HtmlText({required this.htmlContent, this.textAlign = TextAlign.start});
+
+      @override
+      Widget build(BuildContext context) {
+        return Column(
+          children: <Widget>[
+            Text(
+              htmlContent
+                  .replaceAll(RegExp(r'<[^>]*>'), ''), // Remove HTML tags
+              style: TextStyle(fontSize: 16.0),
+            ),
+          ],
+        );
+      }
+    }
+
+
+
+
+
+
+
+
