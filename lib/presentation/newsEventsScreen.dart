@@ -33,8 +33,14 @@ class _NewsEventPageState extends State<NewsEventPage> {
       }
     }
     setState(() {
-      _isFirstLoadRunning = false; //this can always stay false during the life
-    });
+      try {
+        _isFirstLoadRunning =
+        false; //this can always stay false during the life
+      }catch(e)
+      {
+
+      }
+      });
   }
 
   void _loadMore() async {
