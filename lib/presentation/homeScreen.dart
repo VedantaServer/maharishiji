@@ -30,7 +30,7 @@ class _HomeScreen extends State<HomeScreen> {
 
   void _loadDataNews(bool firstLoad) async {
     try {
-      var partUrl = '/news-and-events/json/max/top2';
+      var partUrl = '/article/json/max/top3';
       final res = await _service.callApiService(partUrl);
       var responseJson = json.decode(utf8.decode(res.bodyBytes));
       setState(() {
@@ -61,10 +61,9 @@ class _HomeScreen extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white24,
-
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(1.0),
             child: Column(
               children: [
                 CardRow(
@@ -72,17 +71,19 @@ class _HomeScreen extends State<HomeScreen> {
                   children: [
                     Column(children: [
                       Padding(
-                          padding: const EdgeInsets.only(bottom: 2.0),
+                          padding: const EdgeInsets.only(bottom: 1.0),
                           child: DigitalClock()),
                     ]),
+                    SizedBox(width: 26.0),
                     Column(
                       children: [
                         Padding(
-                            padding: const EdgeInsets.only(bottom: 2.0),
+
+                            padding: const EdgeInsets.only(bottom: 5.0),
                             child: ClipPath(
                               child: Container(
-                                width: 120.0,
-                                height: 120.0,
+                                width: 100.0,
+                                height: 100.0,
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                         fit: BoxFit.fill,
@@ -91,13 +92,13 @@ class _HomeScreen extends State<HomeScreen> {
                             )),
                         Text(
                           ' $_fullName!',
-                          style: TextStyle(fontSize: 15, color: Colors.indigo),
+                          style: TextStyle(fontSize: 12, color: Colors.indigo),
                         )
                       ],
                     )
                   ],
                 ),
-                SizedBox(height: 16.0),
+                SizedBox(height: 2.0),
                 CardRow(
                   color: Colors.orangeAccent.shade400,
                   children: [
@@ -108,15 +109,14 @@ class _HomeScreen extends State<HomeScreen> {
                     ),
                    ]
                 ),
-
                 Flexible(
                   child: ListView.builder(
                       itemCount: _posts.length,
                       itemBuilder: (_, index) => Card(
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        elevation: 15,
-                        margin: const EdgeInsets.all(10.0),
+                            borderRadius: BorderRadius.circular(2)),
+                        elevation: 10,
+                        margin: const EdgeInsets.all(3.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -128,7 +128,7 @@ class _HomeScreen extends State<HomeScreen> {
                                   Text('${_posts[index]['name']}',
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(
-                                        fontSize: 20,
+                                        fontSize: 12,
                                       )),
                                 ],
                               ),
@@ -137,8 +137,7 @@ class _HomeScreen extends State<HomeScreen> {
                         ),
                       )),
                 ),
-
-                SizedBox(height: 16.0),
+                SizedBox(height: 6.0),
                 CardRow(
                   color: Colors.green,
                   children: [
@@ -146,28 +145,6 @@ class _HomeScreen extends State<HomeScreen> {
                       icon: Icons.music_note,
                       title: 'Latest Audio',
                       content: 'List of  top  3 audion will show here ',
-                    ),
-                  ],
-                ),
-                SizedBox(height: 16.0),
-                CardRow(
-                  color: Colors.green.shade400,
-                  children: [
-                    CardColumn(
-                      icon: Icons.camera_alt,
-                      title: 'Top 3 Videos',
-                      content: 'List will show here',
-                    ),
-                  ],
-                ),
-                SizedBox(height: 16.0),
-                CardRow(
-                  color: Colors.deepOrangeAccent,
-                  children: [
-                    CardColumn(
-                      icon: Icons.article,
-                      title: 'Blog Links',
-                      content: 'List',
                     ),
                   ],
                 ),
@@ -181,21 +158,19 @@ class _HomeScreen extends State<HomeScreen> {
 class CardRow extends StatelessWidget {
   final Color color;
   final List<Widget> children;
-
   CardRow({required this.color, required this.children});
-
   @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 4.0,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(5.0),
       ),
       child: Container(
         color: color,
-        padding: EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(5.0),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: children,
         ),
       ),
@@ -218,13 +193,13 @@ class CardColumn extends StatelessWidget {
         Icon(
           icon,
           color: Colors.white,
-          size: 32.0,
+          size: 18.0,
         ),
         SizedBox(height: 8.0),
         Text(
           title,
           style: TextStyle(
-            fontSize: 18.0,
+            fontSize: 12.0,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
@@ -233,7 +208,7 @@ class CardColumn extends StatelessWidget {
         Text(
           content,
           style: TextStyle(
-            fontSize: 16.0,
+            fontSize: 10.0,
             color: Colors.white,
           ),
         ),
@@ -285,13 +260,13 @@ class _DigitalClockState extends State<DigitalClock> {
             ),
             elevation: 4.0,
             child: Padding(
-              padding: EdgeInsets.all(18.0),
+              padding: EdgeInsets.all(10.0),
               child: Column(
                 children: [
                   Text(
                     currentDayFormatted,
                     style: TextStyle(
-                        fontSize: 36,
+                        fontSize: 26,
                         fontWeight: FontWeight.bold,
                         color: Colors.indigoAccent),
                   ),
@@ -299,7 +274,7 @@ class _DigitalClockState extends State<DigitalClock> {
                   Text(
                     currentMonthFormatted,
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 10,
                       fontWeight: FontWeight.normal,
                     ),
                   ),
@@ -307,7 +282,7 @@ class _DigitalClockState extends State<DigitalClock> {
               ),
             ),
           ),
-          SizedBox(height: 16),
+          SizedBox(height: 10),
           Text(
             currentTimeFormatted,
             style: TextStyle(
