@@ -20,14 +20,13 @@ class _HomeScreen extends State<HomeScreen> {
   final _userPhoto = GetStorage().read('serverUrl').toString() +
       GetStorage().read('LoggedInUserPhoto').toString();
 
-
   int _page = 0;
   final int _limit = 5;
   bool _isFirstLoadRunning = true;
   bool _hasNextPage = true;
   bool _isLoadMoreRunning = false;
   List _posts = [];
-  List _Audio = [];
+  List _audio = [];
 
   void _loadDataNews(bool firstLoad) async {
     try {
@@ -42,7 +41,7 @@ class _HomeScreen extends State<HomeScreen> {
       final res1 = await _service.callApiService(audioUrl);
       var response1Json = json.decode(utf8.decode(res1.bodyBytes));
       setState(() {
-        _Audio = response1Json['data'];
+        _audio = response1Json['data'];
       });
     } catch (err) {
       if (kDebugMode) {
@@ -53,8 +52,6 @@ class _HomeScreen extends State<HomeScreen> {
       _isFirstLoadRunning = false; //this can always stay false during the life
     });
   }
-
-
 
   late ScrollController _controller;
   @override
@@ -83,11 +80,10 @@ class _HomeScreen extends State<HomeScreen> {
                           padding: const EdgeInsets.only(bottom: 1.0),
                           child: DigitalClock()),
                     ]),
-                    SizedBox(width: 26.0),
+                    SizedBox(width: 36.0),
                     Column(
                       children: [
                         Padding(
-
                             padding: const EdgeInsets.only(bottom: 5.0),
                             child: ClipPath(
                               child: Container(
@@ -120,22 +116,14 @@ class _HomeScreen extends State<HomeScreen> {
                 ),
                 Flexible(
                   child: ListView.builder(
+                      shrinkWrap: true,
                       itemCount: _posts.length,
                       itemBuilder: (_, index) => Card(
-
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(26)),
                         elevation: 8,
                         margin: const EdgeInsets.all(3.0),
                               child: Column(
                                 children: [
                                   Container(
-                                    height: 50,
-                                    width: 400,
-                                  decoration: BoxDecoration(
-                                    color: Colors.blue,
-                                    borderRadius: BorderRadius.circular(20.0)
-                                  ),
                                     child: GestureDetector(
                                       onTap: () {
                                         Navigator.of(context).push(
@@ -165,7 +153,7 @@ class _HomeScreen extends State<HomeScreen> {
                               ),
                       )),
                 ),
-                SizedBox(height: 2.0),
+                SizedBox(height: 6.0),
                 CardRow(
                   color: Colors.green,
                   children: [
@@ -178,7 +166,8 @@ class _HomeScreen extends State<HomeScreen> {
                 ),
                 Flexible(
                   child: ListView.builder(
-                      itemCount: _Audio.length,
+                      shrinkWrap: true,
+                      itemCount: _audio.length,
                       itemBuilder: (_, index) => Card(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(2)),
@@ -195,7 +184,7 @@ class _HomeScreen extends State<HomeScreen> {
                                   Row(
                                       children: [
                                         Text(
-                                          '${_Audio[index]['name']}',
+                                          '${_audio[index]['name']}',
                                           // Text displayed next to the eye icon
                                           style: TextStyle(fontSize: 12.0),
                                         ),

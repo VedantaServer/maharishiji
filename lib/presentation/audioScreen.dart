@@ -20,7 +20,6 @@ class AudioListenScreen extends StatefulWidget {
 class _AudioListenState extends State<AudioListenScreen>
     with WidgetsBindingObserver {
   late AudioPlayer _player;
-
   final _service = ApiClient();
   int _page = 0;
   final int _limit = 10;
@@ -33,7 +32,20 @@ class _AudioListenState extends State<AudioListenScreen>
   final _scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
   final _playlist =
-      ConcatenatingAudioSource(useLazyPreparation: true, children: []);
+      ConcatenatingAudioSource(useLazyPreparation: true,
+          children: [
+        AudioSource.uri(
+      // test MP3
+      // https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3
+      //Uri.parse("https://maharishiji.net/stream/" + entry["audioFile"]),
+      Uri.parse("https://maharishiji.net/stream/AUDIO/201910_4/9T3T_Maharishi_Upadeshamrit_Pravah_-_174.mp3"),
+      tag: AudioMetadata(
+        album: "Maharishi Upadeshamrit Pravah-183",
+        title: "Maharishi Upadeshamrit Pravah-183",
+        artwork: "https://maharishiji.net/image/AUDIO_THUMB/201910_5/ttQy_Maharishi-Discourse.jpg",
+      ),
+        )
+      ]);
 
   void _loadData(bool firstLoad) async {
     try {
@@ -41,15 +53,6 @@ class _AudioListenState extends State<AudioListenScreen>
       final res = await _service.callApiService(partUrl);
       var responseJson = json.decode(utf8.decode(res.bodyBytes));
       _loadAudios(responseJson);
-      try {
-        // Preloading audio is not currently supported on Linux.
-        await _player.setAudioSource(_playlist,
-            preload: kIsWeb || defaultTargetPlatform != TargetPlatform.linux);
-      } catch (e) {
-        // Catch load errors: 404, invalid url...
-        print("Error loading audio source: $e");
-      }
-
       print('${_playlist.children.length}');
     } catch (err) {
       if (kDebugMode) {
@@ -75,7 +78,7 @@ class _AudioListenState extends State<AudioListenScreen>
         //print('loading for more...'+ partUrl);
         final res = await _service.callApiService(partUrl);
         var responseJson = json.decode(utf8.decode(res.bodyBytes));
-        _loadAudios(responseJson);
+        await _loadAudios(responseJson);
       } catch (err) {
         print('error $err');
         if (kDebugMode) {
@@ -89,15 +92,18 @@ class _AudioListenState extends State<AudioListenScreen>
     }
   }
 
-  void _loadAudios(responseJson) {
-
+  Future<void> _loadAudios(responseJson) async {
 
     responseJson['data'].forEach((entry) {
+      print ("https://maharishiji.net/stream/" + entry["audioFile"]);
+      print (entry["hindiDescription"]);
+      print (entry["name"]);
+      print ( "https://maharishiji.net/image/" + entry["image"]);
       _playlist.children.add(AudioSource.uri(
        // test MP3
         // https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3
         //Uri.parse("https://maharishiji.net/stream/" + entry["audioFile"]),
-        Uri.parse("https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3"),
+        Uri.parse("https://maharishiji.net/stream/AUDIO/201910_4/9T3T_Maharishi_Upadeshamrit_Pravah_-_174.mp3"),
         tag: AudioMetadata(
           album: entry["hindiDescription"],
           title: entry["name"],
@@ -105,6 +111,15 @@ class _AudioListenState extends State<AudioListenScreen>
         ),
       ));
     });
+    try {
+      // Preloading audio is not currently supported on Linux.
+      print(_playlist.children.length);
+      await _player.setAudioSource(_playlist);
+      await _player.seek(Duration.zero, index: 0);
+    } catch (e) {
+      // Catch load errors: 404, invalid url...
+      print("Error loading audio source: $e");
+    }
   }
 
   @override
@@ -117,7 +132,7 @@ class _AudioListenState extends State<AudioListenScreen>
     ));
     _loadData(true);
     _controller = ScrollController()..addListener(_loadMore);
-    _init();
+     //_init();
   }
 
   Future<void> _init() async {
@@ -128,14 +143,7 @@ class _AudioListenState extends State<AudioListenScreen>
         onError: (Object e, StackTrace stackTrace) {
       print('A stream error occurred: $e');
     });
-    try {
-      // Preloading audio is not currently supported on Linux.
-      await _player.setAudioSource(_playlist,
-          preload: kIsWeb || defaultTargetPlatform != TargetPlatform.linux);
-    } catch (e) {
-      // Catch load errors: 404, invalid url...
-      print("Error loading audio source: $e");
-    }
+
     // Show a snackbar whenever reaching the end of an item in the playlist.
     _player.positionDiscontinuityStream.listen((discontinuity) {
       if (discontinuity.reason == PositionDiscontinuityReason.autoAdvance) {
