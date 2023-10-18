@@ -67,140 +67,49 @@ class _HomeScreen extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white24,
-        body: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.all(1.0),
-            child: Column(
-              children: [
-                CardRow(
-                  color: Colors.orangeAccent,
-                  children: [
-                    Column(children: [
-                      Padding(
-                          padding: const EdgeInsets.only(bottom: 1.0),
-                          child: DigitalClock()),
-                    ]),
-                    SizedBox(width: 36.0),
-                    Column(
-                      children: [
-                        Padding(
-                            padding: const EdgeInsets.only(bottom: 5.0),
-                            child: ClipPath(
-                              child: Container(
-                                width: 100.0,
-                                height: 100.0,
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        fit: BoxFit.fill,
-                                        image: NetworkImage(_userPhoto))),
-                              ),
-                            )),
-                        Text(
-                          ' $_fullName!',
-                          style: TextStyle(fontSize: 12, color: Colors.indigo),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-                SizedBox(height: 2.0),
-                CardRow(
-                  color: Colors.orangeAccent.shade400,
-                  children: [
-                    CardColumn(
-                      icon: Icons.volume_up,
-                      title: "Recent News...",
-                      content: "These are most recent news available.",
-                    ),
-                   ]
-                ),
-                Flexible(
-                  child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: _posts.length,
-                      itemBuilder: (_, index) => Card(
-                        elevation: 8,
-                        margin: const EdgeInsets.all(3.0),
-                              child: Column(
-                                children: [
-                                  Container(
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute<void>(
-                                              builder: (BuildContext context) {
-                                                return _buildImageDetail(
-                                                    _posts[index]);
-                                              },
-                                            ));
-                                      },
-                                      child:Row(
-                                        children: [Image.network(
-                                        'https://maharishiji.net/image/' + _posts[index]['image'],
-                                        fit: BoxFit.fill,
-                                          width: 50,
-                                          height: 50,
-                                      ), Text('${_posts[index]['name']}',
-                                          textAlign: TextAlign.left,
-                                          style: const TextStyle(
-                                            fontSize: 12,
-                                          )),
-                                      ]),
-                                    ),
-                                  )
-
-                                ],
-                              ),
-                      )),
-                ),
-                SizedBox(height: 6.0),
-                CardRow(
-                  color: Colors.green,
-                  children: [
-                    CardColumn(
-                      icon: Icons.music_note,
-                      title: 'Latest Audio',
-                      content: 'List of  top  3 audion will show here ',
-                    ),
-                  ],
-                ),
-                Flexible(
-                  child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: _audio.length,
-                      itemBuilder: (_, index) => Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(2)),
-                        elevation: 10,
-                        margin: const EdgeInsets.all(3.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(
-                                  10.0, 12.0, 16.0, 8.0),
-                              child: Column(
-                                children: [
-                                  Row(
-                                      children: [
-                                        Text(
-                                          '${_audio[index]['name']}',
-                                          // Text displayed next to the eye icon
-                                          style: TextStyle(fontSize: 12.0),
-                                        ),
-                                      ]
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      )),
-                ),
-              ],
+        body:  Container(
+          
+          child :  GridView.count(
+          primary: false,
+          padding: const EdgeInsets.all(20),
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          crossAxisCount: 2,
+          children: <Widget>[
+            Container(
+              padding: const EdgeInsets.all(8),
+              color: Colors.teal[100],
+              child: const Text("Video"),
             ),
-          ),
-         ));
+            Container(
+              padding: const EdgeInsets.all(8),
+              color: Colors.teal[200],
+              child: const Text('Audion'),
+            ),
+            Container(
+              padding: const EdgeInsets.all(8),
+              color: Colors.teal[300],
+              child: const Text('New & Events'),
+            ),
+            Container(
+              padding: const EdgeInsets.all(8),
+              color: Colors.teal[400],
+              child: const Text('Articles'),
+            ),
+            Container(
+              padding: const EdgeInsets.all(8),
+              color: Colors.teal[500],
+              child: const Text('Find a TM Teacher'),
+            ),
+            Container(
+              padding: const EdgeInsets.all(8),
+              color: Colors.teal[600],
+              child: const Text('Jyotish and Vedic Astrology Consultant'),
+            ),
+          ],
+        )
+         )
+    );
   }
   Widget _buildImageDetail(imagePath) {
     return Scaffold(
