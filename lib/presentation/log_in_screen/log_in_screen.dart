@@ -155,11 +155,11 @@ class LogInScreen extends StatelessWidget {
       Uri.parse(device.read('serverUrl') + 'user/json/login'),
       headers: <String, String>{'authorization': basicAuth},
       body: {},
+
     );
     print('statusCode' + response.statusCode.toString());
     if (response.statusCode == 200) {
       // command executed with some response
-      print(response);
       var responseJson = json.decode(utf8.decode(response.bodyBytes));
       //MaharishiLogin user = MaharishiLogin.fromJson(jsonDecode(response.body));
       var isValidUser = responseJson['msg'];
@@ -180,6 +180,15 @@ class LogInScreen extends StatelessWidget {
         device.write('isUserLoggedIn', 'true');
         device.write('LoggedInUser', _loggedInUser);
         device.write('LoggedInPassword', password);
+        device.write('LoggedInEmail', responseData["email"]);
+        device.write('LoggedInContactNumber', responseData["contactNumber"]);
+        device.write('LoggedInstateName', responseData["stateName"]);
+        device.write('LoggedInCityName', responseData["cityName"]);
+        device.write('LoggedInandroidProductId', responseData["subscriptionPayment"][0]["subscriptionPlan"]["name"]);
+        device.write('LoggedInSubStartDate',responseData["subscriptionPayment"][0]["subscriptionStartDate"][2].toString() +"-"+ responseData["subscriptionPayment"][0]["subscriptionStartDate"][1].toString() +"-"+ responseData["subscriptionPayment"][0]["subscriptionStartDate"][0].toString());
+        device.write('LoggedInSubEndDate',responseData["subscriptionPayment"][0]["subscriptionEndDate"][2].toString()+"-"+responseData["subscriptionPayment"][0]["subscriptionEndDate"][1].toString()+ "-"+responseData["subscriptionPayment"][0]["subscriptionEndDate"][0].toString());
+
+
         print('photos' + _loggedInUserPhoto.toString());
         if (_loggedInUserPhoto == null)
           device.write(

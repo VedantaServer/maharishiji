@@ -73,7 +73,7 @@ class HomePage extends StatelessWidget {
                   } else {
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
-                          builder: (_) => LoginApp(AppRoutes.logInScreen)),
+                          builder: (context) => LoginApp(AppRoutes.logInScreen)),
                     );
                   }
                 },
