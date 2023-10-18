@@ -129,7 +129,7 @@ class _HomeScreen extends State<HomeScreen> {
                       image: AssetImage('assets/images/audio.png'),
                       fit: BoxFit.cover)),
 
-              child: const Text('Audion'),
+              child: const Text('Audio'),
             ),
             Container(
               padding: const EdgeInsets.all(8),
