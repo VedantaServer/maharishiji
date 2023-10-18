@@ -60,30 +60,75 @@ class _HomeScreen extends State<HomeScreen> {
     _loadDataNews(true);
     _controller = ScrollController()..addListener(_loadMore);
   }
-  void _loadMore() async {
 
-  }
+  void _loadMore() async {}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white24,
-        body:  Container(
-          
-          child :  GridView.count(
-          primary: false,
-          padding: const EdgeInsets.all(20),
+      backgroundColor: Colors.white24,
+      body: Column(children: <Widget>[
+        Row(
+          //ROW 1
+          children: [
+            Padding(
+              padding: EdgeInsets.all(15.0),
+              child: CardRow(
+                color: Colors.orangeAccent,
+                children: [
+                  Column(children: [
+                    Padding(
+                        padding: const EdgeInsets.only(bottom: 5.0),
+                        child: DigitalClock()),
+                  ]),
+                  SizedBox(width: 86.0),
+                  Column(
+                    children: [
+                      Padding(
+                          padding: const EdgeInsets.only(bottom: 5.0),
+                          child: ClipPath(
+                            child: Container(
+                              width: 100.0,
+                              height: 100.0,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image: NetworkImage(_userPhoto))),
+                            ),
+                          )),
+                      Text(
+                        ' $_fullName!',
+                        style: TextStyle(fontSize: 12, color: Colors.indigo),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+        Expanded(
+            child: GridView.count(
+          primary: true,
+          padding: const EdgeInsets.all(30),
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           crossAxisCount: 2,
           children: <Widget>[
             Container(
               padding: const EdgeInsets.all(8),
-              color: Colors.teal[100],
-              child: const Text("Video"),
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/images/video.png'),
+                      fit: BoxFit.cover)),
+              child: const Text('Videos',style: TextStyle(color: Colors.purpleAccent),),
             ),
             Container(
               padding: const EdgeInsets.all(8),
-              color: Colors.teal[200],
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/images/audio.png'),
+                      fit: BoxFit.cover)),
+
               child: const Text('Audion'),
             ),
             Container(
@@ -107,107 +152,8 @@ class _HomeScreen extends State<HomeScreen> {
               child: const Text('Jyotish and Vedic Astrology Consultant'),
             ),
           ],
-        )
-         )
-    );
-  }
-  Widget _buildImageDetail(imagePath) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.indigo,
-        title: Text(imagePath['name']),
-      ),
-      body: SingleChildScrollView(
-          child:
-          Card(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20)),
-            elevation: 15,
-            margin: const EdgeInsets.all(10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                AspectRatio(
-                  aspectRatio: 15.0 / 10.0,
-                  child: GestureDetector(
-                    child: Image.network(
-                      'https://maharishiji.net/image/' + imagePath['image'],
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(
-                      10.0, 12.0, 16.0, 8.0),
-                  child: Column(
-                    children: [
-                      Text(
-                          imagePath['name'],
-                          textAlign: TextAlign.left,
-                          style: const TextStyle(
-                            fontSize: 20,)
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(
-                      10.0, 12.0, 16.0, 8.0),
-                  child: Column(
-                    children: [
-                      HtmlText(htmlContent:"""Description :""" + imagePath['description']+""""""""
-                          ,textAlign: TextAlign.left),
-                    ],
-                  ),
-                ),
-
-                Padding(
-                  padding: EdgeInsets.fromLTRB(
-                      10.0, 12.0, 16.0, 8.0),
-
-                  child: Column(
-                    children: [
-                      Row(
-                          children: [
-                            Icon(Icons.remove_red_eye, size: 16),
-                            // Eye icon for showing data
-                            Text(
-                              imagePath['viewCount'].toString(),
-                              // Text displayed next to the eye icon
-                              style: TextStyle(fontSize: 12.0),
-                            ),
-                            Icon(Icons.share, size: 12,
-
-                            ),
-                            Text(
-                              imagePath['shareCount'].toString(),
-                              // Text displayed next to the eye icon
-                              style: TextStyle(fontSize: 12.0),
-                            ),
-                          ]
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(
-                      10.0, 12.0, 16.0, 8.0),
-                  child: Column(
-                    children: [
-                      Text(
-                          'Last Updated :' + imagePath['updationDate'],
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 10,)
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          )
-
-      ),
+        ))
+      ]),
     );
   }
 }
@@ -221,13 +167,13 @@ class CardRow extends StatelessWidget {
     return Card(
       elevation: 4.0,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(5.0),
+        borderRadius: BorderRadius.circular(15.0),
       ),
       child: Container(
         color: color,
         padding: EdgeInsets.all(5.0),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: children,
         ),
       ),
@@ -352,6 +298,7 @@ class _DigitalClockState extends State<DigitalClock> {
     );
   }
 }
+
 class HtmlText extends StatelessWidget {
   final String htmlContent;
   final TextAlign textAlign;
@@ -362,8 +309,7 @@ class HtmlText extends StatelessWidget {
     return Column(
       children: <Widget>[
         Text(
-          htmlContent
-              .replaceAll(RegExp(r'<[^>]*>'), ''), // Remove HTML tags
+          htmlContent.replaceAll(RegExp(r'<[^>]*>'), ''), // Remove HTML tags
           style: TextStyle(fontSize: 16.0),
         ),
       ],
