@@ -6,7 +6,7 @@ import 'package:maharishiji/presentation/newsEventsScreen.dart';
 import 'package:maharishiji/presentation/settingsScreen.dart';
 import 'package:maharishiji/presentation/videoScreen.dart';
 import '../core/utils/size_utils.dart';
-import '../widgets/curved_navigation_bar.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class DashboardScreen extends StatefulWidget {
   @override
@@ -14,7 +14,8 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-
+  int _page = 0;
+  GlobalKey _bottomNavigationKey = GlobalKey();
   final _logo =  GetStorage().read('serverUrl').toString() +'/image/HOME_GALLERY/202010/TwyL_sMl4_Maharishi5.jpg';
   int _selectedIndex = 0;
   PageController _pageController = PageController(initialPage: 0);
@@ -29,6 +30,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
     });
   }
   void _onNavTapped(int index) {
+    setState(() {
+      _page = index;
+    });
     _pageController.animateToPage(
       index,
       duration: Duration(milliseconds: 300),
@@ -53,7 +57,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 backgroundImage: NetworkImage(_logo),
               ),
               Flexible(
-                child: new Text("Maharishi Ji... ",style: TextStyle(fontSize:30),),
+                child: new Text(" Maharishi Ji... ",style: TextStyle(fontSize:30),),
               ),
             ],
           ),
@@ -75,9 +79,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ],
       )),
       bottomNavigationBar: CurvedNavigationBar(
+        key: _bottomNavigationKey,
         index: _selectedIndex,
         backgroundColor: Colors.orangeAccent,
         height: 50,
+        letIndexChange: (index) => true,
         items: <Widget>[
           Icon(Icons.home, size: 30),
           Icon(Icons.newspaper, size: 30),
