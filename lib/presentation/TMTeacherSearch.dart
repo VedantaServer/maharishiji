@@ -21,7 +21,7 @@ class _TMTeacherSearchPageState extends State<TMTeacherSearchPage> {
 
   void _loadData(bool firstLoad) async {
     try {
-      var partUrl = 'jyotish-tm-slider/jyotish/json/min';
+      var partUrl = 'tm-info/json/all-tm-teacher';
       final res = await _service.callApiService(partUrl);
       var responseJson = json.decode(utf8.decode(res.bodyBytes));
       setState(() {
@@ -118,21 +118,12 @@ class _TMTeacherSearchPageState extends State<TMTeacherSearchPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            AspectRatio(
-                              aspectRatio: 15.0 / 10.0,
-                              child: GestureDetector(
-                                child: Image.network(
-                                  'https://maharishiji.net/image/${_posts[index]['image']}',
-                                  fit: BoxFit.contain,
-                                ),
-                              ),
-                            ),
                             Padding(
                               padding: EdgeInsets.fromLTRB(
                                   10.0, 12.0, 16.0, 8.0),
                               child: Column(
                                 children: [
-                                  Text('${_posts[index]['type']} ',
+                                  Text('${_posts[index]['name']}' ,
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(
                                         fontSize: 20,
