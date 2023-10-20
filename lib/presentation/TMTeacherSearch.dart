@@ -122,28 +122,32 @@ class _TMTeacherSearchPageState extends State<TMTeacherSearchPage> {
                               padding: EdgeInsets.fromLTRB(
                                   10.0, 12.0, 16.0, 8.0),
                               child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
+                                  Text('State :${_posts[index]['tmCity']['state']}'  ' City :${_posts[index]['tmCity']['name']}'   ,
+                                      textAlign: TextAlign.start,
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                      )),
                                   Text('${_posts[index]['name']}' ,
-                                      textAlign: TextAlign.center,
+                                      textAlign: TextAlign.start,
                                       style: const TextStyle(
                                         fontSize: 20,
                                       )),
-                                ],
+
+                        Text('${_posts[index]['phone']}' ,
+                      textAlign: TextAlign.start,
+                      style: const TextStyle(
+                      fontSize: 20,
+                      )),
+
+
+          ],
                               ),
                             ),
                             Padding(
                               padding: EdgeInsets.fromLTRB(
-                                  10.0, 12.0, 16.0, 8.0),
-                              child: Column(
-                                children: [
-                                  Text(
-                                      'Last Updated :${_posts[index]['updationDate']}',
-                                      textAlign: TextAlign.center,
-                                      style: const TextStyle(
-                                        fontSize: 10,
-                                      )),
-                                ],
-                              ),
+                                  5.0, 5.0, 5.0, 5.0),
                             ),
                           ],
                         ),
