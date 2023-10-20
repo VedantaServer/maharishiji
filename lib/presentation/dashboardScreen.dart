@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:maharishiji/presentation/TMTeacherSearch.dart';
 import 'package:maharishiji/presentation/audioScreen.dart';
 import 'package:maharishiji/presentation/homeScreen.dart';
 import 'package:maharishiji/presentation/newsEventsScreen.dart';
@@ -75,6 +76,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           NewsEventPage(),
           AudioListenScreen(),
           VideoDisplayPage(),
+          TMTeacherSearchPage(),
           SettingsScreen(),
         ],
       )),
@@ -89,6 +91,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           Icon(Icons.newspaper, size: 30),
           Icon(Icons.audiotrack, size: 30),
           Icon(Icons.video_collection, size: 30),
+          Icon(Icons.group, size: 30),
           Icon(Icons.settings, size: 30),
         ],
         onTap: _onNavTapped,
