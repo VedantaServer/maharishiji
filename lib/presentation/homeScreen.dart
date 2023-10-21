@@ -7,7 +7,12 @@ import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import '../data/apiClient/api_client.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-
+import 'package:maharishiji/presentation/TMTeacherSearch.dart';
+import 'package:maharishiji/presentation/audioScreen.dart';
+import 'package:maharishiji/presentation/homeScreen.dart';
+import 'package:maharishiji/presentation/newsEventsScreen.dart';
+import 'package:maharishiji/presentation/settingsScreen.dart';
+import 'package:maharishiji/presentation/videoScreen.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
   @override
@@ -83,88 +88,119 @@ class _HomeScreen extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    return Scaffold(
-      backgroundColor: Colors.white24,
-      body: Column(children: <Widget>[
-        CardRow(color: Colors.orangeAccent.shade400, children: [
-          Column(children: [
-            Padding(
-                padding: const EdgeInsets.only(bottom: 5.0),
-                child: DigitalClock()),
-          ]),
-          Column(
-            children: [
+     return DefaultTabController(
+      length: 1,
+      child: Scaffold(
+        body: NestedScrollView(
+
+            headerSliverBuilder: (context, innerBoxIsScrolled) {
+            return <Widget>[
+              SliverAppBar(
+                leadingWidth:200,
+                expandedHeight: 165.0,
+                backgroundColor: Colors.orangeAccent.shade400 ,
+                floating: false,
+                pinned: true,
+                flexibleSpace: FlexibleSpaceBar(
+                  title:
+              Align(
+              alignment: Alignment.centerLeft,
+               child:Container(
+                    width: 600.0,
+                    alignment: Alignment.centerLeft,
+                    margin: EdgeInsets.only(top: 30.0),
+                      child:
+              Column(children: <Widget>[
+              CardRow(color: Colors.orangeAccent.shade400, children: [
+              Column(children: [
               Padding(
-                  padding: const EdgeInsets.only(bottom: 5.0),
-                  child: ClipPath(
-                    child: Container(
-                      width: 100.0,
-                      height: 100.0,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              fit: BoxFit.fill,
-                              image: NetworkImage(_userPhoto))),
-                    ),
-                  )),
-              Text(
-                ' $_fullName!',
-                style: TextStyle(fontSize: 12, color: Colors.indigo),
-              )
-            ],
-          )
-        ]),
-        SizedBox(height: 10),
-        Expanded(
-          child: Stack(children: [
-            Container(
-              margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+              padding: const EdgeInsets.only(bottom: 5.0),
+              child: DigitalClock()),
+              ]),
+              Column(
+              children: [
+              Padding(
+              padding: const EdgeInsets.only(bottom: 0.0),
+              child: ClipPath(
+              child: Container(
+              width: 90.0,
+              height: 90.0,
               decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: pickImg(), // Replace with your image path
-                  fit: BoxFit
-                      .cover, // Adjust this property to control how the image fits the container
-                ),
-                borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(10.0), bottom: Radius.circular(30.0)),
+              image: DecorationImage(
+              fit: BoxFit.fill,
+              image: NetworkImage(_userPhoto))),
               ),
-            ),
-            SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Column(children: [
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Expanded(
-                          child: Card(
-                              semanticContainer: true,
-                              elevation: 5,
-                              margin: EdgeInsets.all(10),
-                              clipBehavior: Clip.antiAliasWithSaveLayer,
-                              color:
-                                  Theme.of(context).colorScheme.surfaceVariant,
-                              child: Column(children: [
-                                Padding(
-                                    padding: EdgeInsets.all(
-                                        16), // Padding for the content inside the card
-                                    child: Text(
-                                      'Latest News & Events',
-                                      style: TextStyle(fontSize: 12),
-                                    )),
-                                ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: _posts.length,
-                                    itemBuilder: (context, index) => Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+              )),
+              Text(
+              ' $_fullName!',
+              style: TextStyle(fontSize: 10, color: Colors.indigo),
+              )
+              ],
+              )
+              ]),]),
+              ),
+              ),
+                  ),
+                ),
+            ];
+          },
+          body: Container(
+          color: Colors.orangeAccent.shade400, // Set the background color for the body
+          child: Column(
+            children: [
+              TabBar(
+                labelColor: Colors.black,
+                tabs: [
+                  Tab(
+                    icon: Icon(Icons.newspaper),
+                    text: 'Top 3 News',
+
+                  ),
+                  Tab(
+                    icon: Icon(Icons.audiotrack),
+                    text: 'Top 3 Audio',
+                  ),
+                  Tab(
+                    icon: Icon(Icons.video_collection),
+                    text: 'Top 3 Video',
+                  )
+                ],
+              ),
+              Expanded(
+                child: TabBarView(
+                  children: [
+                    Scaffold(
+                        appBar: AppBar(
+                          backgroundColor: Colors.indigo,
+                          title: Text('News & Events'),
+                        ),
+                        body: _isFirstLoadRunning
+                            ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                            : Container(
+                            color: Colors.orangeAccent,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: ListView.builder(
+                                      itemCount: _posts.length,
+                                      itemBuilder: (_, index) => Card(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(20)),
+                                        elevation: 15,
+                                        margin: const EdgeInsets.all(10.0),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             AspectRatio(
                                               aspectRatio: 15.0 / 10.0,
                                               child: GestureDetector(
                                                 onTap: () {
-                                                  Navigator.of(context).push(
-                                                      MaterialPageRoute<void>(
-                                                    builder:
-                                                        (BuildContext context) {
+                                                  Navigator.of(context)
+                                                      .push(MaterialPageRoute<void>(
+                                                    builder: (BuildContext context) {
                                                       return _buildImageDetail(
                                                           _posts[index]);
                                                     },
@@ -172,8 +208,7 @@ class _HomeScreen extends State<HomeScreen> {
                                                 },
                                                 child: Image.network(
                                                   'https://maharishiji.net/image/${_posts[index]['image']}',
-                                                  width: 10,
-                                                  height: 10,
+                                                  fit: BoxFit.fill,
                                                 ),
                                               ),
                                             ),
@@ -182,61 +217,12 @@ class _HomeScreen extends State<HomeScreen> {
                                                   10.0, 12.0, 16.0, 8.0),
                                               child: Column(
                                                 children: [
-                                                  Text(
-                                                      '${_posts[index]['name']} ',
-                                                      textAlign:
-                                                          TextAlign.center,
+                                                  Text('${_posts[index]['name']} ',
+                                                      textAlign: TextAlign.center,
                                                       style: const TextStyle(
-                                                        fontSize: 12,
+                                                        fontSize: 20,
                                                       )),
                                                 ],
-                                              ),
-                                            ),
-                                          ],
-                                        )),
-                              ])),
-                        ),
-                        Expanded(
-                          child: Card(
-                              semanticContainer: true,
-                              clipBehavior: Clip.antiAliasWithSaveLayer,
-                              elevation: 5,
-                              margin: EdgeInsets.all(10),
-                              color:
-                                  Theme.of(context).colorScheme.surfaceVariant,
-                              child: Column(children: [
-                                Padding(
-                                    padding: EdgeInsets.all(
-                                        16), // Padding for the content inside the card
-                                    child: Text(
-                                      'Latest Audio',
-                                      style: TextStyle(fontSize: 12),
-                                    )),
-                                ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: _audio.length,
-                                    itemBuilder: (context, index) => Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            AspectRatio(
-                                              aspectRatio: 15.0 / 10.0,
-                                              child: GestureDetector(
-                                                onTap: () {
-                                                  Navigator.of(context).push(
-                                                      MaterialPageRoute<void>(
-                                                    builder:
-                                                        (BuildContext context) {
-                                                      return _buildImageDetail(
-                                                          _audio[index]);
-                                                    },
-                                                  ));
-                                                },
-                                                child: Image.network(
-                                                  'https://maharishiji.net/image/${_audio[index]['image']}',
-                                                  width: 50,
-                                                  height: 50,
-                                                ),
                                               ),
                                             ),
                                             Padding(
@@ -245,28 +231,40 @@ class _HomeScreen extends State<HomeScreen> {
                                               child: Column(
                                                 children: [
                                                   Text(
-                                                      '${_audio[index]['name']} ',
-                                                      textAlign:
-                                                          TextAlign.center,
+                                                      'Last Updated :${_posts[index]['updationDate']}',
+                                                      textAlign: TextAlign.center,
                                                       style: const TextStyle(
-                                                        fontSize: 12,
+                                                        fontSize: 10,
                                                       )),
                                                 ],
                                               ),
                                             ),
                                           ],
-                                        ))
-                                // Text displayed next to the eye icon
-                                //style: TextStyle(fontSize: 15.0),
-                              ])),
-                        ),
-                      ])
-                ]))
-          ]),
+                                        ),
+                                      )),
+                                ),
+                              ],
+                            )))
+
+                    ,
+                AudioListenScreen(),
+                VideoDisplayPage(),
+                ],
+                ),
+              ),
+            ],
+          ),
         ),
-      ]),
+      ),
+      ),
     );
+
+
+
   }
+
+
+
 
   Widget _buildImageDetail(imagePath) {
     return Scaffold(
@@ -359,6 +357,24 @@ class _HomeScreen extends State<HomeScreen> {
   }
 }
 
+class FirstScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('First Screen'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pushNamed(context, '/second'); // Navigate to the second screen
+          },
+          child: Text('Go to Second Screen'),
+        ),
+      ),
+    );
+  }
+}
 class CurvedPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
@@ -477,17 +493,17 @@ class _DigitalClockState extends State<DigitalClock> {
         children: [
           Card(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12.0),
+              borderRadius: BorderRadius.circular(7.0),
             ),
             elevation: 4.0,
             child: Padding(
-              padding: EdgeInsets.all(10.0),
+              padding: EdgeInsets.all(5.0),
               child: Column(
                 children: [
                   Text(
                     currentDayFormatted,
                     style: TextStyle(
-                        fontSize: 26,
+                        fontSize: 14,
                         fontWeight: FontWeight.bold,
                         color: Colors.indigoAccent),
                   ),
@@ -534,3 +550,4 @@ class HtmlText extends StatelessWidget {
     );
   }
 }
+
