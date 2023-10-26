@@ -40,7 +40,7 @@ class HomePage extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
                     margin: const EdgeInsets.fromLTRB(10, 100, 10, 100),
-                    height: MediaQuery.of(context).size.height - 300,
+                    height: MediaQuery.of(context).size.height - 200,
                     decoration: BoxDecoration(
                       color: Colors.orangeAccent,
                       borderRadius: BorderRadius.circular(50),
@@ -55,44 +55,46 @@ class HomePage extends StatelessWidget {
               ),
             ),
             CustomButton(
-                onTap: () {
-                  _pushIntroductionStoriesScreen(context);
-                },
-                height: getVerticalSize(
-                  51,
-                ),
-                text: "Introduction",
-                margin: const EdgeInsets.fromLTRB(10, 10, 10, 10)),
-            Center(
-              child: TextButton(
-                onPressed: () {
-                  var isLoggedIn =
-                      GetStorage().read('isUserLoggedIn') ?? 'false';
-                  if (isLoggedIn == 'true' ) {
-                    runApp(DashboardApp());
-                  } else {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                          builder: (context) => LoginApp(AppRoutes.logInScreen)),
-                    );
-                  }
-                },
-                style: TextButton.styleFrom(
-                  foregroundColor: Colors.green,
-                ),
-                child: Text(
-                  'Login Now',
-                  style: TextStyle(fontSize: 30),
-                ),
+              onTap: () {
+                _pushIntroductionStoriesScreen(context);
+              },
+              height: getVerticalSize(
+                50,
               ),
-            )
+              margin: getMargin(
+                top: 20,
+              ),
+              text: "Introduction",
+            ),
+            CustomButton(
+              onTap: () {
+                var isLoggedIn = GetStorage().read('isUserLoggedIn') ?? 'false';
+                if (isLoggedIn == 'true') {
+                  runApp(DashboardApp());
+                } else {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                        builder: (context) => LoginApp(AppRoutes.logInScreen)),
+                  );
+                }
+              },
+              margin: getMargin(
+                top: 20,
+              ),
+              shape: ButtonShape.Square,
+              text: 'My Dashboard',
+              height: getVerticalSize(
+                50,
+              ),
+            ),
+
           ],
         ),
       ),
     );
   }
 
-  String get _featureName => 'Grocery Store';
+  String get _featureName => 'Maharishi Ji';
 
   void _pushIntroductionStoriesScreen(BuildContext context) {
     Navigator.push<void>(
@@ -104,18 +106,10 @@ class HomePage extends StatelessWidget {
           stories: [
             Story(
               imagePath: 'assets/images/Intro1.png',
-              title: 'Maharishji Mobile App',
-              name: _featureName,
-              description:
-                  '"Maharishiji.net Mobile App & Website is dedicated to His Holiness Maharishi Mahesh Yogi Ji',
               decoration: const StoryDecoration(lightMode: true),
             ),
             Story(
               imagePath: 'assets/images/Intro2.png',
-              title: 'By Brahmachari Girish Ji',
-              name: _featureName,
-              description:
-                  '"Dedicated to His Holiness Maharishi Mahesh Yogi Ji.',
               decoration: const StoryDecoration(lightMode: true),
             ),
           ],
