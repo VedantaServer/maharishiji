@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:velocity_x/velocity_x.dart';
 import 'package:video_player/video_player.dart';
 import 'dart:convert';
 import '../data/apiClient/api_client.dart';
@@ -95,154 +96,116 @@ class _VideoDisplayPage extends State<VideoDisplayPage> {
         ),
         body: _isFirstLoadRunning
             ? const Center(
-          child: CircularProgressIndicator(),
-        )
+                child: CircularProgressIndicator(),
+              )
             : Container(
-            color: Colors.orangeAccent,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: ListView.builder(
-                      itemCount: _posts.length,
-                      controller: _controller,
-                      itemBuilder: (_, index) => Card(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                        elevation: 15,
-                        margin: const EdgeInsets.all(10.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            AspectRatio(
-                              aspectRatio: 18.0 / 13.0,
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.of(context)
-                                      .push(MaterialPageRoute<void>(
-                                    builder: (BuildContext context) {
-                                      return buildVideo(_posts[index]);
-                                    },
-                                  ));
-                                },
-                                child: Image.network(
-                                  'https://maharishiji.net/image/${_posts[index]['image']}',
-                                  fit: BoxFit.fill,
+                color: Colors.orangeAccent,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: ListView.builder(
+                          itemCount: _posts.length,
+                          controller: _controller,
+                          itemBuilder: (_, index) => Card(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+                                elevation: 15,
+                                margin: const EdgeInsets.all(10.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    AspectRatio(
+                                      aspectRatio: 18.0 / 13.0,
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          Navigator.of(context)
+                                              .push(MaterialPageRoute<void>(
+                                            builder: (BuildContext context) {
+                                              return buildVideo(_posts[index]);
+                                            },
+                                          ));
+                                        },
+                                        child: Image.network(
+                                          'https://maharishiji.net/image/${_posts[index]['image']}',
+                                          fit: BoxFit.fill,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.fromLTRB(
+                                          10.0, 12.0, 16.0, 8.0),
+                                      child: Column(
+                                        children: [
+                                          Text('${_posts[index]['name']}',
+                                              textAlign: TextAlign.center,
+                                              style: const TextStyle(
+                                                fontSize: 25,
+                                              )),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(
-                                  10.0, 12.0, 16.0, 8.0),
-                              child: Column(
-                                children: [
-                                  Text(
-                                      '${_posts[index]['name']}',
-                                      textAlign: TextAlign.center,
-                                      style: const TextStyle(
-                                        fontSize: 25,)
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                              )),
+                    ),
+                    if (_isLoadMoreRunning == true)
+                      const Padding(
+                        padding: EdgeInsets.only(top: 10, bottom: 40),
+                        child: Center(
+                          child: CircularProgressIndicator(),
                         ),
-                      )),
-                ),
-                if (_isLoadMoreRunning == true)
-                  const Padding(
-                    padding: EdgeInsets.only(top: 10, bottom: 40),
-                    child: Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  ),
-                if (_hasNextPage == false)
-                  Container(
-                    padding: const EdgeInsets.only(top: 30, bottom: 40),
-                    color: Colors.amber,
-                    child: const Center(
-                      child: Text('No more content, Folks!!!'),
-                    ),
-                  ),
-              ],
-            ))
-
-    );
+                      ),
+                    if (_hasNextPage == false)
+                      Container(
+                        padding: const EdgeInsets.only(top: 30, bottom: 40),
+                        color: Colors.amber,
+                        child: const Center(
+                          child: Text('No more content, Folks!!!'),
+                        ),
+                      ),
+                  ],
+                )));
   }
-
-
 
   Widget buildVideo(videoData) {
-    print("VideoViewData" + videoData['id'].toString());
-    return DefaultTextStyle(
-      style: Theme
-          .of(context)
-          .textTheme
-          .displayMedium!,
-      textAlign: TextAlign.center,
-      child: FutureBuilder<String>(
-        future: fetchHtmlContent(videoData), // a previously-obtained Future<String> or null
+
+    WebView.platform = SurfaceAndroidWebView();
+    return Row(children: [
+      Expanded(
+          child: FutureBuilder<String>(
+        future: fetchHtmlContent(
+            videoData), // a previously-obtained Future<String> or null
         builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-          List<Widget> children;
-          if (snapshot.hasData) {
-            print(snapshot.data);
-            children = <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(top: 16),
-                child: Html( data: snapshot.data),
-              ),
-            ];
-          } else if (snapshot.hasError) {
-            children = <Widget>[
-              const Icon(
-                Icons.error_outline,
-                color: Colors.red,
-                size: 60,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 16),
-                child: Text('Error: ${snapshot.error}'),
-              ),
-            ];
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return CircularProgressIndicator();
+          } else if (snapshot.hasError) { 
+            return Text('Error: ${snapshot.error}');
           } else {
-            children = const <Widget>[
-              SizedBox(
-                width: 60,
-                height: 60,
-                child: CircularProgressIndicator(),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 16),
-                child: Text('Awaiting result...'),
-              ),
-            ];
+            return Text('Error: ${snapshot.data}'); //  Html(data: snapshot.data, shrinkWrap: true);
           }
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: children,
-            ),
-          );
         },
-      ),
-    );
+      ))
+    ]);
   }
 
-
-
-
   Future<String> fetchHtmlContent(url) async {
-
     final device = GetStorage();
-    String username = GetStorage().read('LoggedInEmail') ; //"mahagroup1008@gmail.com";
-    String password = GetStorage().read('LoggedInPassword') ; // "123456";
+    String username =
+        GetStorage().read('LoggedInEmail'); //"mahagroup1008@gmail.com";
+    String password = GetStorage().read('LoggedInPassword'); // "123456";
     String basicAuth =
         'Basic ' + base64.encode(utf8.encode('$username:$password'));
-    final response = await http.get(Uri.parse(device.read('serverUrl') + 'video/play/'+url['id'].toString()),
-                  headers: <String, String>{'authorization': basicAuth},);
+    final response = await http.get(
+      Uri.parse(
+          device.read('serverUrl') + 'video/play/' + url['id'].toString()),
+      headers: <String, String>{'authorization': basicAuth},
+    );
     if (response.statusCode == 200) {
-      return response.body;
+      return  "<h1> there is content below it..</h1>" + response.body;
     } else {
-      throw Exception('Failed to load HTML content. Status code: ${response.statusCode}');
+      throw Exception(
+          'Failed to load HTML content. Status code: ${response.statusCode}');
     }
   }
 }
