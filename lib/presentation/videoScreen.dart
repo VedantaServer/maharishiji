@@ -1,10 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:video_player/video_player.dart';
 import 'dart:convert';
 import '../data/apiClient/api_client.dart';
-
+import 'package:http/http.dart' as http;
+import 'package:webview_flutter/webview_flutter.dart';
 
 class VideoDisplayPage extends StatefulWidget {
   const VideoDisplayPage({Key? key}) : super(key: key);
@@ -170,66 +172,77 @@ class _VideoDisplayPage extends State<VideoDisplayPage> {
 
 
   Widget buildVideo(videoData) {
-    late VideoPlayerController _controller;
-    late Future<void> _initializeVideoPlayerFuture;
-
-    _controller = VideoPlayerController.networkUrl(
-        Uri.parse(
-          'https://maharishiji.net/video/play/2599',
-        )
-    );
-
-    // Initialize the controller and store the Future for later use.
-    _initializeVideoPlayerFuture = _controller.initialize();
-
-    // Use the controller to loop the video.
-    _controller.setLooping(true);
-
-
-    return Scaffold(
-      // Use a FutureBuilder to display a loading spinner while waiting for the
-      // VideoPlayerController to finish initializing.
-      body: FutureBuilder(
-        future: _initializeVideoPlayerFuture,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            // If the VideoPlayerController has finished initialization, use
-            // the data it provides to limit the aspect ratio of the video.
-            return AspectRatio(
-              aspectRatio: _controller.value.aspectRatio,
-              // Use the VideoPlayer widget to display the video.
-              child: VideoPlayer(_controller),
-            );
+    print("VideoViewData" + videoData['id'].toString());
+    return DefaultTextStyle(
+      style: Theme
+          .of(context)
+          .textTheme
+          .displayMedium!,
+      textAlign: TextAlign.center,
+      child: FutureBuilder<String>(
+        future: fetchHtmlContent(videoData), // a previously-obtained Future<String> or null
+        builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+          List<Widget> children;
+          if (snapshot.hasData) {
+            print(snapshot.data);
+            children = <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(top: 16),
+                child: Html( data: snapshot.data),
+              ),
+            ];
+          } else if (snapshot.hasError) {
+            children = <Widget>[
+              const Icon(
+                Icons.error_outline,
+                color: Colors.red,
+                size: 60,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 16),
+                child: Text('Error: ${snapshot.error}'),
+              ),
+            ];
           } else {
-            // If the VideoPlayerController is still initializing, show a
-            // loading spinner.
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            children = const <Widget>[
+              SizedBox(
+                width: 60,
+                height: 60,
+                child: CircularProgressIndicator(),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 16),
+                child: Text('Awaiting result...'),
+              ),
+            ];
           }
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: children,
+            ),
+          );
         },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Wrap the play or pause in a call to `setState`. This ensures the
-          // correct icon is shown.
-
-            // If the video is playing, pause it.
-            if (_controller.value.isPlaying) {
-              _controller.pause();
-            } else {
-              // If the video is paused, play it.
-              _controller.play();
-            }
-
-        },
-        // Display the correct icon depending on the state of the player.
-        child: Icon(
-          _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-        ),
       ),
     );
   }
 
 
+
+
+  Future<String> fetchHtmlContent(url) async {
+
+    final device = GetStorage();
+    String username = GetStorage().read('LoggedInEmail') ; //"mahagroup1008@gmail.com";
+    String password = GetStorage().read('LoggedInPassword') ; // "123456";
+    String basicAuth =
+        'Basic ' + base64.encode(utf8.encode('$username:$password'));
+    final response = await http.get(Uri.parse(device.read('serverUrl') + 'video/play/'+url['id'].toString()),
+                  headers: <String, String>{'authorization': basicAuth},);
+    if (response.statusCode == 200) {
+      return response.body;
+    } else {
+      throw Exception('Failed to load HTML content. Status code: ${response.statusCode}');
+    }
+  }
 }

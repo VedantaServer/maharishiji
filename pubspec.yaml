@@ -32,7 +32,8 @@ dependencies:
   introduction_story: ^0.1.0
   curved_navigation_bar: ^1.0.3
   video_player: ^2.7.2
-
+  flutter_html: ^3.0.0-beta.2
+  webview_flutter: ^2.0.12
 
 dev_dependencies:
   flutter_launcher_icons:
