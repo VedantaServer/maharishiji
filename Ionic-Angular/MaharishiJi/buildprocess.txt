@@ -1,0 +1,113 @@
+Change to produce new app. 
+1.	Icon change: change logo in location \resources folder  and then run CLI command 
+ 
+ ionic cordova resources android 
+ cordova-res   (this is working now without login)
+ ionic cordova resources ios
+ cordova-res  
+ 
+
+ 1.1 Make sure to change TenantID and OTPLogin URL  
+  tenantID: string = '1'; 
+  public OTPUrl = 'https://finance.mvmerp.in/pages/notifications.aspx?'
+
+
+2.	Change API URL in src\Provider\ API.ts    line #11 
+url: string = http://mobileappservice.vedantaerpserver.com/MobileAppService.asmx'
+loginLogoURL : string='http://ridgevalley.vedantaschoolerp.com/Resources/SchoolImages/School/Logo.jpg';
+    
+3.	Config.xml 
+<Android Name> & Version in Widget section - It must with Cloud product in firebase.
+<App Name> : Name of the app to be displayed in mobile desktop
+4.	Test on device by running command : ionic cordova run  android  --device
+
+5.	Build Android :
+   ionic cordova platform remove android
+   ionic cordova platform add android@10.1.2
+
+5.	Build Android :   ionic cordova build android --minifycss --optimizejs --minifyjs --release --prod  
+
+6.	Build IOS : ionic cordova build ios --minifycss --optimizejs --minifyjs --release --prod
+ 
+
+6.1 : Make sure to check manual process folder and apply the fixes in android.xml 
+
+1- Added this fix in to handle https call in  network_security_config
+
+add this key  in in android:networkSecurityConfig="@xml/network_security_config"  under ..\platforms\android\app\src\main\AndroidManifest.xml
+
+<application android:hardwareAccelerated="true" android:icon="@mipmap/icon" 
+android:label="@string/app_name"
+ android:networkSecurityConfig="@xml/network_security_config" 
+ android:supportsRtl="true">
+
+Create this file as network_security_config.xml under ...\platforms\android\app\src\main\res\xml
+
+<network-security-config>
+  <!--Set application-wide security config using base-config tag.-->
+  <base-config cleartextTrafficPermitted="true"/>
+</network-security-config>
+
+2. version need to be 30 in after november 20th, 2021 .. change in file platform\android\build.gradle
+   defaultTargetSdkVersion=30 //Integer - We ALWAYS target the latest by default
+  defaultCompileSdkVersion=30 //Integer - We ALWAYS compile with the latest by default
+
+
+2.1 File Provider issues
+change android.support.v4.content.FileProvider;
+to
+androidx.core.content.FileProvider
+
+public class FileProvider extends androidx.core.content.FileProvider {
+}
+
+
+
+3. info.plist. missing key needs to be added. 
+
+
+I changed the way to use this plugin in Android Studio > Project Structure > Dependencies and after this, it worked as expected (with the version 9 of Angular).
+
+
+Could not find method compile() for arguments [{name=barcodescanner-release-2.1.5, ext=aar}] on object of type org.gradle.api.internal.artifacts.dsl.dependencies.DefaultDependencyHandler.
+change from compile to implementation.
+
+
+
+
+
+7.	Android Specific
+a.	keytool -genkey -v -keystore my-release-key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias my-alias
+b.	jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.jks app-release-unsigned.apk my-alias
+c.	zipalign -v 4 app-release-unsigned.apk HelloWorld.apk
+Example :-
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore key.jks app-release-unsigned.apk key0
+zipalign -v 4 app-release-unsigned.apk Basava4.3.0.apk
+
+New SRCS Doon Example.
+keytool -genkey -v -keystore srcsdehradun.jks -keyalg RSA -keysize 2048 -validity 10000 -alias srcsdehradun
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore srcsdehradun.jks SRCS-Doon.apk srcsdehradun
+zipalign -v 4 SRCS-Doon.apk SRCS-Doon1.0.0.apk
+
+ 
+The Oasis Doon Example.
+keytool -genkey -v -keystore appkeys/OasisKeyLatet.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore appkeys/OasisKeyLatet.jks SRCS-Doon.apk upload
+zipalign -v 4 SRCS-Doon.apk SRCS-Doon1.0.0.apk
+
+
+Notes: Following command need to seutp initial invironment
+npm install -g ionic@3.9.2
+npm install parseuri  
+npm install engine.io-client
+ionic config set backend pro -g  
+ionic login
+npm install -g cordova
+ionic cordova  platform add android
+ionic cordova  platform add ios
+
+
+
+Other useful command 
+ ionic integrations disable capacitor
+ 

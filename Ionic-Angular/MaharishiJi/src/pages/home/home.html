@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <div style="display: inline-flex;">
+      <div> <img height="40" src={{headerLogo}} style="vertical-align: baseline;" /></div> &nbsp;
+      <div style="margin-top: 10px; word-wrap: break-word;font-weight: 600; font-size:medium;color: orangered;">
+        {{headerTitle}}</div>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header color="warning">
+      <ion-card-title style="color: darkgoldenrod;">Welcome to MaharishiJi.net</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p class="ion-text-justify" style="text-align: justify;white-space: normal;color:rgb(48, 17, 226);">
+        His Holiness Maharishi Mahesh Yogi Ji has left Himalayas and extensively travelled across the world for over 50
+        years to bring peace, prosperity, happiness, perfect health, perfection in every area of life and to establish
+        heavenly life on earth. Maharishi Ji has gone very deep in principles of Veda and Vedic Literature, identified
+        and brought to light practical Vedic technologies for immense benefits of mankind for all time to come.
+      </p>
+    </ion-card-content>
+  </ion-card> 
+  <ion-content class="ion-padding">
+    <p *ngFor="let update of updates">
+      <img [src]='getImageUrl(update.image)' style="width: 100%;height: 100%;">
+      <ion-label>
+        <h2>{{ update.title }}</h2>
+      </ion-label>
+    </p> 
+  <ion-slides pager="true">
+    <ion-slide *ngFor="let image of images">
+      <img [src]='getImageUrl(image.image)' style="width: 90%;height: 90%;">
+      <h2>{{image.name}}</h2>
+    </ion-slide>
+  </ion-slides> 
+</ion-content>
