@@ -10,36 +10,57 @@
   </ion-navbar> 
 </ion-header>  
 
+
  
 
-<ion-content class="padding">
+<ion-content class="padding" >
   <h1 class="header1">Services | Maharishi Organization </h1>
-  <ion-grid fixed>
+
+  <ion-card padding style="text-align: center;" *ngIf="showLoginForm">
+    <ion-card-header>
+      <h1> Please Login </h1>
+    </ion-card-header>
+    <ion-item>
+      <ion-input type="text" placeholder="User Name" [(ngModel)]="account.username" name="username" autofocus="true"
+        #focusInput></ion-input>
+    </ion-item>
+    <ion-item>
+  
+      <ion-input placeholder="Password" [type]="passwordType" [(ngModel)]="account.password"
+        name="password"></ion-input>
+      <ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
+    </ion-item>
+    <button ion-button color="primary" block (click)="doLogin()">Login</button>
+     <ion-label color="danger" text-wrap>{{lblMessage}}</ion-label>
+  </ion-card>
+  
+
+  <ion-grid fixed *ngIf="showIcon">
     <ion-row>
       <ion-col size="6" class="service-box">
-        <img src="../../assets/news.jpeg" style="width: 100px;height: 100px;" /> 
+        <img src="../../assets/news.jpeg" style="width: 100px;height: 100px;" (click)="callservice('news')" /> 
         <p>New & Event</p>
       </ion-col>
       <ion-col size="6" class="service-box">
-        <img src="../../assets/audio.jpg" style="width: 100px;height: 100px;" /> 
+        <img src="../../assets/audio.jpg" style="width: 100px;height: 100px;" (click)="callservice('audio')" /> 
         <p>Audio</p>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col size="6" class="service-box">
-        <img src="../../assets/video.jpg" style="width: 100px;height: 100px;" /> 
+        <img src="../../assets/video.jpg" style="width: 100px;height: 100px;" (click)="callservice('video')" /> 
         <p>Video</p>
       </ion-col>
       <ion-col size="6" class="service-box">
-        <img src="../../assets/article.png" style="width: 100px;height: 100px;" />
+        <img src="../../assets/article.png" style="width: 100px;height: 100px;" (click)="callservice('article')"  />
         <p>Articles</p>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col size="12" class="service-box">
-        <img src="../../assets/jyotish.jpg" style="width: 100px;height: 100px;" />
+        <img src="../../assets/jyotish.jpg" style="width: 100px;height: 100px;" (click)="callservice('jyotish')" />
         <p>Jyotish Consultation</p>
       </ion-col>
     </ion-row>

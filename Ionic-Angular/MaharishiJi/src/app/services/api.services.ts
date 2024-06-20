@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import { Body } from '@angular/http/src/body';
 
 @Injectable()
 
@@ -10,16 +11,21 @@ export class ApiService {
 
   public baseUrl = 'https://maharishiji.net/';; // replace with your backend API base URL
   private authHeader: HttpHeaders;
-
+  private base64Credentials = btoa(`${'awdhesh@mssmail.org'}:${'123456'}`);
   constructor(private http: HttpClient) {
 
-    const base64Credentials = btoa(`${'awdhesh@mssmail.org'}:${'123456'}`);
+    
     this.authHeader = new HttpHeaders({
-      'Authorization': `Basic ${base64Credentials}`
+      'Authorization': `Basic ${this.base64Credentials}`
     });
 
   }
+  
+  postServerData(endpoint:any,body :any): Observable<any> {
+    return this.http.post(this.baseUrl+endpoint,body);
+  }
 
+  
   getServerData(endpoint:any): Observable<any> {
     return this.http.get(this.baseUrl+endpoint,{ headers: this.authHeader });
   }
