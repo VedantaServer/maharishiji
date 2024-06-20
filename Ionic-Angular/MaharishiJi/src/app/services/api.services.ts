@@ -21,19 +21,23 @@ export class ApiService {
 
   }
   
-  postServerData(endpoint:any,body :any): Observable<any> {
-    return this.http.post(this.baseUrl+endpoint,body);
+  postServerData(endpoint:any,body :any,auHeader:HttpHeaders): Observable<any> {
+    return this.http.post(this.baseUrl+endpoint,body,{headers:auHeader});
   }
 
   
   getServerData(endpoint:any): Observable<any> {
-    return this.http.get(this.baseUrl+endpoint,{ headers: this.authHeader });
+    return this.http.get(this.baseUrl+endpoint,{ headers:  this.authHeader });
+  }
+
+  getServeData(endpoint:any,auHeader:HttpHeaders): Observable<any> {
+    return this.http.get(this.baseUrl+endpoint,{ headers: auHeader });
   }
 
   getImageUrl(imagePath: string): string {
     // Logic to construct the full image URL
     //console.log(`${this.baseUrl}/${imagePath}`);
-    return `${this.baseUrl}/${imagePath}`;
+    return `${this.baseUrl}${imagePath}`;
   }
 
 }

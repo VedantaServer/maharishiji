@@ -65,4 +65,31 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
+
+  <div class="curved-card1" *ngIf="shownews">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>News</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-slides pager="true">
+          <ion-slide *ngFor="let image of data">
+             
+              <div> <img [src]='getImageUrl(image.urlToImage)' style="width: 100%;height: 100%;"></div> &nbsp;
+               
+                   {{image.title}} <ion-icon name="eye" class="ion-text-right" style="font-size: 1.3em;"></ion-icon>{{image.viewCount}} <ion-icon name="share" class="ion-text-right" style="font-size: 1.3em;"></ion-icon> {{image.shareCount}}
+                   <br>
+                 <span style="font-size:x-small;">
+                     UpdatedOn: {{image.updationDate}}
+                  </span> 
+                  <br> 
+                  <div  class="no-padding" [innerHTML]="image.description"></div>
+   
+          </ion-slide>
+        </ion-slides>
+      </ion-card-content>
+    </ion-card>
+  </div>
+    
 </ion-content>
