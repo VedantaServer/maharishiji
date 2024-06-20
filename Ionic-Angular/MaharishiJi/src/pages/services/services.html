@@ -106,7 +106,7 @@
      <div  class="no-padding" [innerHTML]="item.description"></div>
     </ion-item>
   </ion-list>
-  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+  <ion-infinite-scroll>
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..." position="top">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
