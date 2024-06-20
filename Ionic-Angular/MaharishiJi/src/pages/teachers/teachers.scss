@@ -1,3 +1,42 @@
 page-teachers {
 
+
+    .tm-teacher-card {
+        border-radius: 20px 20px 40px  0;;
+        padding:2px;
+        height: 98%;
+        width:  98%;
+        margin: 5px;
+        /* Adjust spacing between cards */
+        background-color: skyblue;
+        /* Orange background color */
+        color: white;
+        /* White text color */
+
+        .teacher-image { 
+            /* Fixed height for the sample image */
+            object-fit: cover; 
+            /* Ensure image covers the entire area */
+        }
+
+        .card-content {
+            padding: 15px;
+
+            h2 {
+                margin-top: 0;
+                font-size: 2rem;
+                /* Adjust font size */
+                font-weight: bold;
+                /* Ensure teacher name is bold */
+            }
+
+            p {
+                margin: 0;
+                font-size: 1.9rem;
+                /* Adjust font size */
+            }
+        }
+    }
+
+
 }

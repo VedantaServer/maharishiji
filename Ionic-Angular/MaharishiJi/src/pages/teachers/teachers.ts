@@ -1,25 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the TeachersPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ApiService } from '../../app/services/api.services';
 
 @IonicPage()
 @Component({
   selector: 'page-teachers',
   templateUrl: 'teachers.html',
 })
-export class TeachersPage {
+export class TeachersPage implements OnInit {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  headerLogo = "https://maharishiji.net/ui-design/templates/news24/images/presets/preset1/logo-footer.png";
+  tmTeachers: any[] = [];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private apiService: ApiService) { }
+
+  ngOnInit() {
+    this.loadTMTeachers();
+  } 
+  loadTMTeachers() {
+    //https://maharishiji.net/tm-info/json/bycity/86/TM Teacher
+    this.apiService.getServerData('/tm-info/json').subscribe((response: any) => {
+      this.tmTeachers = response.data;
+
+    });
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TeachersPage');
-  }
-
 }
