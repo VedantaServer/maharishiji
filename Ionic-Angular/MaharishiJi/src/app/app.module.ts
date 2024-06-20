@@ -13,6 +13,7 @@ import { TeachersPage } from '../pages/teachers/teachers';
 import { DashboardPage } from '../pages/dashboard/dashboard'; 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen'; 
+import { OpenWebUrlPage } from '../pages/open-web-url/open-web-url';
 import { ApiService } from './services/api.services'; 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -26,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     MaharishiPage,
     ServicesPage,
     TeachersPage,
-    DashboardPage
+    DashboardPage,
+    OpenWebUrlPage
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,8 @@ import { HttpClientModule } from '@angular/common/http';
     MaharishiPage,
     ServicesPage,
     TeachersPage,
-    DashboardPage
+    DashboardPage,
+    OpenWebUrlPage
 
   ],
   providers: [

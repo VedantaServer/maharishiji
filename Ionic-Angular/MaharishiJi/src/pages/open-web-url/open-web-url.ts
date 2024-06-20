@@ -13,8 +13,9 @@ export class OpenWebUrlPage {
   }
 
   ionViewWillEnter() {
-
+    console.log(urldata);
     var urldata = this.navParams.get("urldata");
+    console.log(urldata);
     var TitleData = this.navParams.get("Title");    ;
     const iframe = this.hostElement.nativeElement.querySelector('iframe');
     iframe.src = urldata; 

@@ -3,6 +3,7 @@ import { Header, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ApiService } from '../../app/services/api.services'
 import {HttpHeaders } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
+import { OpenWebUrlPage } from '../open-web-url/open-web-url';
 @IonicPage()
 @Component({
   selector: 'page-services',
@@ -13,10 +14,12 @@ export class ServicesPage {
   showLoginForm: boolean = false;
   showIcon :boolean = true;
   shownews:boolean = false;
+  showvideo :boolean = false;
   private authHeader: HttpHeaders;
   lblMessage: string = '';
   requesttype : string='';
   public data = [];
+  public videodata = [];
   headerLogo = "https://maharishiji.net/ui-design/templates/news24/images/presets/preset1/logo-footer.png";
   constructor(public navCtrl: NavController, public navParams: NavParams, private apiService: ApiService,  private storage: Storage) {
   }
@@ -143,8 +146,41 @@ getImageUrl(imagePath: string): string {
 
   }
   video(){
-
+    this.shownews = false;
+    this.showvideo = true;
+    const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
+    
+    this.authHeader = new HttpHeaders({
+      'Authorization': `Basic ${base64Credentials}`
+    });
+    console.log(this.authHeader);
+    console.log("aa");
+    this.apiService.getServeData('video/json/min',this.authHeader).subscribe((response: any) => {
+     if (response != null) {
+      this.shownews = true;
+      console.log(response.data);
+      for(let newdata of response.data) {
+         
+          this.videodata.push({
+            description: newdata.hindiDescription,
+            id:newdata.id,
+            title:newdata.name,
+            updationDate :newdata.updationDate,
+            shareCount :newdata.shareCount,
+            viewCount :newdata.viewCount,
+            urlToImage:newdata.image
+          });
+        }
+        console.log(this.data);
+     }
+    }
+  );
   }
   article(){}
   jyotish(){}
+
+  Loadvideo(id,title){
+    this.navCtrl.push(OpenWebUrlPage, { urldata: this.apiService.getImageUrl('video/play/'+id), Title: title });
+
+  }
 }

@@ -92,4 +92,22 @@
     </ion-card>
   </div>
     
+
+  <ion-list *ngIf="showvideo">
+    <ion-item *ngFor="let item of videodata" text-wrap>
+      <div> <img [src]='getImageUrl(item.urlToImage)' style="width: 100%;height: 100%;" (click)='Loadvideo(item.id,item.title)'></div> 
+               
+      {{item.title}} <ion-icon name="eye" class="ion-text-right" style="font-size: 1.3em;"></ion-icon>{{item.viewCount}} <ion-icon name="share" class="ion-text-right" style="font-size: 1.3em;"></ion-icon> {{item.shareCount}}
+      <br>
+    <span style="font-size:x-small;">
+        UpdatedOn: {{item.updationDate}}
+     </span> 
+     <br> 
+     <div  class="no-padding" [innerHTML]="item.description"></div>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..." position="top">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
