@@ -26,12 +26,12 @@ export class HomePage implements OnInit {
   loadGallery() {
     this.apiService.getServerData('photo-gallery/json/min').subscribe((response: any) => {
       this.images = response.data;
-      //console.log(this.images);
+      this.slides.autoplay = 2000; // Example: set autoplay interval
+      this.slides.loop = true; // Example: enable looping
+     
     });
   }
   ngAfterViewInit() {
-    //this.slides.autoplay = 2000; // Example: set autoplay interval
-    this.slides.loop = true; // Example: enable looping
     // Adjust other slide properties as needed
   }
 
