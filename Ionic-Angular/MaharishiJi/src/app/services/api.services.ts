@@ -31,8 +31,37 @@ export class ApiService {
   }
 
   getServeData(endpoint:any,auHeader:HttpHeaders): Observable<any> {
-    return this.http.get(this.baseUrl+endpoint,{ headers: auHeader });
+    var aa = this.http.get(this.baseUrl+endpoint,{ headers: auHeader });
+    console.log(aa)
+    return aa ;
   }
+
+  
+  gethtmlrequestData(endpoint:any,auHeader:HttpHeaders) :any {
+    const username = "awdhesh@mssmail.org";
+    const password = "123456";
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "text/html"); // Expect HTML
+    myHeaders.append("Authorization", "Basic " + btoa(username + ":" + password)); // Basic authentication
+    
+    const requestOptions: RequestInit = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow"
+    };
+    fetch(this.baseUrl+endpoint, requestOptions)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok ' + response.statusText);
+    }
+    return response.text(); // Parse response as text (HTML)
+  })
+  .then(result => console.log(result))
+  .catch(error => console.error('Error:', error));
+  }
+
+  
+  
 
   getImageUrl(imagePath: string): string {
     // Logic to construct the full image URL
