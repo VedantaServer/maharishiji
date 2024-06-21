@@ -16,8 +16,8 @@
 // automatically applied to the <body> element in the app.
 
 
-#profile-image { 
-        
+#profile-image {
+
     border-radius: 100px;
     border: 1px solid #fff;
     width: 40px;
@@ -26,7 +26,17 @@
     text-align: left;
     opacity: 1;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.7);
-} 
+}
+
 .tab-button-text {
-    font-size: larger;   
-  }
+    font-size: larger;
+}
+
+header {
+    margin-top: 10px;
+    word-wrap: break-word;
+    font-weight: 600;
+    font-size: x-large;
+    background-color: lightblue;
+    color: white;
+}

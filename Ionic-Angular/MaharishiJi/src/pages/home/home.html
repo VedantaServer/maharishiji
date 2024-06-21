@@ -1,66 +1,53 @@
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+<ion-header style="background-color: skyblue;">
+  <ion-navbar> 
     <div style="display: inline-flex;">
       <div> <img height="40" src={{headerLogo}} style="vertical-align: baseline;" /></div> &nbsp;
-      <div style="margin-top: 10px; word-wrap: break-word;font-weight: 600; font-size:x-large;color: orangered;">
-        {{headerTitle}}</div>
+      <div class="header" > {{headerTitle}}</div>
     </div>
   </ion-navbar>
 </ion-header>
- 
-<ion-content class="ion-padding" style="background-color: lightblue;">
- 
-  <audio-player [audioSrc]="'https://maharishiji.net/stream/AUDIO/202406/e6fy_Dainik_Faladesh_20_June_2024_Mapp_Audio.mp3'"></audio-player>
 
+<ion-content class="ion-padding" style="background-color: lightblue;"> 
   <div class="curved-card">
-  <ion-card>
-    <ion-card-header color="warning">
-      <ion-card-title>Welcome to MaharishiJi.net</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-         His Holiness Maharishi Mahesh Yogi Ji has left Himalayas and extensively travelled across the world for over 50
-        years to bring peace, prosperity, happiness, perfect health, perfection in every area of life and to establish
-        heavenly life on earth. Maharishi Ji has gone very deep in principles of Veda and Vedic Literature, identified
-        and brought to light practical Vedic technologies for immense benefits of mankind for all time to come.
-     
-      <div *ngFor="let update of updates">
-        <img [src]='getImageUrl(update.image)'>
-        <ion-label>
-           {{ update.title }} 
-        </ion-label>
-    </div>
-    </ion-card-content>
-  </ion-card>
-</div>
-<div class="curved-card1">
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Image Gallery</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-spinner name="bubbles" *ngIf="loadingData"></ion-spinner>
-      <ion-slides pager="false">
-        <ion-slide *ngFor="let image of images">
-           
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Welcome to MaharishiJi.net</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-spinner name="bubbles" *ngIf="loadingData1"></ion-spinner>
+        <div *ngFor="let update of updates">
+          <img [src]='getImageUrl(update.image)'>
+          <h2>{{ update.title }}</h2>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div class="curved-card1">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Image Gallery</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-spinner name="bubbles" *ngIf="loadingData"></ion-spinner>
+        <ion-slides  pager="false">
+          <ion-slide *ngFor="let image of images"> 
             <div> <img [src]='getImageUrl(image.image)' style="width: 100%;height: 100%;"></div> &nbsp;
-             
-                 {{image.name}} 
-                 <br>
-               <span style="font-size:x-small;">
-                  UpdatedOn: {{image.updationDate}}
-                </span> 
-                <br> 
-                <div  class="no-padding" [innerHTML]="image.description"></div>
- 
-        </ion-slide>
-      </ion-slides>
-    </ion-card-content>
-  </ion-card>
-</div>
-<div class="curved-card">
 
-</div>
+            {{image.name}}
+            <br>
+            <span style="font-size:x-small;">
+              UpdatedOn: {{image.updationDate}} 
+              <a style="color: white;" href="#" (click)="toggleInfo()">View Details</a>
+            </span>
+            <br>
+            <div *ngIf="showInfo" class="no-padding" [innerHTML]="image.description"></div>
+
+          </ion-slide>
+        </ion-slides>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div class="curved-card">
+
+  </div>
 </ion-content>

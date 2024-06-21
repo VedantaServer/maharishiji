@@ -1,57 +1,69 @@
 page-home {
- 
-  img
-  {
-    border-radius: 10px 10px 0 0;
-  }
-  ion-label h2 {
-    font-size:x-large; /* Adjust font size */
-    color: #df8714; /* Adjust text color */
-    //white-space: normal; /* Allow text to wrap */
-    margin: 3.5px;
-  } 
 
-  ion-slide {
-    ion-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* Ensure images fill the slide container */
-    }
+ 
+
+
+ .header {
+    margin-top: 10px;
+    word-wrap: break-word; 
+    font-size: x-large; 
+    color: orange;
+}
+
+  img {
+    border-radius: 10px 10px 0 0;
   }
 
   .curved-card {
     ion-card {
-      background: #f67e05; /* Sky blue background */
-      color: white; /* White font */
-      border-radius: 30px 30px 0 0; /* Curved top corners */
-      overflow: hidden; /* Ensure content doesn't overflow */
+      background: hwb(30 2% 4%);
+      /* Sky blue background */
+      color: white;
+      /* White font */
+      border-radius: 30px 30px 0 0;
+      /* Curved top corners */
+      overflow: hidden;
+      /* Ensure content doesn't overflow */
       padding: 5px;
       margin: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+
       ion-card-header {
         ion-card-title {
-          font-size: 1.5em;
-          font-weight: bold;
+          text-align: center;
+          font-size: 2em;
+          font-weight: normal;
+          color: whitesmoke;
         }
       }
-  
+
       ion-card-content {
-        font-size: 1.1em;
-        text-align: justify;
+
+        h2 {
+          color: whitesmoke;
+          text-wrap: wrap;
+          padding: 5px;
+
+        }
       }
     }
-    
+
   }
-  
+
   .curved-card1 {
     ion-card {
-      background: rgb(8, 137, 188); /* Sky blue background */
-      color: white; /* White font */
-      border-radius: 0 0 30px 30px; /* Curved top corners */
-      overflow: hidden; /* Ensure content doesn't overflow */
+      background: rgb(8, 137, 188);
+      /* Sky blue background */
+      color: white;
+      /* White font */
+      border-radius: 0 0 30px 30px;
+      /* Curved top corners */
+      overflow: hidden;
+      /* Ensure content doesn't overflow */
       padding: 5px;
       margin: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
       ion-card-header {
         ion-card-title {
           font-size: 1.5em;
@@ -59,15 +71,11 @@ page-home {
           font-weight: bold;
         }
       }
-  
+
       ion-card-content {
         font-size: 1.1em;
-        text-align: justify;
+        text-align: justify; 
       }
-    }
-    
-  }
-  
-
-  
+    } 
+  } 
 }

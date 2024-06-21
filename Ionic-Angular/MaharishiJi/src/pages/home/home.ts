@@ -6,23 +6,25 @@ import { Slides } from 'ionic-angular'; // Import from 'ionic-angular' for older
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html' 
 })
 export class HomePage implements OnInit {
 
   @ViewChild(Slides) slides: Slides;
   headerLogo = "https://maharishiji.net/ui-design/templates/news24/images/presets/preset1/logo-footer.png";
-  headerTitle = "Maharishi Ji"
+  headerTitle = "Maharishi Ji - Mobile App"
   updates: any[] = [];  // Create a property to store the data
 
   images = [];
-  loadingData: boolean;
+  loadingData: boolean=false;
+  loadingData1: boolean=false;
+  showInfo: boolean=false;
 
   constructor(public navCtrl: NavController, private apiService: ApiService) { }
 
   ngOnInit() {
     this.loadUpdates();
-    //this.loadGallery();
+    this.loadGallery();
   }
   loadGallery() {
     this.loadingData = true
@@ -30,7 +32,7 @@ export class HomePage implements OnInit {
       this.images = response.data;
       this.slides.autoplay = 2000; // Example: set autoplay interval
       this.slides.loop = true; // Example: enable looping
-      this.loadingData = true;
+      this.loadingData = false;
     });
   }
   ngAfterViewInit() {
@@ -38,8 +40,10 @@ export class HomePage implements OnInit {
   }
 
   loadUpdates() {
+    this.loadingData1 = true;
     this.apiService.getServerData('/home-gallery/json/all/true').subscribe((response: any) => {
       this.updates = response.data;
+      this.loadingData1=false;
     });
   }
 
@@ -48,6 +52,9 @@ export class HomePage implements OnInit {
     return this.apiService.getImageUrl('image/' + imagePath);
   }
 
+  toggleInfo() {
+    this.showInfo = !this.showInfo;
+  }
 
 
 }
