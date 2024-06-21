@@ -98,7 +98,7 @@ this.showJyotish = false;
           this.shownews = true;
           this.showvideo = false;
           this.showaudio = false;
-          this.HeaderName = "New & Event";
+          this.HeaderName = "News & Event";
           this.showJyotish = false;
           this.scrollcount = 0;
           this.news();
