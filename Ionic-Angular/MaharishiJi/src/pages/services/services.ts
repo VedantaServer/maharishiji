@@ -30,7 +30,8 @@ export class ServicesPage {
   tmTeachers: any[] = [];
   scrollcount: number = 0;
   ccount: number = 0;
-  tracks: Array<{title: string, path: string}> = [];
+  loadingData:boolean=false;
+  tracks: Array<{title: string, path: string,image : string}> = [];
 
   headerLogo = "https://maharishiji.net/ui-design/templates/news24/images/presets/preset1/logo-footer.png";
   constructor(public navCtrl: NavController, public navParams: NavParams, private apiService: ApiService, private storage: Storage) {
@@ -178,6 +179,7 @@ this.showJyotish = false;
     
   }
   news(infiniteScroll?) {
+    this.loadingData = true;
     const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
 
     this.authHeader = new HttpHeaders({
@@ -204,6 +206,7 @@ this.showJyotish = false;
             });
           }
         }
+        this.loadingData = false;
 
       }
       if (infiniteScroll) {
@@ -216,6 +219,7 @@ this.showJyotish = false;
     return this.apiService.getImageUrl('image/' + imagePath);
   }
   audio(infiniteScroll?) {
+    this.loadingData = true;
  const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
 
     this.authHeader = new HttpHeaders({
@@ -231,10 +235,11 @@ this.showJyotish = false;
             this.tracks.push({
               title: newdata.name,
               path: this.apiService.baseUrl+newdata.audioFile,
-              
+              image :this.apiService.getImageUrl('image/' +newdata.image)
             });
           }
         }
+        this.loadingData = false;
       }
       if (infiniteScroll) {
         infiniteScroll.complete();
@@ -245,6 +250,7 @@ this.showJyotish = false;
 
   
   video() {
+    this.loadingData = true;
     const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
 
     this.authHeader = new HttpHeaders({
@@ -266,11 +272,13 @@ this.showJyotish = false;
         }
        
       }
+      this.loadingData = false;
     }
     );
   }
  
   article(infiniteScroll?) { 
+    this.loadingData = true;
     const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
 
     this.authHeader = new HttpHeaders({
@@ -297,6 +305,7 @@ this.showJyotish = false;
         }
 
       }
+      this.loadingData = false;
       if (infiniteScroll) {
         infiniteScroll.complete();
       }
@@ -306,6 +315,7 @@ this.showJyotish = false;
 
   }
   jyotish(infiniteScroll?) {
+    this.loadingData = true;
     const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
 
     this.authHeader = new HttpHeaders({
@@ -317,6 +327,7 @@ this.showJyotish = false;
         this.tmTeachers = response.data;
 
       }
+      this.loadingData = false;
       if (infiniteScroll) {
         infiniteScroll.complete();
       }

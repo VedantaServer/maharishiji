@@ -66,7 +66,7 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
+  <ion-spinner name="bubbles" *ngIf="loadingData"></ion-spinner>
 
   <ion-list *ngIf="shownews">
     <ion-item *ngFor="let image of data" text-wrap>
@@ -112,8 +112,10 @@
     <ion-list-header>Audit List</ion-list-header>
     <ng-container *ngFor="let file of tracks; let i = index">
       <ion-item text-wrap>
-        <ion-icon color="primary" item-start name="musical-note"></ion-icon>{{
-        file.title }}
+        <ion-icon color="primary" item-start name="musical-note"></ion-icon>
+        <ion-thumbnail>
+          <img alt="Silhouette of mountains" src='{{file.image}}' />
+        </ion-thumbnail>  {{file.title }}
         <ion-icon
           item-end
           name="play"
