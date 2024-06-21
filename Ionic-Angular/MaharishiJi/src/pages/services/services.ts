@@ -99,6 +99,7 @@ this.showJyotish = false;
           this.showaudio = false;
           this.HeaderName = "New & Event";
           this.showJyotish = false;
+          this.scrollcount = 0;
           this.news();
         }
         else if (this.requesttype == "audio") {
@@ -108,6 +109,7 @@ this.showJyotish = false;
           this.showArticles =false;
           this.showJyotish = false;
           this.HeaderName = "Audio";
+          this.scrollcount = 0;
           this.audio();
         }
         else if (this.requesttype == "video") {
@@ -117,6 +119,7 @@ this.showJyotish = false;
           this.showArticles =false;
           this.HeaderName = "Video";
           this.showJyotish = false;
+          this.scrollcount = 0;
           this.video();
         }
         else if (this.requesttype == "article") {
@@ -126,6 +129,7 @@ this.showJyotish = false;
           this.showArticles =true;
           this.HeaderName = "Articles";
           this.showJyotish = false;
+          this.scrollcount = 0;
           this.article();
         }
         else if (this.requesttype == "jyotish") {
@@ -135,6 +139,7 @@ this.showJyotish = false;
           this.showArticles =false;
           this.HeaderName = "Jyotish Consultation";
           this.showJyotish = true;
+          this.scrollcount = 0;
           this.jyotish();
         }
 
@@ -275,7 +280,6 @@ this.showJyotish = false;
     this.apiService.getServeData('article/json/min/41/' + this.scrollcount + '/20', this.authHeader).subscribe((response: any) => {
       if (response != null) {
         for (let newdata of response.data) {
-          
           if (this.articalsdata.find(item => item.id == newdata.id) == null) {
             this.ccount ++;
             this.articalsdata.push({
@@ -308,7 +312,6 @@ this.showJyotish = false;
       'Authorization': `Basic ${base64Credentials}`
     });
       
-    console.log("bb");
     this.apiService.getServeData('tm-info/json', this.authHeader).subscribe((response: any) => {
       if (response != null) {
         this.tmTeachers = response.data;
