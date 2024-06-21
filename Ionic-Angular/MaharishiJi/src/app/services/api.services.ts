@@ -31,13 +31,10 @@ export class ApiService {
 
   getServeData(endpoint:any,auHeader:HttpHeaders): Observable<any> {
     var aa = this.http.get(this.baseUrl+endpoint,{ headers: auHeader });
-    console.log(aa)
     return aa ;
   }
 
   getImageUrl(imagePath: string): string {
-    // Logic to construct the full image URL
-    //console.log(`${this.baseUrl}/${imagePath}`);
     return `${this.baseUrl}${imagePath}`;
   } 
 

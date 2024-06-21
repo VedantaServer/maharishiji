@@ -16,7 +16,7 @@
 
 <ion-content class="padding">
   <h1 class="header1">Services | Maharishi Organization </h1>
-
+  <button ion-button color="primary" block (click)="Back()" style="width: 80px;background-color: darkgrey;align-items: right;" *ngIf="showback">Back</button>
   <ion-card padding style="text-align: center;" *ngIf="showLoginForm">
     <ion-card-header>
       <h1> Please Login </h1>
@@ -104,8 +104,68 @@
     </ion-item>
   </ion-list> 
 
+
+
+
+
+  <ion-list *ngIf="showaudio">
+    <ion-list-header>Audit List</ion-list-header>
+    <ng-container *ngFor="let file of tracks; let i = index">
+      <ion-item text-wrap>
+        <ion-icon color="primary" item-start name="musical-note"></ion-icon>{{
+        file.title }}
+        <ion-icon
+          item-end
+          name="play"
+        ></ion-icon>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+
+  <ion-list *ngIf="showArticles">
+    <ion-item *ngFor="let image of articalsdata" text-wrap>
+      <div> <img [src]='getImageUrl(image.urlToImage)' style="width: 100%;height: 70%;"></div> &nbsp;
+  
+            {{image.title}} <ion-icon name="eye" class="ion-text-right"
+              style="font-size: 1.3em;"></ion-icon>{{image.viewCount}} <ion-icon name="share" class="ion-text-right"
+              style="font-size: 1.3em;"></ion-icon> {{image.shareCount}}
+            <br>
+            <span style="font-size:x-small;">
+              UpdatedOn: {{image.updationDate}}        
+              Record # {{image.recordcount}} of Page # {{image.pagenumber}}
+            </span>
+            <br>
+            <div class="no-padding" [innerHTML]="image.description"></div>
+    </ion-item>
+    
+  </ion-list>
+  
+
+  <ion-grid *ngIf="showJyotish">
+    <ion-row>
+      <ion-col size="6" size-md="6" size-lg="6" *ngFor="let teacher of tmTeachers">
+        <ion-card class="tm-teacher-card">
+          <!-- Sample Image (Replace with actual image URL or local path) -->
+          <img class="teacher-image" src="assets/teacher.png">
+
+          <!-- Teacher Details -->
+          <ion-card-content class="card-content">
+            <!-- Teacher Name -->
+            <h2>{{ teacher.name }}</h2>  
+            <p><ion-icon name="address"></ion-icon>
+              {{ teacher.tmCity.name }}, {{ teacher.tmCity.state }}</p>
+            <p><ion-icon name="call"></ion-icon>{{teacher.phone}}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
   <ion-infinite-scroll (ionInfinite)="loadMore($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..." position="top">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>
+
+
+

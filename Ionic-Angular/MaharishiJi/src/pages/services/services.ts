@@ -16,12 +16,18 @@ export class ServicesPage {
   shownews: boolean = false;
   showvideo: boolean = false;
   showaudio: boolean = false;
+  showback:boolean = false;
+  showArticles:boolean = false;
+  showJyotish:boolean=false;
   private authHeader: HttpHeaders;
   lblMessage: string = '';
   requesttype: string = '';
   HeaderName: string = 'Our Service';
   public data = [];
   public videodata = [];
+  public audiodata = [];
+  public articalsdata = [];
+  tmTeachers: any[] = [];
   scrollcount: number = 0;
   ccount: number = 0;
   tracks: Array<{title: string, path: string}> = [];
@@ -42,10 +48,18 @@ export class ServicesPage {
     this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
   }
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ServicesPage');
+    
   }
 
-
+  Back(){
+    this.showback=false;
+this.showIcon = true;
+this.shownews = false;
+this.showvideo = false;
+this.showaudio = false;
+this.showArticles = false;
+this.showJyotish = false;
+  }
   callservice(ctype) {
 
     this.requesttype = ctype;
@@ -73,10 +87,9 @@ export class ServicesPage {
     this.authHeader = new HttpHeaders({
       'Authorization': `Basic ${base64Credentials}`
     });
-    console.log(this.account);
     this.apiService.postServerData('user/json/login', null, this.authHeader).subscribe((response: any) => {
       if (response != null) {
-        this.lblMessage = "login Successfully";
+        this.showback=true;
         this.showLoginForm = false;
         this.storage.set("userDetail", response);
         this.storage.set("password", this.account.password);
@@ -85,12 +98,15 @@ export class ServicesPage {
           this.showvideo = false;
           this.showaudio = false;
           this.HeaderName = "New & Event";
+          this.showJyotish = false;
           this.news();
         }
         else if (this.requesttype == "audio") {
           this.shownews = false;
           this.showvideo = false;
           this.showaudio = true;
+          this.showArticles =false;
+          this.showJyotish = false;
           this.HeaderName = "Audio";
           this.audio();
         }
@@ -98,21 +114,27 @@ export class ServicesPage {
           this.shownews = false;
           this.showvideo = true;
           this.showaudio = false;
+          this.showArticles =false;
           this.HeaderName = "Video";
+          this.showJyotish = false;
           this.video();
         }
         else if (this.requesttype == "article") {
           this.shownews = false;
           this.showvideo = false;
           this.showaudio = false;
+          this.showArticles =true;
           this.HeaderName = "Articles";
+          this.showJyotish = false;
           this.article();
         }
         else if (this.requesttype == "jyotish") {
           this.shownews = false;
           this.showvideo = false;
           this.showaudio = false;
+          this.showArticles =false;
           this.HeaderName = "Jyotish Consultation";
+          this.showJyotish = true;
           this.jyotish();
         }
 
@@ -129,7 +151,26 @@ export class ServicesPage {
   }
   loadMore(infiniteScroll) {
     this.scrollcount += 1;
-    this.news(infiniteScroll);
+    if (this.requesttype == "news") {
+      this.news(infiniteScroll);
+    }
+    else if (this.requesttype == "audio") {
+      this.audio();
+    }
+    else if (this.requesttype == "video") {
+      this.video();
+    }
+    else if (this.requesttype == "article") {
+      this.article(infiniteScroll);
+    }
+    else if (this.requesttype == "jyotish") {
+      this.jyotish(infiniteScroll);
+    }
+    else
+    {
+      infiniteScroll.complete();
+    }
+    
   }
   news(infiniteScroll?) {
     const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
@@ -167,7 +208,6 @@ export class ServicesPage {
     );
   }
   getImageUrl(imagePath: string): string {
-
     return this.apiService.getImageUrl('image/' + imagePath);
   }
   audio(infiniteScroll?) {
@@ -176,22 +216,20 @@ export class ServicesPage {
     this.authHeader = new HttpHeaders({
       'Authorization': `Basic ${base64Credentials}`
     });
-
+    
       
     this.apiService.getServeData('audio/json/min/60/' + this.scrollcount + '/20', this.authHeader).subscribe((response: any) => {
       if (response != null) {
-        for (let newdata of response.data) {
-          
-          if (this.tracks.find(item => item.title == newdata.title) == null) {
+        for (let newdata of response.data) {      
+          if (this.tracks.find(item => item.title == newdata.name) == null) {
             this.ccount ++;
             this.tracks.push({
-              title: newdata.title,
+              title: newdata.name,
               path: this.apiService.baseUrl+newdata.audioFile,
               
             });
           }
         }
-
       }
       if (infiniteScroll) {
         infiniteScroll.complete();
@@ -207,11 +245,8 @@ export class ServicesPage {
     this.authHeader = new HttpHeaders({
       'Authorization': `Basic ${base64Credentials}`
     });
-    console.log(this.authHeader);
-    console.log("aa");
     this.apiService.getServeData('video/json/min', this.authHeader).subscribe((response: any) => {
       if (response != null) {
-        console.log(response.data);
         for (let newdata of response.data) {
           this.videodata.push({
             description: newdata.hindiDescription,
@@ -224,13 +259,70 @@ export class ServicesPage {
             
           });
         }
-        console.log(this.data);
+       
       }
     }
     );
   }
-  article() { }
-  jyotish() { }
+ 
+  article(infiniteScroll?) { 
+    const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
+
+    this.authHeader = new HttpHeaders({
+      'Authorization': `Basic ${base64Credentials}`
+    });
+
+    this.apiService.getServeData('article/json/min/41/' + this.scrollcount + '/20', this.authHeader).subscribe((response: any) => {
+      if (response != null) {
+        for (let newdata of response.data) {
+          
+          if (this.articalsdata.find(item => item.id == newdata.id) == null) {
+            this.ccount ++;
+            this.articalsdata.push({
+              id:newdata.id,
+              description: newdata.description,
+              urlToImage: newdata.image,
+              title: newdata.name,
+              updationDate: newdata.updationDate,
+              shareCount: newdata.shareCount,
+              viewCount: newdata.viewCount,
+              pagenumber:this.scrollcount,
+              recordcount:this.ccount 
+            });
+          }
+        }
+
+      }
+      if (infiniteScroll) {
+        infiniteScroll.complete();
+      }
+    }
+    );
+
+
+  }
+  jyotish(infiniteScroll?) {
+    const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
+
+    this.authHeader = new HttpHeaders({
+      'Authorization': `Basic ${base64Credentials}`
+    });
+      
+    console.log("bb");
+    this.apiService.getServeData('tm-info/json', this.authHeader).subscribe((response: any) => {
+      if (response != null) {
+        this.tmTeachers = response.data;
+
+      }
+      if (infiniteScroll) {
+        infiniteScroll.complete();
+      }
+    }
+    );
+
+   }
+
+
 
   Loadvideo(id, title) {
 
@@ -263,13 +355,12 @@ export class ServicesPage {
           throw new Error('Network response was not ok ' + response.statusText);
         }
         response.text().then((htmldata) => {
-          //console.log(htmldata); get the reponse back in result
           this.navCtrl.push(OpenWebUrlPage, { urldata: "", Title: title, htmldata: htmldata });
         });
 
 
       })
-      .then(result => console.log(result))
+      .then(result => result)
       .catch(error => console.error('Error:', error));
 
 
