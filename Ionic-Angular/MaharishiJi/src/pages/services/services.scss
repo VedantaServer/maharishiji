@@ -15,6 +15,9 @@ page-services {
         background-color: rgb(116, 64, 5); color: white;text-wrap: wrap;padding: 2px;text-align: center; 
       }
       
-      
+      ion-thumbnail {
+        --size: 140px;
+        --border-radius: 14px;
+      }
 
 }
