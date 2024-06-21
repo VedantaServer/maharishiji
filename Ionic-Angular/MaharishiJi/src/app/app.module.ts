@@ -16,7 +16,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { OpenWebUrlPage } from '../pages/open-web-url/open-web-url';
 import { ApiService } from './services/api.services'; 
 import { HttpClientModule } from '@angular/common/http';
-
+import { Media } from '@ionic-native/media/ngx';
+import { File } from '@ionic-native/file/ngx';
 @NgModule({
   declarations: [
     MyApp,
@@ -55,6 +56,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     ApiService,
     SplashScreen,
+    Media,
+    File,
     {provide: ErrorHandler, useClass: IonicErrorHandler}, 
   ]
 })

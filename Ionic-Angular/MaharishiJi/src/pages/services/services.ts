@@ -15,11 +15,17 @@ export class ServicesPage {
   showIcon: boolean = true;
   shownews: boolean = false;
   showvideo: boolean = false;
+  showaudio: boolean = false;
   private authHeader: HttpHeaders;
   lblMessage: string = '';
   requesttype: string = '';
+  HeaderName: string = 'Our Service';
   public data = [];
   public videodata = [];
+  scrollcount: number = 0;
+  ccount: number = 0;
+  tracks: Array<{title: string, path: string}> = [];
+
   headerLogo = "https://maharishiji.net/ui-design/templates/news24/images/presets/preset1/logo-footer.png";
   constructor(public navCtrl: NavController, public navParams: NavParams, private apiService: ApiService, private storage: Storage) {
   }
@@ -71,21 +77,42 @@ export class ServicesPage {
     this.apiService.postServerData('user/json/login', null, this.authHeader).subscribe((response: any) => {
       if (response != null) {
         this.lblMessage = "login Successfully";
+        this.showLoginForm = false;
         this.storage.set("userDetail", response);
         this.storage.set("password", this.account.password);
         if (this.requesttype == "news") {
+          this.shownews = true;
+          this.showvideo = false;
+          this.showaudio = false;
+          this.HeaderName = "New & Event";
           this.news();
         }
         else if (this.requesttype == "audio") {
+          this.shownews = false;
+          this.showvideo = false;
+          this.showaudio = true;
+          this.HeaderName = "Audio";
           this.audio();
         }
         else if (this.requesttype == "video") {
+          this.shownews = false;
+          this.showvideo = true;
+          this.showaudio = false;
+          this.HeaderName = "Video";
           this.video();
         }
         else if (this.requesttype == "article") {
+          this.shownews = false;
+          this.showvideo = false;
+          this.showaudio = false;
+          this.HeaderName = "Articles";
           this.article();
         }
         else if (this.requesttype == "jyotish") {
+          this.shownews = false;
+          this.showvideo = false;
+          this.showaudio = false;
+          this.HeaderName = "Jyotish Consultation";
           this.jyotish();
         }
 
@@ -100,31 +127,41 @@ export class ServicesPage {
         this.lblMessage = "Invalid Username and password..";
       });
   }
-  news() {
+  loadMore(infiniteScroll) {
+    this.scrollcount += 1;
+    this.news(infiniteScroll);
+  }
+  news(infiniteScroll?) {
     const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
 
     this.authHeader = new HttpHeaders({
       'Authorization': `Basic ${base64Credentials}`
     });
-    console.log(this.authHeader);
-    console.log("aa");
-    this.apiService.getServeData('news-and-events/json/min/20/0/20', this.authHeader).subscribe((response: any) => {
-      if (response != null) {
-        this.shownews = true;
-        this.lblMessage = "login Successfully";
-        console.log(response.data);
-        for (let newdata of response.data) {
 
-          this.data.push({
-            description: newdata.description,
-            urlToImage: newdata.image,
-            title: newdata.name,
-            updationDate: newdata.updationDate,
-            shareCount: newdata.shareCount,
-            viewCount: newdata.viewCount,
-          });
+      
+    this.apiService.getServeData('news-and-events/json/min/20/' + this.scrollcount + '/20', this.authHeader).subscribe((response: any) => {
+      if (response != null) {
+        for (let newdata of response.data) {
+          
+          if (this.data.find(item => item.id == newdata.id) == null) {
+            this.ccount ++;
+            this.data.push({
+              id: newdata.id,
+              description: newdata.description,
+              urlToImage: newdata.image,
+              title: newdata.name,
+              updationDate: newdata.updationDate,
+              shareCount: newdata.shareCount,
+              viewCount: newdata.viewCount,
+              pagenumber:this.scrollcount,
+              recordcount:this.ccount 
+            });
+          }
         }
-        console.log(this.data);
+
+      }
+      if (infiniteScroll) {
+        infiniteScroll.complete();
       }
     }
     );
@@ -133,12 +170,44 @@ export class ServicesPage {
 
     return this.apiService.getImageUrl('image/' + imagePath);
   }
-  audio() {
+  audio(infiniteScroll?) {
+ const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
 
+    this.authHeader = new HttpHeaders({
+      'Authorization': `Basic ${base64Credentials}`
+    });
+
+      
+    this.apiService.getServeData('audio/json/min/60/' + this.scrollcount + '/20', this.authHeader).subscribe((response: any) => {
+      if (response != null) {
+        for (let newdata of response.data) {
+          
+          if (this.tracks.find(item => item.title == newdata.title) == null) {
+            this.ccount ++;
+            this.tracks.push({
+              title: newdata.title,
+              path: this.apiService.baseUrl+newdata.audioFile,
+              
+            });
+          }
+        }
+
+      }
+      if (infiniteScroll) {
+        infiniteScroll.complete();
+      }
+    }
+    );
+  }
+
+  playTrack(index: number) {
+    this.apiService.playTrack(index);
+  }
+
+  stopTrack() {
+    this.apiService.stopTrack();
   }
   video() {
-    this.shownews = false;
-    this.showvideo = true;
     const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
 
     this.authHeader = new HttpHeaders({
@@ -148,10 +217,8 @@ export class ServicesPage {
     console.log("aa");
     this.apiService.getServeData('video/json/min', this.authHeader).subscribe((response: any) => {
       if (response != null) {
-        this.shownews = true;
         console.log(response.data);
         for (let newdata of response.data) {
-
           this.videodata.push({
             description: newdata.hindiDescription,
             id: newdata.id,
@@ -160,6 +227,7 @@ export class ServicesPage {
             shareCount: newdata.shareCount,
             viewCount: newdata.viewCount,
             urlToImage: newdata.image
+            
           });
         }
         console.log(this.data);
@@ -182,14 +250,10 @@ export class ServicesPage {
         this.account.username = userDetailValue.data.email;
       }
     });
-    const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
 
-    this.authHeader = new HttpHeaders({
-      'Authorization': `Basic ${base64Credentials}`
-    });
 
-    const username = "awdhesh@mssmail.org";
-    const password = "123456";
+    const username = this.account.username;
+    const password = this.account.password;
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "text/html"); // Expect HTML
     myHeaders.append("Authorization", "Basic " + btoa(username + ":" + password)); // Basic authentication
@@ -204,12 +268,12 @@ export class ServicesPage {
         if (!response.ok) {
           throw new Error('Network response was not ok ' + response.statusText);
         }
-        var htmlresp= response.text().then((htmldata) => {
+        var htmlresp = response.text().then((htmldata) => {
           console.log(htmldata);
           this.navCtrl.push(OpenWebUrlPage, { urldata: "", Title: title, htmldata: htmldata });
         });
-        
-        
+
+
       })
       .then(result => console.log(result))
       .catch(error => console.error('Error:', error));
