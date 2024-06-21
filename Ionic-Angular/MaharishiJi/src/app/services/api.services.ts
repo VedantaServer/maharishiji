@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { Body } from '@angular/http/src/body';
-import { Media, MediaObject } from '@ionic-native/media/ngx';
-import { File } from '@ionic-native/file/ngx';
+  
 
 @Injectable()
 
@@ -14,12 +12,8 @@ export class ApiService {
   public baseUrl = 'https://maharishiji.net/';; // replace with your backend API base URL
   private authHeader: HttpHeaders;
   private base64Credentials = btoa(`${'awdhesh@mssmail.org'}:${'123456'}`);
-  private currentTrack: MediaObject;
-  private isPlaying: boolean = false;
-  private currentIndex: number = -1;
-  constructor(private http: HttpClient,private media: Media, private file: File) {
-
-    
+  
+  constructor(private http: HttpClient) {  
     this.authHeader = new HttpHeaders({
       'Authorization': `Basic ${this.base64Credentials}`
     });
@@ -45,31 +39,6 @@ export class ApiService {
     // Logic to construct the full image URL
     //console.log(`${this.baseUrl}/${imagePath}`);
     return `${this.baseUrl}${imagePath}`;
-  }
-
-  playTrack(index: number) {
-    if (this.isPlaying && this.currentIndex === index) {
-      this.currentTrack.stop();
-      this.isPlaying = false;
-      return;
-    }
-
-    if (this.currentTrack) {
-      this.currentTrack.stop();
-    }
-
-    this.currentIndex = index;
-    //this.currentTrack = this.media.create(this.tracks[index].path);
-    this.currentTrack.play();
-    this.isPlaying = true;
-  }
-
-  stopTrack() {
-    if (this.currentTrack) {
-      this.currentTrack.stop();
-      this.isPlaying = false;
-    }
-  }
-  
+  } 
 
 }

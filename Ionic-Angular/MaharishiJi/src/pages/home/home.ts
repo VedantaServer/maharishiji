@@ -16,19 +16,21 @@ export class HomePage implements OnInit {
   updates: any[] = [];  // Create a property to store the data
 
   images = [];
+  loadingData: boolean;
 
   constructor(public navCtrl: NavController, private apiService: ApiService) { }
 
   ngOnInit() {
     this.loadUpdates();
-    this.loadGallery();
+    //this.loadGallery();
   }
   loadGallery() {
+    this.loadingData = true
     this.apiService.getServerData('photo-gallery/json/min').subscribe((response: any) => {
       this.images = response.data;
       this.slides.autoplay = 2000; // Example: set autoplay interval
       this.slides.loop = true; // Example: enable looping
-     
+      this.loadingData = true;
     });
   }
   ngAfterViewInit() {

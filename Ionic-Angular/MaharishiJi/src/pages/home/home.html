@@ -13,6 +13,8 @@
  
 <ion-content class="ion-padding" style="background-color: lightblue;">
  
+  <audio-player [audioSrc]="'https://maharishiji.net/stream/AUDIO/202406/e6fy_Dainik_Faladesh_20_June_2024_Mapp_Audio.mp3'"></audio-player>
+
   <div class="curved-card">
   <ion-card>
     <ion-card-header color="warning">
@@ -39,6 +41,7 @@
       <ion-card-title>Image Gallery</ion-card-title>
     </ion-card-header>
     <ion-card-content>
+      <ion-spinner name="bubbles" *ngIf="loadingData"></ion-spinner>
       <ion-slides pager="false">
         <ion-slide *ngFor="let image of images">
            

@@ -16,8 +16,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { OpenWebUrlPage } from '../pages/open-web-url/open-web-url';
 import { ApiService } from './services/api.services'; 
 import { HttpClientModule } from '@angular/common/http';
-import { Media } from '@ionic-native/media/ngx';
-import { File } from '@ionic-native/file/ngx';
+import { AudioPlayerComponent } from '../components/audio-player/audio-player';
+ 
 @NgModule({
   declarations: [
     MyApp,
@@ -29,7 +29,8 @@ import { File } from '@ionic-native/file/ngx';
     ServicesPage,
     TeachersPage,
     DashboardPage,
-    OpenWebUrlPage
+    OpenWebUrlPage,
+    AudioPlayerComponent
   ],
   imports: [
     BrowserModule,
@@ -48,16 +49,15 @@ import { File } from '@ionic-native/file/ngx';
     ServicesPage,
     TeachersPage,
     DashboardPage,
-    OpenWebUrlPage
+    OpenWebUrlPage,
+    AudioPlayerComponent
 
   ],
   providers: [
     StatusBar,
     HttpClientModule,
     ApiService,
-    SplashScreen,
-    Media,
-    File,
+    SplashScreen, 
     {provide: ErrorHandler, useClass: IonicErrorHandler}, 
   ]
 })

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Header, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ApiService } from '../../app/services/api.services'
 import { HttpHeaders } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
@@ -200,13 +200,7 @@ export class ServicesPage {
     );
   }
 
-  playTrack(index: number) {
-    this.apiService.playTrack(index);
-  }
-
-  stopTrack() {
-    this.apiService.stopTrack();
-  }
+  
   video() {
     const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
 
@@ -268,8 +262,8 @@ export class ServicesPage {
         if (!response.ok) {
           throw new Error('Network response was not ok ' + response.statusText);
         }
-        var htmlresp = response.text().then((htmldata) => {
-          console.log(htmldata);
+        response.text().then((htmldata) => {
+          //console.log(htmldata); get the reponse back in result
           this.navCtrl.push(OpenWebUrlPage, { urldata: "", Title: title, htmldata: htmldata });
         });
 

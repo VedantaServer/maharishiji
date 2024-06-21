@@ -102,23 +102,7 @@
       <br>
       <div class="no-padding" [innerHTML]="item.description"></div>
     </ion-item>
-  </ion-list>
-
-
-  <ion-list *ngIf="showaudio">
-    <ion-item *ngFor="let track of tracks; let i = index">
-      <ion-label>
-        {{ track.title }}
-      </ion-label>
-      <ion-button (click)="playTrack(i)">
-        Play
-      </ion-button>
-    </ion-item>
-  </ion-list>
-  <ion-button expand="full" (click)="stopTrack()">
-    Stop
-  </ion-button>
-
+  </ion-list> 
 
   <ion-infinite-scroll (ionInfinite)="loadMore($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..." position="top">

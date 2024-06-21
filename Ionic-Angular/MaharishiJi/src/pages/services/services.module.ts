@@ -2,10 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { ServicesPage } from './services';
 
-@NgModule({
-  declarations: [
-    ServicesPage,
-  ],
+@NgModule({ 
   imports: [
     IonicPageModule.forChild(ServicesPage),
   ],
