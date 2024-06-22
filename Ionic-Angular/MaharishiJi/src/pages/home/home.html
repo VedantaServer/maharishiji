@@ -1,19 +1,19 @@
 <ion-header>
-  <ion-navbar> 
+  <ion-navbar>
     <div style="display: inline-flex;">
       <div> <img height="40" src={{headerLogo}} style="vertical-align: baseline;" /></div> &nbsp;
-      <div class="header" > {{headerTitle}}</div>
+      <div class="header"> {{headerTitle}}</div>
     </div>
   </ion-navbar>
-</ion-header> 
-<ion-content class="ion-padding" style="background-color: lightblue;"> 
+</ion-header>
+<ion-content class="ion-padding" style="background-color: lightblue;">
   <div class="curved-card">
     <ion-card>
       <ion-card-header>
         <ion-card-title>Welcome to MaharishiJi.net</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-      
+
         <ion-spinner name="bubbles" *ngIf="loadingData1"></ion-spinner>
         <div *ngFor="let update of updates">
           <img [src]='getImageUrl(update.image)'>
@@ -29,14 +29,14 @@
       </ion-card-header>
       <ion-card-content>
         <ion-spinner name="bubbles" *ngIf="loadingData"></ion-spinner>
-        <ion-slides  pager="false">
-          <ion-slide *ngFor="let image of images"> 
+        <ion-slides pager="false">
+          <ion-slide *ngFor="let image of images">
             <div> <img [src]='getImageUrl(image.image)' style="width: 100%;height: 100%;"></div> &nbsp;
 
             {{image.name}}
             <br>
             <span style="font-size:x-small;">
-              UpdatedOn: {{image.updationDate}} 
+              UpdatedOn: {{image.updationDate}}
               <a style="color: white;" href="#" (click)="toggleInfo()">View Details</a>
             </span>
             <br>
@@ -46,5 +46,38 @@
         </ion-slides>
       </ion-card-content>
     </ion-card>
-  </div> 
+  </div>
+
+  <div class="contactus">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Let's Stay in Touch</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div style="display: inline-flex;border: 1px;"> 
+         
+          <div style="width: 50%;">
+            <h2>Maharishi Information Technology Pvt. Ltd.</h2>
+            <p>
+              Flat No. 808, 8th Floor, Marcantile House <br>
+              15 Kasturba Gandhi Marg, Connaught Place <br>
+              New Delhi - 110001 (INDIA) <br>
+              Phone: +91 755 431 0003, +91 755 663 0100 <br>
+              Mobile: +91 9893700746 <br>
+              maharishjimdmh108@gmail.com
+            </p>
+          </div> 
+          <div style="width: 50%;">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7004.19345190615!2d77.223394!3d28.626863!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfdb3f7e7e19f%3A0xad4ea1eb9b315547!2sMaharishi%20Information%20Technology%20Pvt.%20Ltd.!5e0!3m2!1sen!2sus!4v1677662172100!5m2!1sen!2sus"
+              width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen=""></iframe><br /><br />
+
+          </div>
+        </div>
+
+
+      </ion-card-content>
+    </ion-card>
+  </div>
+
 </ion-content>
