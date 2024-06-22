@@ -20,6 +20,8 @@
             <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_android-2.2.1/android" />
             <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/sms_autofill-2.3.0/android" />
             <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/sqflite-2.3.0/android" />
+            <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/video_player_android-2.4.10/android" />
+            <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dev/webview_flutter_android-2.10.4/android" />
           </set>
         </option>
       </GradleProjectSettings>

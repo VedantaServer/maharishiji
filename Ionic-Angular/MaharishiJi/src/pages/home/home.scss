@@ -81,36 +81,35 @@ page-home {
 
   .contactus {
     ion-card {
-      background: olivedrab;
+      background: lightblue;
       /* Sky blue background */
-      color: white;
+      color: skyblue;
       /* White font */
-      border-radius: 30px 30px 0 0;
+      border-radius: 5px 5px 5px 5px;
       /* Curved top corners */
       overflow: hidden;
       /* Ensure content doesn't overflow */
       padding: 5px;
       margin: 15px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 1); 
 
       ion-card-header {
         ion-card-title {
           text-align: left;
-          font-size: 1.4em;
-          font-weight: normal;
-          color: whitesmoke;
+          font-size:larger; 
+          color: red;
         }
       }
 
       ion-card-content {
-        margin: 10px;
+        margin: 5px;
         h2 {
-          color: whitesmoke;
-          text-wrap: wrap;
+          font-size: medium;
+          color: blueviolet;text-wrap: wrap;
           padding: 5px;
         }
         p{
-          color: white;
+          color: blueviolet;
         }
       }
     }

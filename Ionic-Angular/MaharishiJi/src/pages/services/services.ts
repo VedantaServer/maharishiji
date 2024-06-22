@@ -16,9 +16,9 @@ export class ServicesPage {
   shownews: boolean = false;
   showvideo: boolean = false;
   showaudio: boolean = false;
-  showback:boolean = false;
-  showArticles:boolean = false;
-  showJyotish:boolean=false;
+  showback: boolean = false;
+  showArticles: boolean = false;
+  showJyotish: boolean = false;
   private authHeader: HttpHeaders;
   lblMessage: string = '';
   requesttype: string = '';
@@ -30,8 +30,8 @@ export class ServicesPage {
   tmTeachers: any[] = [];
   scrollcount: number = 0;
   ccount: number = 0;
-  loadingData:boolean=false;
-  tracks: Array<{title: string, path: string,image : string}> = [];
+  loadingData: boolean = false;
+  tracks: Array<{ title: string, path: string, image: string,audioFile:string }> = [];
 
   headerLogo = "https://maharishiji.net/ui-design/templates/news24/images/presets/preset1/logo-footer.png";
   constructor(public navCtrl: NavController, public navParams: NavParams, private apiService: ApiService, private storage: Storage) {
@@ -49,17 +49,17 @@ export class ServicesPage {
     this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
   }
   ionViewDidLoad() {
-    
+
   }
 
-  Back(){
-    this.showback=false;
-this.showIcon = true;
-this.shownews = false;
-this.showvideo = false;
-this.showaudio = false;
-this.showArticles = false;
-this.showJyotish = false;
+  Back() {
+    this.showback = false;
+    this.showIcon = true;
+    this.shownews = false;
+    this.showvideo = false;
+    this.showaudio = false;
+    this.showArticles = false;
+    this.showJyotish = false;
   }
   callservice(ctype) {
 
@@ -90,7 +90,7 @@ this.showJyotish = false;
     });
     this.apiService.postServerData('user/json/login', null, this.authHeader).subscribe((response: any) => {
       if (response != null) {
-        this.showback=true;
+        this.showback = true;
         this.showLoginForm = false;
         this.storage.set("userDetail", response);
         this.storage.set("password", this.account.password);
@@ -107,7 +107,7 @@ this.showJyotish = false;
           this.shownews = false;
           this.showvideo = false;
           this.showaudio = true;
-          this.showArticles =false;
+          this.showArticles = false;
           this.showJyotish = false;
           this.HeaderName = "Audio";
           this.scrollcount = 0;
@@ -117,7 +117,7 @@ this.showJyotish = false;
           this.shownews = false;
           this.showvideo = true;
           this.showaudio = false;
-          this.showArticles =false;
+          this.showArticles = false;
           this.HeaderName = "Video";
           this.showJyotish = false;
           this.scrollcount = 0;
@@ -127,7 +127,7 @@ this.showJyotish = false;
           this.shownews = false;
           this.showvideo = false;
           this.showaudio = false;
-          this.showArticles =true;
+          this.showArticles = true;
           this.HeaderName = "Articles";
           this.showJyotish = false;
           this.scrollcount = 0;
@@ -137,7 +137,7 @@ this.showJyotish = false;
           this.shownews = false;
           this.showvideo = false;
           this.showaudio = false;
-          this.showArticles =false;
+          this.showArticles = false;
           this.HeaderName = "Jyotish Consultation";
           this.showJyotish = true;
           this.scrollcount = 0;
@@ -172,11 +172,10 @@ this.showJyotish = false;
     else if (this.requesttype == "jyotish") {
       this.jyotish(infiniteScroll);
     }
-    else
-    {
+    else {
       infiniteScroll.complete();
     }
-    
+
   }
   news(infiniteScroll?) {
     this.loadingData = true;
@@ -186,13 +185,13 @@ this.showJyotish = false;
       'Authorization': `Basic ${base64Credentials}`
     });
 
-      
+
     this.apiService.getServeData('news-and-events/json/min/20/' + this.scrollcount + '/20', this.authHeader).subscribe((response: any) => {
       if (response != null) {
         for (let newdata of response.data) {
-          
+
           if (this.data.find(item => item.id == newdata.id) == null) {
-            this.ccount ++;
+            this.ccount++;
             this.data.push({
               id: newdata.id,
               description: newdata.description,
@@ -201,8 +200,8 @@ this.showJyotish = false;
               updationDate: newdata.updationDate,
               shareCount: newdata.shareCount,
               viewCount: newdata.viewCount,
-              pagenumber:this.scrollcount,
-              recordcount:this.ccount 
+              pagenumber: this.scrollcount,
+              recordcount: this.ccount
             });
           }
         }
@@ -220,22 +219,24 @@ this.showJyotish = false;
   }
   audio(infiniteScroll?) {
     this.loadingData = true;
- const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
+    const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
 
     this.authHeader = new HttpHeaders({
       'Authorization': `Basic ${base64Credentials}`
     });
-    
-      
+
+
     this.apiService.getServeData('audio/json/min/60/' + this.scrollcount + '/20', this.authHeader).subscribe((response: any) => {
       if (response != null) {
-        for (let newdata of response.data) {      
+        for (let newdata of response.data) {
           if (this.tracks.find(item => item.title == newdata.name) == null) {
-            this.ccount ++;
+            this.ccount++;
             this.tracks.push({
               title: newdata.name,
-              path: this.apiService.baseUrl+newdata.audioFile,
-              image :this.apiService.getImageUrl('image/' +newdata.image)
+              path: this.apiService.baseUrl + newdata.audioFile,
+              image: this.apiService.getImageUrl('image/' + newdata.image),
+              audioFile:this.apiService.baseUrl + 'stream/' + newdata.audioFile
+
             });
           }
         }
@@ -248,7 +249,7 @@ this.showJyotish = false;
     );
   }
 
-  
+
   video() {
     this.loadingData = true;
     const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
@@ -267,17 +268,17 @@ this.showJyotish = false;
             shareCount: newdata.shareCount,
             viewCount: newdata.viewCount,
             urlToImage: newdata.image
-            
+
           });
         }
-       
+
       }
       this.loadingData = false;
     }
     );
   }
- 
-  article(infiniteScroll?) { 
+
+  article(infiniteScroll?) {
     this.loadingData = true;
     const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
 
@@ -289,17 +290,17 @@ this.showJyotish = false;
       if (response != null) {
         for (let newdata of response.data) {
           if (this.articalsdata.find(item => item.id == newdata.id) == null) {
-            this.ccount ++;
+            this.ccount++;
             this.articalsdata.push({
-              id:newdata.id,
+              id: newdata.id,
               description: newdata.description,
               urlToImage: newdata.image,
               title: newdata.name,
               updationDate: newdata.updationDate,
               shareCount: newdata.shareCount,
               viewCount: newdata.viewCount,
-              pagenumber:this.scrollcount,
-              recordcount:this.ccount 
+              pagenumber: this.scrollcount,
+              recordcount: this.ccount
             });
           }
         }
@@ -321,7 +322,7 @@ this.showJyotish = false;
     this.authHeader = new HttpHeaders({
       'Authorization': `Basic ${base64Credentials}`
     });
-      
+
     this.apiService.getServeData('tm-info/json', this.authHeader).subscribe((response: any) => {
       if (response != null) {
         this.tmTeachers = response.data;
@@ -334,17 +335,17 @@ this.showJyotish = false;
     }
     );
 
-   }
+  }
 
-   loadAudio(title:any,fileUrl:any)
-   {
-    fileUrl = 'https://maharishiji.net/stream/AUDIO/202406/e6fy_Dainik_Faladesh_20_June_2024_Mapp_Audio.mp3';
+  loadAudio(audio: any) {
+    //fileUrl = 'https://maharishiji.net/stream/AUDIO/202406/e6fy_Dainik_Faladesh_20_June_2024_Mapp_Audio.mp3';
+    //sending this data to the broswer widnows.
+    console.log(audio);
+    this.navCtrl.push(OpenWebUrlPage, { url: audio.audioFile, Title: audio.title, imagePath: audio.image });
+  }
 
-      this.navCtrl.push(OpenWebUrlPage, { url: fileUrl, Title: title}); 
-   }
 
-
-  Loadvideo(id :any, title:any) {
+  Loadvideo(id: any, title: any) {
 
     this.storage.get('password').then((passValue) => {
       if (passValue != null)

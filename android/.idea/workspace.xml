@@ -10,8 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c108ab36-3ac0-4ba4-89b4-082f022c6a38" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ionic-Angular/MaharishiJi/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Ionic-Angular/MaharishiJi/config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ionic-Angular/MaharishiJi/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Ionic-Angular/MaharishiJi/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ionic-Angular/MaharishiJi/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Ionic-Angular/MaharishiJi/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ionic-Angular/MaharishiJi/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Ionic-Angular/MaharishiJi/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ionic-Angular/MaharishiJi/src/pages/home/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Ionic-Angular/MaharishiJi/src/pages/home/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ionic-Angular/MaharishiJi/src/pages/home/home.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Ionic-Angular/MaharishiJi/src/pages/home/home.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ionic-Angular/MaharishiJi/src/pages/open-web-url/open-web-url.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Ionic-Angular/MaharishiJi/src/pages/open-web-url/open-web-url.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,22 +82,22 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "cidr.known.project.marker": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "full.screen.before.presentation.mode": "false",
-    "last_opened_file_path": "C:/Projects/maharishiji-flutter",
-    "project.structure.last.edited": "Build Variants",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.ide.settings.notifications",
-    "show.migrate.to.gradle.popup": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;full.screen.before.presentation.mode&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Projects/maharishiji-flutter&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Build Variants&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.notifications&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="PsdUISettings">
     <option name="LAST_EDITED_BUILD_TYPE" value="release" />
   </component>

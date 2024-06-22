@@ -1,14 +1,18 @@
-
 <ion-header>
-
   <ion-navbar>
-    <ion-title>{{Title}}</ion-title>
+    <ion-title style="text-wrap: wrap;">{{Title}}</ion-title>
   </ion-navbar>
-
-</ion-header>
-
+</ion-header> 
 
 <ion-content padding>
-    <ion-spinner name="bubbles" *ngIf="loadingData"></ion-spinner>
-    <div id="iframeContainer"></div>
+  <ion-spinner name="bubbles" *ngIf="loadingData"></ion-spinner> 
+  <div *ngIf="showAudio"> 
+    <ion-thumbnail>
+      <img alt="" src='{{imagePath}}' />
+    </ion-thumbnail> {{TitleData }}
+    <audio #myAudioElement controls>
+      Your browser does not support the audio element.
+    </audio> 
+  </div> 
+  <div id="iframeContainer"></div> 
 </ion-content>
