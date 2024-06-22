@@ -20,4 +20,44 @@ page-services {
         --border-radius: 14px;
       }
 
+
+      .tm-teacher-card {
+        border-radius: 5px 20px 25px  0;;
+        padding:2px;
+        height: 100%;
+        width:  98%;
+        margin: 5px;
+        /* Adjust spacing between cards */
+        background-color: skyblue;
+        /* Orange background color */
+        color: white;
+        /* White text color */
+
+        .teacher-image { 
+            /* Fixed height for the sample image */
+            object-fit: cover; 
+            /* Ensure image covers the entire area */
+        }
+
+        .card-content {
+            padding: 5px;
+  
+            h2 {
+                margin-top: 0;
+                font-size: 1.5rem;
+                text-wrap: wrap;
+                /* Adjust font size */
+                
+                /* Ensure teacher name is bold */
+            }
+
+            p {
+                margin: 0;
+                font-size: 1.0rem;
+                /* Adjust font size */
+            }
+        }
+    }
+    
+
 }

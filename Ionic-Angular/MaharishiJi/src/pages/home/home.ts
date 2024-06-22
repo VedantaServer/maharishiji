@@ -12,9 +12,8 @@ export class HomePage implements OnInit {
 
   @ViewChild(Slides) slides: Slides;
   headerLogo = "https://maharishiji.net/ui-design/templates/news24/images/presets/preset1/logo-footer.png";
-  headerTitle = "Maharishi Ji - Mobile App"
-  updates: any[] = [];  // Create a property to store the data
-
+  headerTitle = "Maharishi Ji - Mobile App!";
+  updates: any[] = [];  
   images = [];
   loadingData: boolean=false;
   loadingData1: boolean=false;
@@ -54,9 +53,7 @@ export class HomePage implements OnInit {
 
   toggleInfo() {
     this.showInfo = !this.showInfo;
-  }
-
-
+  } 
 }
 
 

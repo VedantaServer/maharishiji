@@ -1,4 +1,3 @@
-import { NgModule } from '@angular/core';
-import { AudioPlayerComponent } from './audio-player/audio-player';
+import { NgModule } from '@angular/core';  
 @NgModule({ })
 export class ComponentsModule {}

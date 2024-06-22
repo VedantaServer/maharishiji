@@ -336,9 +336,15 @@ this.showJyotish = false;
 
    }
 
+   loadAudio(title:any,fileUrl:any)
+   {
+    fileUrl = 'https://maharishiji.net/stream/AUDIO/202406/e6fy_Dainik_Faladesh_20_June_2024_Mapp_Audio.mp3';
+
+      this.navCtrl.push(OpenWebUrlPage, { url: fileUrl, Title: title}); 
+   }
 
 
-  Loadvideo(id, title) {
+  Loadvideo(id :any, title:any) {
 
     this.storage.get('password').then((passValue) => {
       if (passValue != null)

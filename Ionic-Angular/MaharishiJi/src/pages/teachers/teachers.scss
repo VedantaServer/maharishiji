@@ -2,9 +2,9 @@ page-teachers {
 
 
     .tm-teacher-card {
-        border-radius: 20px 20px 40px  0;;
+        border-radius: 5px 20px 25px  0;;
         padding:2px;
-        height: 98%;
+        height: 100%;
         width:  98%;
         margin: 5px;
         /* Adjust spacing between cards */
@@ -24,7 +24,8 @@ page-teachers {
   
             h2 {
                 margin-top: 0;
-                font-size: 2rem;
+                font-size: 1.5rem;
+                text-wrap: wrap;
                 /* Adjust font size */
                 
                 /* Ensure teacher name is bold */
@@ -32,7 +33,7 @@ page-teachers {
 
             p {
                 margin: 0;
-                font-size: 1.2rem;
+                font-size: 1.0rem;
                 /* Adjust font size */
             }
         }

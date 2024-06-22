@@ -16,7 +16,8 @@
 
 <ion-content class="padding">
   <h1 class="header1">Services | Maharishi Organization </h1>
-  <button ion-button color="primary" block (click)="Back()" style="width: 80px;background-color: darkgrey;align-items: right;" *ngIf="showback">Back</button>
+  <button ion-button color="primary" block (click)="Back()"
+    style="width: 80px;background-color: darkgrey;align-items: right;" *ngIf="showback">Back</button>
   <ion-card padding style="text-align: center;" *ngIf="showLoginForm">
     <ion-card-header>
       <h1> Please Login </h1>
@@ -39,29 +40,29 @@
   <ion-grid fixed *ngIf="showIcon">
     <ion-row>
       <ion-col size="6" class="service-box">
-        <img src="../../assets/news.jpeg" style="width: 100px;height: 100px;" (click)="callservice('news')" />
+        <img src="assets/news.jpeg" style="width: 100px;height: 100px;" (click)="callservice('news')" />
         <p>News & Event</p>
       </ion-col>
       <ion-col size="6" class="service-box">
-        <img src="../../assets/audio.jpg" style="width: 100px;height: 100px;" (click)="callservice('audio')" />
+        <img src="assets/audio.jpg" style="width: 100px;height: 100px;" (click)="callservice('audio')" />
         <p>Audio</p>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col size="6" class="service-box">
-        <img src="../../assets/video.jpg" style="width: 100px;height: 100px;" (click)="callservice('video')" />
+        <img src="assets/video.jpg" style="width: 100px;height: 100px;" (click)="callservice('video')" />
         <p>Video</p>
       </ion-col>
       <ion-col size="6" class="service-box">
-        <img src="../../assets/article.png" style="width: 100px;height: 100px;" (click)="callservice('article')" />
+        <img src="assets/article.png" style="width: 100px;height: 100px;" (click)="callservice('article')" />
         <p>Articles</p>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col size="12" class="service-box">
-        <img src="../../assets/jyotish.jpg" style="width: 100px;height: 100px;" (click)="callservice('jyotish')" />
+        <img src="assets/jyotish.jpg" style="width: 100px;height: 100px;" (click)="callservice('jyotish')" />
         <p>Jyotish Consultation</p>
       </ion-col>
     </ion-row>
@@ -72,18 +73,18 @@
     <ion-item *ngFor="let image of data" text-wrap>
       <div> <img [src]='getImageUrl(image.urlToImage)' style="width: 100%;height: 100%;"></div> &nbsp;
 
-            {{image.title}} <ion-icon name="eye" class="ion-text-right"
-              style="font-size: 1.3em;"></ion-icon>{{image.viewCount}} <ion-icon name="share" class="ion-text-right"
-              style="font-size: 1.3em;"></ion-icon> {{image.shareCount}}
-            <br>
-            <span style="font-size:x-small;">
-              UpdatedOn: {{image.updationDate}}        
-              Record # {{image.recordcount}} of Page # {{image.pagenumber}}
-            </span>
-            <br>
-            <div class="no-padding" [innerHTML]="image.description"></div>
+      {{image.title}} <ion-icon name="eye" class="ion-text-right"
+        style="font-size: 1.3em;"></ion-icon>{{image.viewCount}} <ion-icon name="share" class="ion-text-right"
+        style="font-size: 1.3em;"></ion-icon> {{image.shareCount}}
+      <br>
+      <span style="font-size:x-small;">
+        UpdatedOn: {{image.updationDate}}
+        Record # {{image.recordcount}} of Page # {{image.pagenumber}}
+      </span>
+      <br>
+      <div class="no-padding" [innerHTML]="image.description"></div>
     </ion-item>
-    
+
   </ion-list>
 
 
@@ -92,7 +93,6 @@
     <ion-item *ngFor="let item of videodata" text-wrap>
       <div> <img [src]='getImageUrl(item.urlToImage)' style="width: 100%;height: 100%;"
           (click)='Loadvideo(item.id,item.title)'></div>
-
       {{item.title}} <ion-icon name="eye" class="ion-text-right" style="font-size: 1.3em;"></ion-icon>{{item.viewCount}}
       <ion-icon name="share" class="ion-text-right" style="font-size: 1.3em;"></ion-icon> {{item.shareCount}}
       <br>
@@ -104,22 +104,14 @@
     </ion-item>
   </ion-list> 
 
-
-
-
-
   <ion-list *ngIf="showaudio">
     <ion-list-header>Audit List</ion-list-header>
-    <ng-container *ngFor="let file of tracks; let i = index">
-      <ion-item text-wrap>
+    <ng-container *ngFor="let file of tracks; let i = index" >
+      <ion-item text-wrap (click)='loadAudio(file.title,file.path)'>
         <ion-icon color="primary" item-start name="musical-note"></ion-icon>
         <ion-thumbnail>
           <img alt="Silhouette of mountains" src='{{file.image}}' />
-        </ion-thumbnail>  {{file.title }}
-        <ion-icon
-          item-end
-          name="play"
-        ></ion-icon>
+        </ion-thumbnail> {{file.title }} 
       </ion-item>
     </ng-container>
   </ion-list>
@@ -127,21 +119,21 @@
   <ion-list *ngIf="showArticles">
     <ion-item *ngFor="let image of articalsdata" text-wrap>
       <div> <img [src]='getImageUrl(image.urlToImage)' style="width: 100%;height: 70%;"></div> &nbsp;
-  
-            {{image.title}} <ion-icon name="eye" class="ion-text-right"
-              style="font-size: 1.3em;"></ion-icon>{{image.viewCount}} <ion-icon name="share" class="ion-text-right"
-              style="font-size: 1.3em;"></ion-icon> {{image.shareCount}}
-            <br>
-            <span style="font-size:x-small;">
-              UpdatedOn: {{image.updationDate}}        
-              Record # {{image.recordcount}} of Page # {{image.pagenumber}}
-            </span>
-            <br>
-            <div class="no-padding" [innerHTML]="image.description"></div>
+
+      {{image.title}} <ion-icon name="eye" class="ion-text-right"
+        style="font-size: 1.3em;"></ion-icon>{{image.viewCount}} <ion-icon name="share" class="ion-text-right"
+        style="font-size: 1.3em;"></ion-icon> {{image.shareCount}}
+      <br>
+      <span style="font-size:x-small;">
+        UpdatedOn: {{image.updationDate}}
+        Record # {{image.recordcount}} of Page # {{image.pagenumber}}
+      </span>
+      <br>
+      <div class="no-padding" [innerHTML]="image.description"></div>
     </ion-item>
-    
+
   </ion-list>
-  
+
 
   <ion-grid *ngIf="showJyotish">
     <ion-row>
@@ -153,7 +145,7 @@
           <!-- Teacher Details -->
           <ion-card-content class="card-content">
             <!-- Teacher Name -->
-            <h2>{{ teacher.name }}</h2>  
+            <h2>{{ teacher.name }}</h2>
             <p><ion-icon name="address"></ion-icon>
               {{ teacher.tmCity.name }}, {{ teacher.tmCity.state }}</p>
             <p><ion-icon name="call"></ion-icon>{{teacher.phone}}</p>
@@ -168,6 +160,3 @@
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>
-
-
-

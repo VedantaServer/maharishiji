@@ -1,12 +1,11 @@
-<ion-header style="background-color: skyblue;">
+<ion-header>
   <ion-navbar> 
     <div style="display: inline-flex;">
       <div> <img height="40" src={{headerLogo}} style="vertical-align: baseline;" /></div> &nbsp;
       <div class="header" > {{headerTitle}}</div>
     </div>
   </ion-navbar>
-</ion-header>
-
+</ion-header> 
 <ion-content class="ion-padding" style="background-color: lightblue;"> 
   <div class="curved-card">
     <ion-card>
@@ -14,6 +13,7 @@
         <ion-card-title>Welcome to MaharishiJi.net</ion-card-title>
       </ion-card-header>
       <ion-card-content>
+      
         <ion-spinner name="bubbles" *ngIf="loadingData1"></ion-spinner>
         <div *ngFor="let update of updates">
           <img [src]='getImageUrl(update.image)'>
@@ -46,8 +46,5 @@
         </ion-slides>
       </ion-card-content>
     </ion-card>
-  </div>
-  <div class="curved-card">
-
-  </div>
+  </div> 
 </ion-content>
