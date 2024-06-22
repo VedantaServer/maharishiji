@@ -16,9 +16,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { OpenWebUrlPage } from '../pages/open-web-url/open-web-url';
 import { ApiService } from './services/api.services'; 
 import { HttpClientModule } from '@angular/common/http';
-import { AudioPlayerComponent } from '../components/audio-player/audio-player';
-import { Media } from '@ionic-native/media';
-
+ 
  
 @NgModule({
   declarations: [
@@ -31,8 +29,7 @@ import { Media } from '@ionic-native/media';
     ServicesPage,
     TeachersPage,
     DashboardPage,
-    OpenWebUrlPage,
-    AudioPlayerComponent
+    OpenWebUrlPage 
   ],
   imports: [
     BrowserModule,
@@ -51,13 +48,11 @@ import { Media } from '@ionic-native/media';
     ServicesPage,
     TeachersPage,
     DashboardPage,
-    OpenWebUrlPage,
-    AudioPlayerComponent
+    OpenWebUrlPage 
 
   ],
   providers: [
-    StatusBar,
-    Media,
+    StatusBar, 
     HttpClientModule,
     ApiService,
     SplashScreen, 
