@@ -26,7 +26,7 @@ export class OpenWebUrlPage {
     });
   }
 
-  ionViewWillEnter() {
+  ngAfterViewInit () {
     this.Title = this.navParams.get("Title");
     this.imagePath = this.navParams.get("imagePath");
     var url = this.navParams.get("url");
@@ -38,9 +38,13 @@ export class OpenWebUrlPage {
       this.showVideo = true;
       const iframe = this.renderer.createElement('iframe');
       iframe.srcdoc = htmldata;
-      iframe.width = '100%';
-      iframe.height = '600px';
+      iframe.width = this.screenWidth;
+      iframe.height = this.screenHeight;
+      iframe.frameBorder = '0'; 
       const iframeContainer = this.renderer.selectRootElement('#iframeContainer');
+      while (iframeContainer.firstChild) {
+        this.renderer.removeChild(iframeContainer, iframeContainer.firstChild);
+      }
       this.renderer.appendChild(iframeContainer, iframe);
       this.loadingData = false;
     }
