@@ -31,6 +31,9 @@ export class ServicesPage {
   scrollcount: number = 0;
   ccount: number = 0;
   loadingData: boolean = false;
+  showCategory : boolean = false;
+  category:any[] = [];
+  CategoryID:any;
   tracks: Array<{ title: string, path: string, image: string,audioFile:string }> = [];
 
   headerLogo = "https://maharishiji.net/ui-design/templates/news24/images/presets/preset1/logo-footer.png";
@@ -53,6 +56,7 @@ export class ServicesPage {
   }
 
   Back() {
+    this.showCategory = false;
     this.showback = false;
     this.showIcon = true;
     this.shownews = false;
@@ -95,43 +99,47 @@ export class ServicesPage {
         this.storage.set("userDetail", response);
         this.storage.set("password", this.account.password);
         if (this.requesttype == "news") {
-          this.shownews = true;
+          this.shownews = false;
           this.showvideo = false;
           this.showaudio = false;
-          this.HeaderName = "News & Event";
+          this.HeaderName = "News & Events";
           this.showJyotish = false;
           this.scrollcount = 0;
-          this.news();
+         this.bindCategory(3,"News");
+         this.showCategory = true;
         }
         else if (this.requesttype == "audio") {
           this.shownews = false;
           this.showvideo = false;
-          this.showaudio = true;
+          this.showaudio = false;
           this.showArticles = false;
           this.showJyotish = false;
           this.HeaderName = "Audio";
           this.scrollcount = 0;
-          this.audio();
+          this.bindCategory(2,"Audio");
+          this.showCategory = true;
         }
         else if (this.requesttype == "video") {
           this.shownews = false;
-          this.showvideo = true;
+          this.showvideo = false;
           this.showaudio = false;
           this.showArticles = false;
           this.HeaderName = "Video";
           this.showJyotish = false;
           this.scrollcount = 0;
-          this.video();
+          this.bindCategory(1,"Video");
+          this.showCategory = true;
         }
         else if (this.requesttype == "article") {
           this.shownews = false;
           this.showvideo = false;
           this.showaudio = false;
-          this.showArticles = true;
+          this.showArticles = false;
           this.HeaderName = "Articles";
           this.showJyotish = false;
           this.scrollcount = 0;
-          this.article();
+          this.bindCategory(4,"Articles");
+          this.showCategory = true;
         }
         else if (this.requesttype == "jyotish") {
           this.shownews = false;
@@ -154,6 +162,59 @@ export class ServicesPage {
         // Handle login error here
         this.lblMessage = "Invalid Username and password..";
       });
+  }
+
+
+  bindCategory(CategoryID,Type){
+    this.category = [];
+    const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
+
+    this.authHeader = new HttpHeaders({
+      'Authorization': `Basic ${base64Credentials}`
+    });
+
+    this.apiService.getServeData('main-category/json/min/'+CategoryID, this.authHeader).subscribe((response: any) => {
+      if (response != null) {
+       
+        for (let newdata of response.data.subCategory) {
+        
+          if (this.category.find(item => item.id == newdata.id) == null) {
+            this.ccount++;
+            this.category.push({
+              id: newdata.id,
+              title: newdata.name,
+              ctype:Type
+            });
+          }
+        }
+        this.loadingData = false;
+
+      }     
+    }
+    );
+
+  }
+  loaddata(id,type)
+  {
+    this.CategoryID=id;
+    this.requesttype ==type;
+    this.showCategory = false;
+    if (this.requesttype == "news") {
+      this.news();
+    }
+    else if (this.requesttype == "audio") {
+      this.audio();
+    }
+    else if (this.requesttype == "video") {
+      this.video();
+    }
+    else if (this.requesttype == "article") {
+      this.article();
+    }
+    else if (this.requesttype == "jyotish") {
+      this.jyotish();
+    }
+
   }
   loadMore(infiniteScroll) {
     this.scrollcount += 1;
@@ -185,8 +246,8 @@ export class ServicesPage {
       'Authorization': `Basic ${base64Credentials}`
     });
 
-
-    this.apiService.getServeData('news-and-events/json/min/20/' + this.scrollcount + '/20', this.authHeader).subscribe((response: any) => {
+    console.log(this.CategoryID);
+    this.apiService.getServeData('news-and-events/json/min/'+this.CategoryID+'/' + this.scrollcount + '/20', this.authHeader).subscribe((response: any) => {
       if (response != null) {
         for (let newdata of response.data) {
 
@@ -205,6 +266,7 @@ export class ServicesPage {
             });
           }
         }
+        this.shownews= true;
         this.loadingData = false;
 
       }
@@ -226,7 +288,7 @@ export class ServicesPage {
     });
 
 
-    this.apiService.getServeData('audio/json/min/60/' + this.scrollcount + '/20', this.authHeader).subscribe((response: any) => {
+    this.apiService.getServeData('audio/json/min/'+this.CategoryID+'/' + this.scrollcount + '/20', this.authHeader).subscribe((response: any) => {
       if (response != null) {
         for (let newdata of response.data) {
           if (this.tracks.find(item => item.title == newdata.name) == null) {
@@ -241,6 +303,7 @@ export class ServicesPage {
           }
         }
         this.loadingData = false;
+        this.showaudio=true;
       }
       if (infiniteScroll) {
         infiniteScroll.complete();
@@ -257,7 +320,7 @@ export class ServicesPage {
     this.authHeader = new HttpHeaders({
       'Authorization': `Basic ${base64Credentials}`
     });
-    this.apiService.getServeData('video/json/min', this.authHeader).subscribe((response: any) => {
+    this.apiService.getServeData('video/json/min/'+this.CategoryID, this.authHeader).subscribe((response: any) => {
       if (response != null) {
         for (let newdata of response.data) {
           this.videodata.push({
@@ -274,6 +337,7 @@ export class ServicesPage {
 
       }
       this.loadingData = false;
+      this.showvideo=true;
     }
     );
   }
@@ -286,7 +350,7 @@ export class ServicesPage {
       'Authorization': `Basic ${base64Credentials}`
     });
 
-    this.apiService.getServeData('article/json/min/41/' + this.scrollcount + '/20', this.authHeader).subscribe((response: any) => {
+    this.apiService.getServeData('article/json/min/'+this.CategoryID+'/' + this.scrollcount + '/20', this.authHeader).subscribe((response: any) => {
       if (response != null) {
         for (let newdata of response.data) {
           if (this.articalsdata.find(item => item.id == newdata.id) == null) {
@@ -307,6 +371,7 @@ export class ServicesPage {
 
       }
       this.loadingData = false;
+      this.showArticles=true;
       if (infiniteScroll) {
         infiniteScroll.complete();
       }

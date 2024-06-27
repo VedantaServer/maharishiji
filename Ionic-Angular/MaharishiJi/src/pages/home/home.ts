@@ -12,7 +12,7 @@ export class HomePage implements OnInit {
 
   @ViewChild(Slides) slides: Slides;
   headerLogo = "https://maharishiji.net/ui-design/templates/news24/images/presets/preset1/logo-footer.png";
-  headerTitle = "Maharishi Ji - Mobile App!";
+  headerTitle = "Maharishi Ji";
   updates: any[] = [];  
   images = [];
   loadingData: boolean=false;

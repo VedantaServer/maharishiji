@@ -11,13 +11,13 @@
   <div class="curved-card">
     <ion-card>
       <ion-card-header>
-        <ion-card-title>Welcome to MaharishiJi.net</ion-card-title>
+        <ion-card-title>Welcome to Maharishi Digital Media House</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <ion-spinner name="bubbles" *ngIf="loadingData1"></ion-spinner>
         <div *ngFor="let update of updates">
           <img [src]='getImageUrl(update.image)'>
-          <h2>{{ update.title }}</h2>
+          <h2 align="center">{{ update.title }}</h2>
         </div>
       </ion-card-content>
     </ion-card>
@@ -25,7 +25,7 @@
   <div class="curved-card1">
     <ion-card>
       <ion-card-header>
-        <ion-card-title>Image Gallery</ion-card-title>
+        <ion-card-title>Photo Gallery</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <ion-spinner name="bubbles" *ngIf="loadingData"></ion-spinner>
@@ -35,12 +35,8 @@
 
             {{image.name}}
             <br>
-            <span style="font-size:x-small;">
-              UpdatedOn: {{image.updationDate}}
-              <a style="color: white;" href="#" (click)="toggleInfo()">View Details</a>
-            </span>
-            <br>
-            <div *ngIf="showInfo" class="no-padding" [innerHTML]="image.description"></div>
+           
+            <div class="no-padding" [innerHTML]="image.description"></div>
 
           </ion-slide>
         </ion-slides>
@@ -51,7 +47,8 @@
   <div class="contactus">
     <ion-card>
       <ion-card-header>
-        <ion-card-title>Let's Stay in Touch</ion-card-title>
+       
+        <ion-card-title> <h2 align="center">Let's Stay in Touch</h2></ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <div>
