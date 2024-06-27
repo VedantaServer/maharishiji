@@ -34,6 +34,8 @@ export class ServicesPage {
   showCategory : boolean = false;
   category:any[] = [];
   CategoryID:any;
+  public categorytype: any;
+  selectedItem: any;
   tracks: Array<{ title: string, path: string, image: string,audioFile:string }> = [];
 
   headerLogo = "https://maharishiji.net/ui-design/templates/news24/images/presets/preset1/logo-footer.png";
@@ -141,17 +143,6 @@ export class ServicesPage {
           this.bindCategory(4,"Articles");
           this.showCategory = true;
         }
-        else if (this.requesttype == "jyotish") {
-          this.shownews = false;
-          this.showvideo = false;
-          this.showaudio = false;
-          this.showArticles = false;
-          this.HeaderName = "Jyotish Consultation";
-          this.showJyotish = true;
-          this.scrollcount = 0;
-          this.jyotish();
-        }
-
 
       }
       else {
@@ -164,6 +155,13 @@ export class ServicesPage {
       });
   }
 
+  handleCancel() {
+    console.log('ionCancel fired');
+  }
+
+  handleDismiss() {
+    console.log('ionDismiss fired');
+  }
 
   bindCategory(CategoryID,Type){
     this.category = [];
@@ -194,11 +192,14 @@ export class ServicesPage {
     );
 
   }
-  loaddata(id,type)
+  loaddata()
   {
-    this.CategoryID=id;
-    this.requesttype ==type;
-    this.showCategory = false;
+    console.log(this.categorytype);
+    const selectedId = this.categorytype;
+     this.selectedItem= this.category.find(item => item.id === selectedId);
+    this.CategoryID=this.selectedItem.id;
+    this.requesttype ==this.selectedItem.ctype;
+
     if (this.requesttype == "news") {
       this.news();
     }
@@ -210,9 +211,6 @@ export class ServicesPage {
     }
     else if (this.requesttype == "article") {
       this.article();
-    }
-    else if (this.requesttype == "jyotish") {
-      this.jyotish();
     }
 
   }
@@ -229,9 +227,6 @@ export class ServicesPage {
     }
     else if (this.requesttype == "article") {
       this.article(infiniteScroll);
-    }
-    else if (this.requesttype == "jyotish") {
-      this.jyotish(infiniteScroll);
     }
     else {
       infiniteScroll.complete();
@@ -323,7 +318,7 @@ export class ServicesPage {
     this.authHeader = new HttpHeaders({
       'Authorization': `Basic ${base64Credentials}`
     });
-    this.apiService.getServeData('video/json/min/'+this.CategoryID, this.authHeader).subscribe((response: any) => {
+    this.apiService.getServeData('video/json/category-wise/'+this.CategoryID, this.authHeader).subscribe((response: any) => {
       if (response != null) {
         for (let newdata of response.data) {
           this.videodata.push({
@@ -384,28 +379,7 @@ export class ServicesPage {
 
 
   }
-  jyotish(infiniteScroll?) {
-    this.tmTeachers=[];
-    this.loadingData = true;
-    const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
-
-    this.authHeader = new HttpHeaders({
-      'Authorization': `Basic ${base64Credentials}`
-    });
-
-    this.apiService.getServeData('tm-info/json', this.authHeader).subscribe((response: any) => {
-      if (response != null) {
-        this.tmTeachers = response.data;
-
-      }
-      this.loadingData = false;
-      if (infiniteScroll) {
-        infiniteScroll.complete();
-      }
-    }
-    );
-
-  }
+  
 
   loadAudio(audio: any) {
     //fileUrl = 'https://maharishiji.net/stream/AUDIO/202406/e6fy_Dainik_Faladesh_20_June_2024_Mapp_Audio.mp3';

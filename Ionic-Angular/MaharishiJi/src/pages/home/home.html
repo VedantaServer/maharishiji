@@ -27,20 +27,14 @@
       <ion-card-header>
         <ion-card-title>Photo Gallery</ion-card-title>
       </ion-card-header>
-      <ion-card-content>
         <ion-spinner name="bubbles" *ngIf="loadingData"></ion-spinner>
         <ion-slides pager="false">
           <ion-slide *ngFor="let image of images">
             <div> <img [src]='getImageUrl(image.image)' style="width: 100%;height: 100%;"></div> &nbsp;
-
-            {{image.name}}
-            <br>
-           
+            <ion-label> {{image.name}} </ion-label>
             <div class="no-padding" [innerHTML]="image.description"></div>
-
           </ion-slide>
         </ion-slides>
-      </ion-card-content>
     </ion-card>
   </div>
 
