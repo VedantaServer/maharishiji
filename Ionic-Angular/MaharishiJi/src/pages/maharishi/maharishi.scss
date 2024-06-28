@@ -1,3 +1,16 @@
 page-maharishi {
-
+    div {
+        display: table;
+        margin: 5px;
+      }
+      
+      img {
+        vertical-align: middle;
+        display: table-cell;
+      }
+      span {
+        vertical-align: middle;
+        display: table-cell;
+      }
+ 
 }
