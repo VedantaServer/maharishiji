@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { OpenWebUrlPage } from '../open-web-url/open-web-url';
 
 /**
  * Generated class for the MaharishiPage page.
@@ -24,6 +25,12 @@ export class MaharishiPage {
 
   ionViewDidLoad() {
 
+  }
+
+  loadurl(curl: any) {
+    //fileUrl = 'https://maharishiji.net/stream/AUDIO/202406/e6fy_Dainik_Faladesh_20_June_2024_Mapp_Audio.mp3';
+    //sending this data to the broswer widnows.
+    this.navCtrl.push(OpenWebUrlPage, { url: curl, Title: "", imagePath: "",webtype:"weburl"});
   }
 
 }
