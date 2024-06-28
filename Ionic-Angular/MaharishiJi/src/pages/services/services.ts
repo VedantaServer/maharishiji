@@ -33,7 +33,7 @@ export class ServicesPage {
   loadingData: boolean = false;
   showCategory : boolean = false;
   category:any[] = [];
-  CategoryID:any;
+  CategoryID: number=0;
   public categorytype: any;
   selectedItem: any;
   tracks: Array<{ title: string, path: string, image: string,audioFile:string }> = [];
@@ -66,6 +66,12 @@ export class ServicesPage {
     this.showaudio = false;
     this.showArticles = false;
     this.showJyotish = false;
+    this.CategoryID=0;
+    this.categorytype =[];
+    this.videodata = [];
+    this.audiodata = [];
+    this.articalsdata = [];
+    this.audiodata = []
   }
   callservice(ctype) {
 
@@ -109,6 +115,7 @@ export class ServicesPage {
           this.scrollcount = 0;
          this.bindCategory(3,"News");
          this.showCategory = true;
+         this.news();
         }
         else if (this.requesttype == "audio") {
           this.shownews = false;
@@ -120,6 +127,7 @@ export class ServicesPage {
           this.scrollcount = 0;
           this.bindCategory(2,"Audio");
           this.showCategory = true;
+          this.audio();
         }
         else if (this.requesttype == "video") {
           this.shownews = false;
@@ -131,6 +139,7 @@ export class ServicesPage {
           this.scrollcount = 0;
           this.bindCategory(1,"Video");
           this.showCategory = true;
+          this.video();
         }
         else if (this.requesttype == "article") {
           this.shownews = false;
@@ -142,6 +151,7 @@ export class ServicesPage {
           this.scrollcount = 0;
           this.bindCategory(4,"Articles");
           this.showCategory = true;
+          this.article();
         }
 
       }
@@ -241,9 +251,14 @@ export class ServicesPage {
     this.authHeader = new HttpHeaders({
       'Authorization': `Basic ${base64Credentials}`
     });
+    var sqlQueryData ='';
+    if(this.CategoryID != 0)
+       sqlQueryData  = '/'+this.CategoryID+'/' + this.scrollcount + '/20';
 
-    console.log(this.CategoryID);
-    this.apiService.getServeData('news-and-events/json/min/'+this.CategoryID+'/' + this.scrollcount + '/20', this.authHeader).subscribe((response: any) => {
+    console.log(sqlQueryData);
+
+
+    this.apiService.getServeData('news-and-events/json/min'+sqlQueryData, this.authHeader).subscribe((response: any) => {
       if (response != null) {
         for (let newdata of response.data) {
 
@@ -276,7 +291,6 @@ export class ServicesPage {
     return this.apiService.getImageUrl('image/' + imagePath);
   }
   audio(infiniteScroll?) {
-    this.tracks = [];
     this.loadingData = true;
     const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
 
@@ -284,8 +298,11 @@ export class ServicesPage {
       'Authorization': `Basic ${base64Credentials}`
     });
 
+    var sqlQueryData ='';
+    if(this.CategoryID != 0)
+       sqlQueryData  = '/'+this.CategoryID+'/' + this.scrollcount + '/20';
 
-    this.apiService.getServeData('audio/json/min/'+this.CategoryID+'/' + this.scrollcount + '/20', this.authHeader).subscribe((response: any) => {
+    this.apiService.getServeData('audio/json/min'+sqlQueryData, this.authHeader).subscribe((response: any) => {
       if (response != null) {
         for (let newdata of response.data) {
           if (this.tracks.find(item => item.title == newdata.name) == null) {
@@ -311,14 +328,18 @@ export class ServicesPage {
 
 
   video() {
-    this.videodata = [];
-    this.loadingData = true;
+   this.loadingData = true;
     const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
 
     this.authHeader = new HttpHeaders({
       'Authorization': `Basic ${base64Credentials}`
     });
-    this.apiService.getServeData('video/json/category-wise/'+this.CategoryID, this.authHeader).subscribe((response: any) => {
+    var sqlQueryData ='/min';
+    if(this.CategoryID != 0)
+       sqlQueryData  = '/category-wise/'+this.CategoryID;
+
+
+    this.apiService.getServeData('video/json'+sqlQueryData, this.authHeader).subscribe((response: any) => {
       if (response != null) {
         for (let newdata of response.data) {
           this.videodata.push({
@@ -341,7 +362,6 @@ export class ServicesPage {
   }
 
   article(infiniteScroll?) {
-    this.articalsdata=[];
     this.loadingData = true;
     const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
 
@@ -349,7 +369,12 @@ export class ServicesPage {
       'Authorization': `Basic ${base64Credentials}`
     });
 
-    this.apiService.getServeData('article/json/min/'+this.CategoryID+'/' + this.scrollcount + '/20', this.authHeader).subscribe((response: any) => {
+    var sqlQueryData ='';
+    if(this.CategoryID != 0)
+       sqlQueryData  = '/'+this.CategoryID+'/' + this.scrollcount + '/20';
+
+
+    this.apiService.getServeData('article/json/min'+sqlQueryData, this.authHeader).subscribe((response: any) => {
       if (response != null) {
         for (let newdata of response.data) {
           if (this.articalsdata.find(item => item.id == newdata.id) == null) {

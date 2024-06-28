@@ -16,9 +16,7 @@
   <h1 class="header1">Services | Maharishi Organization </h1>
   <ion-card *ngIf="showback">
     <ion-label style="margin-left: 10px;padding: 10px;">
-      <h2>{{HeaderName}} <button ion-button color="primary" block (click)="Back()"
-          style="width: 80px; height: 25px; background-color: skyblue;float: right;align-items: start;"
-          *ngIf="showback">Back</button> </h2>
+      <h2 style="font-size: medium;"><ion-icon name="arrow-back" style="font-size:medium;" *ngIf="showback" (click)="Back()"></ion-icon>  {{HeaderName}} </h2>
     </ion-label>
 
   </ion-card>
