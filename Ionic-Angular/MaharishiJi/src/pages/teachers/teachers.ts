@@ -19,6 +19,7 @@ export class TeachersPage implements OnInit {
 
   ngOnInit() {
     this.loadState();
+    this.loadTMTeachers();
   } 
 
   loadState(){
@@ -35,8 +36,12 @@ export class TeachersPage implements OnInit {
   }
 
   loadTMTeachers() {
+    var sqlQueryData="";
+    if(this.citytype = "")
+      sqlQueryData='/bycity/'+this.citytype+'/TM Teacher';
+
     //https://maharishiji.net/tm-info/json/bycity/86/TM Teacher
-    this.apiService.getServerData('tm-info/json/bycity/'+this.citytype+'/TM Teacher').subscribe((response: any) => {
+    this.apiService.getServerData('tm-info/json').subscribe((response: any) => {
       this.tmTeachers = response.data;
 
     });
