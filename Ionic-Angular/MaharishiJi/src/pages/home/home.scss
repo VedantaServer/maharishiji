@@ -31,14 +31,14 @@ page-home {
       ion-card-header {
         ion-card-title {
           text-align: center;
-          font-size: 2em;
+          font-size:1.5em;
           font-weight: normal;
           color: whitesmoke;
+           
         }
       }
 
-      ion-card-content {
-
+      ion-card-content { 
         h2 {
           color: whitesmoke;
           text-wrap: wrap;
@@ -116,5 +116,6 @@ page-home {
 
   }
 
+  
 
 }

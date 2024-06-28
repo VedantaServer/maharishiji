@@ -12,9 +12,10 @@ export class TeachersPage implements OnInit {
   headerLogo = "https://maharishiji.net/ui-design/templates/news24/images/presets/preset1/logo-footer.png";
   tmTeachers: any[] = [];
   state:any[]=[];
-  statetype:any;
+  statetype:any='All';
   city:any[]=[];
-  citytype:any;
+  citytype:any='All';
+  cityName: any='All';
   constructor(public navCtrl: NavController, public navParams: NavParams, private apiService: ApiService) { }
 
   ngOnInit() {
@@ -36,12 +37,14 @@ export class TeachersPage implements OnInit {
   }
 
   loadTMTeachers() {
-    var sqlQueryData="";
-    if(this.citytype = "")
-      sqlQueryData='/bycity/'+this.citytype+'/TM Teacher';
+    var sqlQueryData=""; 
+    if(this.citytype !='All'){
+      this.cityName = this.citytype.name;
+      sqlQueryData='/bycity/'+this.citytype.id+'/TM Teacher';
+    }
 
     //https://maharishiji.net/tm-info/json/bycity/86/TM Teacher
-    this.apiService.getServerData('tm-info/json').subscribe((response: any) => {
+    this.apiService.getServerData('tm-info/json'+sqlQueryData).subscribe((response: any) => {
       this.tmTeachers = response.data;
 
     });

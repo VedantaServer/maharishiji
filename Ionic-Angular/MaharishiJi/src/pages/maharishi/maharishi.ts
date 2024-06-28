@@ -1,13 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { OpenWebUrlPage } from '../open-web-url/open-web-url';
-
-/**
- * Generated class for the MaharishiPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+ 
 
 @IonicPage()
 @Component({

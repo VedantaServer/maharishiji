@@ -35,7 +35,7 @@ export class OpenWebUrlPage {
     this.webtype = this.navParams.get("webtype");
     var url = this.navParams.get("url");
     
-    if (this.webtype = "weburl") {
+    if (this.webtype == "weburl") {
       this.showweburl = true;
       this.showvurl= false;
       var TitleData = this.navParams.get("Title");    ;

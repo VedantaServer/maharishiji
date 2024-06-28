@@ -7,11 +7,11 @@
   </ion-navbar>
 </ion-header>
 <ion-content class="ion-padding" style="background-color: lightblue;">
-   
+
   <div class="curved-card">
     <ion-card>
       <ion-card-header>
-        <ion-card-title>Welcome to Maharishi Digital Media House</ion-card-title>
+        <ion-card-title>Welcome <br> Maharishi Digital Media House</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <ion-spinner name="bubbles" *ngIf="loadingData1"></ion-spinner>
@@ -22,27 +22,42 @@
       </ion-card-content>
     </ion-card>
   </div>
+  <div style="align-items: center;margin: 15px;">
+
+    <p align="center" style="align-content: center;font-size:x-large;color: blueviolet;"> Peace Movement </p>
+    <a href="#" (click)="loadurl('https://mwpm.in')">
+      <img src="https://mwpm.in/images/header7.jpg" />
+    </a>
+  </div>
+
   <div class="curved-card1">
     <ion-card>
       <ion-card-header>
         <ion-card-title>Photo Gallery</ion-card-title>
       </ion-card-header>
-        <ion-spinner name="bubbles" *ngIf="loadingData"></ion-spinner>
-        <ion-slides pager="false">
-          <ion-slide *ngFor="let image of images">
-            <div> <img [src]='getImageUrl(image.image)' style="width: 100%;height: 100%;"></div> &nbsp;
-            <ion-label> {{image.name}} </ion-label>
-            <div class="no-padding" [innerHTML]="image.description"></div>
-          </ion-slide>
-        </ion-slides>
+      <ion-spinner name="bubbles" *ngIf="loadingData"></ion-spinner>
+      <ion-slides pager="false">
+        <ion-slide *ngFor="let image of images" style="padding: 0; margin: 0;">
+          <div style="height:min-content; display: block;"> 
+             <img [src]='getImageUrl(image.image)' style="width: 100%;height: 100%;"> 
+           <ion-label> {{image.name}} </ion-label>  
+            <span *ngIf="showInfo" [innerHTML]="image.description"> </span>
+          </div>
+          <a *ngIf="!showInfo" style="color: white;font-size: xx-small;" href="#" (click)="toggleInfo()">Show
+            Details</a>
+          <a *ngIf="showInfo" style="color: white;font-size: xx-small;" href="#" (click)="toggleInfo()">Hide Details</a>
+
+        </ion-slide>
+      </ion-slides>
     </ion-card>
   </div>
-
   <div class="contactus">
     <ion-card>
       <ion-card-header>
-       
-        <ion-card-title> <h2 align="center">Let's Stay in Touch</h2></ion-card-title>
+
+        <ion-card-title>
+          <h2 align="center">Let's Stay in Touch</h2>
+        </ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <div>
@@ -55,6 +70,7 @@
             Mobile: +91 9893700746 <br>
             maharishjimdmh108@gmail.com
           </p>
+          <br>
         </div>
         <div>
           <iframe

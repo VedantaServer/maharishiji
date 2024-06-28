@@ -12,7 +12,8 @@
 </ion-header>
 
 <ion-content class="padding" style="background-color: rgb(152, 197, 68);">
-  <h2 aling="center">Where to learn TM ? </h2>
+  <h2 align="center" style="color:red;">Where to learn TM ? </h2>
+ 
   <ion-list>
     <ion-card style="border-radius: 20px;">
     <ion-item>
@@ -31,7 +32,7 @@
     <ion-item>
       <ion-select [(ngModel)]="citytype" (ionChange)="loadTMTeachers()" 
          placeholder="City" name="citytype" style="max-width:100%;font-size: x-large;width:100%">
-        <ion-option *ngFor="let field of city" [value]="field.id" style="font-size: x-large;">
+        <ion-option *ngFor="let field of city" [value]="field" style="font-size: x-large;">
           {{field.name}}
         </ion-option>
       </ion-select>
@@ -40,7 +41,7 @@
   </ion-list>
 
   <ion-grid>
-    
+   <p align="center" style='color: blueviolet;'> TM Teacher(s) found in {{statetype}} {{cityName}} </p> 
     <ion-row>
       <ion-col size="6" size-md="6" size-lg="6" *ngFor="let teacher of tmTeachers">
         <ion-card class="tm-teacher-card">

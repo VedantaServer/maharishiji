@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ApiService } from '../../app/services/api.services'
 import { Slides } from 'ionic-angular'; // Import from 'ionic-angular' for older versions
-
+import { OpenWebUrlPage } from '../open-web-url/open-web-url';
 
 @Component({
   selector: 'page-home',
@@ -54,6 +54,12 @@ export class HomePage implements OnInit {
   toggleInfo() {
     this.showInfo = !this.showInfo;
   } 
+
+  loadurl(curl: any) {
+    //fileUrl = 'https://maharishiji.net/stream/AUDIO/202406/e6fy_Dainik_Faladesh_20_June_2024_Mapp_Audio.mp3';
+    //sending this data to the broswer widnows.
+    this.navCtrl.push(OpenWebUrlPage, { url: curl, Title: "", imagePath: "",webtype:"weburl"});
+  }
 }
 
 
