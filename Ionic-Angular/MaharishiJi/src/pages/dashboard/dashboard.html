@@ -7,12 +7,28 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>dashboard</ion-title>
+    <ion-title>Dashboard</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <button ion-button color="primary" block (click)="logout()">Logout</button>
+  <ion-card *ngIf="showstaffdetail" style="padding: 30px;">
+  <h2 align="center">
+    <ion-card align="center" style="border-radius: 180px;">
+  <ion-avatar align="center">
+    <img style="border-radius: 180px;text-align: center;" src="{{image}}" />
+  </ion-avatar>
+</ion-card>
+</h2>
+ <h2 align="center">{{ fullName}}</h2>
+ <h5 align="center"><ion-icon name="mail"></ion-icon> {{ email}}</h5>
+ <h5 align="center"><ion-icon name="call"></ion-icon>  {{ contactNumber}}</h5>
+ <h5 align="center">    {{ cityName}}</h5>
+ <h5 align="center">     {{ stateName}}</h5>
+ <h5 align="center">  Subscription {{ subscriptionStartDate}} from {{ subscriptionEndDate}}</h5>
+ <h5 align="center"> <button ion-button color="primary" block (click)="logout()">Logout</button>
+ </h5>
+</ion-card>
 </ion-content>
