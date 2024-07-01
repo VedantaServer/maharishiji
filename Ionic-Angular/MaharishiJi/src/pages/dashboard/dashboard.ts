@@ -34,7 +34,6 @@ export class DashboardPage {
         this.cityName = userDetailValue.data.cityName;
         this.stateName = userDetailValue.data.stateName;
         this.image = userDetailValue.data.image== null? "https://ionicframework.com/docs/img/demos/avatar.svg" :userDetailValue.data.image;
-
         console.log(userDetailValue.data.subscriptionPayment[0].subscriptionStartDate);
         console.log(userDetailValue.data.subscriptionPayment[0].subscriptionEndDate);
         this.subscriptionStartDate =userDetailValue.data.subscriptionPayment[0].subscriptionStartDate[2]+"-"+userDetailValue.data.subscriptionPayment[0].subscriptionStartDate[1] +"-"+userDetailValue.data.subscriptionPayment[0].subscriptionStartDate[0];
@@ -54,6 +53,6 @@ export class DashboardPage {
 
     this.storage.clear();
     this.showstaffdetail = false;
-    
+    this.ionViewDidLoad();
   }
 }
