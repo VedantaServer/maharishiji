@@ -11,29 +11,18 @@
   <div class="curved-card">
     <ion-card>
       <ion-card-header>
-        <ion-card-title>Welcome <br> Maharishi Digital Media House</ion-card-title>
+        <ion-card-title style="font-size: medium;">Welcome to Maharishi Digital Media House</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <ion-spinner name="bubbles" *ngIf="loadingData1"></ion-spinner>
         <div *ngFor="let update of updates">
           <img [src]='getImageUrl(update.image)'>
-          <h2 align="center">{{ update.title }}</h2>
+          <h3 align="center">{{ update.title }}</h3>
         </div>
       </ion-card-content>
     </ion-card>
   </div>
-  <div style="align-items: center;margin: 15px;">
-
-    <p align="center" style="align-content: center;font-size:x-large;color: blueviolet;"> Peace Movement </p>
-    <a href="#" (click)="loadurl('https://mwpm.in')">
-      <img src="assets/mwpm.gif" />
-    </a>
-
-    <a href="#" (click)="loadurl('https://worldpeace9000.com')">
-      <img src="assets/worldpeace9000.gif" />
-    </a>
-  </div>
-
+  
   <div class="curved-card1">
     <ion-card>
       <ion-card-header>
@@ -60,12 +49,12 @@
       <ion-card-header>
 
         <ion-card-title>
-          <h2 align="center">Let's Stay in Touch</h2>
+          <h2 align="center"  style="color: white;font-size:xx-large;">Let's Stay in Touch</h2>
         </ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <div>
-          <h2>Maharishi Information Technology Pvt. Ltd.</h2>
+          <h3 style="color:blueviolet;">Maharishi Information Technology Pvt. Ltd.</h3>
           <p>
             Flat No. 808, 8th Floor, Marcantile House <br>
             15 Kasturba Gandhi Marg, Connaught Place <br>

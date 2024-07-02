@@ -19,10 +19,11 @@ export class ServicesPage {
   showback: boolean = false;
   showArticles: boolean = false;
   showJyotish: boolean = false;
+  showteacher: boolean = false;
   private authHeader: HttpHeaders;
   lblMessage: string = '';
   requesttype: string = '';
-  HeaderName: string = 'Our Service';
+  HeaderName: string = 'Our Services';
   public data = [];
   public videodata = [];
   public audiodata = [];
@@ -36,6 +37,11 @@ export class ServicesPage {
   CategoryID: number=0;
   public categorytype: any;
   selectedItem: any;
+  state:any[]=[];
+  statetype:any='All';
+  city:any[]=[];
+  citytype:any='All';
+  cityName: any='All';
   tracks: Array<{ title: string, path: string, image: string,audioFile:string }> = [];
 
   headerLogo = "https://maharishiji.net/ui-design/templates/news24/images/presets/preset1/logo-footer.png";
@@ -152,6 +158,32 @@ export class ServicesPage {
           this.bindCategory(4,"Articles");
           this.showCategory = true;
           this.article();
+        }
+        else if (this.requesttype == "TM") {
+          this.shownews = false;
+          this.showvideo = false;
+          this.showaudio = false;
+          this.showArticles = false;
+          this.HeaderName = "TM Teacher";
+          this.showJyotish = false;
+          this.scrollcount = 0;
+          this.showCategory = false;
+          this.loadState();
+          this.loadCity();
+          this.showteacher = true;
+        }
+        else if (this.requesttype == "Jyotish") {
+          this.shownews = false;
+          this.showvideo = false;
+          this.showaudio = false;
+          this.showArticles = false;
+          this.HeaderName = "Jyotish Consultation";
+          this.showJyotish = false;
+          this.scrollcount = 0;
+          this.showCategory = false;
+          this.loadState();
+          this.loadCity();
+          this.showteacher = true;
         }
 
       }
@@ -452,8 +484,40 @@ export class ServicesPage {
       })
       .then(result => result)
       .catch(error => console.error('Error:', error));
+  }
 
+  
+  loadurl(curl: any) {
+    //fileUrl = 'https://maharishiji.net/stream/AUDIO/202406/e6fy_Dainik_Faladesh_20_June_2024_Mapp_Audio.mp3';
+    //sending this data to the broswer widnows.
+    this.navCtrl.push(OpenWebUrlPage, { url: curl, Title: "", imagePath: "",webtype:"weburl"});
+  }
 
+  loadState(){
+    this.apiService.getServerData('/tm-city/json/state-list').subscribe((response: any) => {
+      this.state = response.data;
+    });
+  }
+
+  loadCity(){
+    this.tmTeachers = [];
+    this.apiService.getServerData('tm-city/json/bystate/'+this.statetype).subscribe((response: any) => {
+      this.city = response.data;
+    });
+  }
+
+  loadTMTeachers() {
+    var sqlQueryData=""; 
+    if(this.citytype !='All'){
+      this.cityName = this.citytype.name;
+      sqlQueryData='/bycity/'+this.citytype.id+'/'+ (this.requesttype=='TM' ?'TM Teacher': "Jyotish Consultant");
+    }
+  console.log(sqlQueryData);
+    //https://maharishiji.net/tm-info/json/bycity/86/TM Teacher
+    this.apiService.getServerData('tm-info/json'+sqlQueryData).subscribe((response: any) => {
+      this.tmTeachers = response.data;
+
+    });
   }
 }
 

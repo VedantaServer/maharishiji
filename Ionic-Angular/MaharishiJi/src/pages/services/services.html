@@ -13,7 +13,7 @@
 </ion-header>
 
 <ion-content class="padding">
-  <h1 class="header1">Services | Maharishi Organization </h1>
+  <h1 class="header1">Services </h1>
   <ion-card *ngIf="showback">
     <ion-label style="margin-left: 10px;padding: 10px;">
       <h2 style="font-size: medium;"><ion-icon name="arrow-back" style="font-size:medium;" *ngIf="showback" (click)="Back()"></ion-icon>  {{HeaderName}} </h2>
@@ -41,9 +41,10 @@
 
   <ion-grid fixed *ngIf="showIcon">
     <ion-row>
+      
       <ion-col size="6" class="service-box">
-        <img src="assets/news.jpeg" style="width: 100px;height: 100px;" (click)="callservice('news')" />
-        <p>News & Events</p>
+        <img src="assets/video.jpg" style="width: 100px;height: 100px;" (click)="callservice('video')" />
+        <p>Video</p>
       </ion-col>
       <ion-col size="6" class="service-box">
         <img src="assets/audio.jpg" style="width: 100px;height: 100px;" (click)="callservice('audio')" />
@@ -53,13 +54,38 @@
 
     <ion-row>
       <ion-col size="6" class="service-box">
-        <img src="assets/video.jpg" style="width: 100px;height: 100px;" (click)="callservice('video')" />
-        <p>Video</p>
+        <img src="assets/news.jpeg" style="width: 100px;height: 100px;" (click)="callservice('news')" />
+        <p>News & Events</p>
       </ion-col>
       <ion-col size="6" class="service-box">
         <img src="assets/article.png" style="width: 100px;height: 100px;" (click)="callservice('article')" />
         <p>Articles</p>
       </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="service-box">
+        <img src="assets/teacher.png" style="width: 100px;height: 100px;" (click)="callservice('TM')" />
+        <p>TM Teacher</p>
+      </ion-col>
+      <ion-col size="6" class="service-box">
+        <img src="assets/jyotish.jpg" style="width: 100px;height: 100px;" (click)="callservice('Jyotish')" />
+        <p>Jyotish Consultation</p>
+      </ion-col>
+    </ion-row>
+      <ion-row>
+
+      <ion-col size="12" class="service-box">
+        <a href="#" (click)="loadurl('https://mwpm.in')">
+          <img src="assets/mwpm.gif" />
+        </a>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" class="service-box">
+        <a href="#" (click)="loadurl('https://worldpeace9000.com')">
+          <img src="assets/worldpeace9000.gif" />
+        </a>
+      </ion-col>    
     </ion-row>
 
    
@@ -69,7 +95,7 @@
     <ion-card style="border-radius: 20px;">
     <ion-item>
       <ion-select [(ngModel)]="categorytype" (ionChange)="loaddata()" (ionCancel)="handleCancel()"
-        (ionDismiss)="handleDismiss()" placeholder="Category" name="categorytype" style="max-width:100%;font-size: x-large;width:100%">
+        (ionDismiss)="handleDismiss()" placeholder="Category" name="categorytype" style="max-width:100%;font-size: x-large;width:100%;color: blue;">
         <ion-option *ngFor="let field of category" [value]="field.id" style="font-size: x-large;">
           {{field.title}}
         </ion-option>
@@ -136,6 +162,58 @@
     </ion-item>
 
   </ion-list>
+
+
+
+ 
+  <ion-list *ngIf="showteacher">
+    <h2 align="center" style="color:red;">Where to learn {{requesttype}} ? </h2>
+    <ion-card style="border-radius: 20px;">
+    <ion-item>
+      <ion-select [(ngModel)]="statetype" (ionChange)="loadCity()" 
+         placeholder="State" name="statetype" style="max-width:100%;font-size: x-large;width:100%">
+        <ion-option *ngFor="let field of state" [value]="field" style="font-size: x-large;">
+          {{field}}
+        </ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-card>
+  </ion-list>
+
+  <ion-list>
+    <ion-card style="border-radius: 20px;">
+    <ion-item>
+      {{requesttype}}
+      <ion-select [(ngModel)]="citytype" (ionChange)="loadTMTeachers()" 
+         placeholder="City" name="citytype" style="max-width:100%;font-size: x-large;width:100%">
+        <ion-option *ngFor="let field of city" [value]="field" style="font-size: x-large;">
+          {{field.name}}
+        </ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-card>
+  </ion-list>
+
+  <ion-grid>
+   <p align="center" style='color: blueviolet;'> {{HeaderName}}(s) found in {{statetype}} {{cityName}} </p> 
+    <ion-row>
+      <ion-col size="6" size-md="6" size-lg="6" *ngFor="let teacher of tmTeachers">
+        <ion-card class="tm-teacher-card">
+          <!-- Sample Image (Replace with actual image URL or local path) -->
+          <img class="teacher-image" src="assets/teacher.png">
+
+          <!-- Teacher Details -->
+          <ion-card-content class="card-content">
+            <!-- Teacher Name -->
+            <h2>{{ teacher.name }}</h2>  
+            <p><ion-icon name="address"></ion-icon>
+             {{ teacher.tmCity.name }}, {{ teacher.tmCity.state }}</p>
+            <p><ion-icon name="call"></ion-icon> &nbsp;{{teacher.phone}}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 
 
