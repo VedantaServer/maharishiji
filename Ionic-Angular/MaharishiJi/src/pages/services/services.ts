@@ -77,7 +77,10 @@ export class ServicesPage {
     this.videodata = [];
     this.audiodata = [];
     this.articalsdata = [];
-    this.audiodata = []
+    this.audiodata = [];
+    this.tmTeachers =[];
+    this.data=[];
+    this.requesttype = "";
   }
   callservice(ctype) {
 
@@ -122,6 +125,7 @@ export class ServicesPage {
          this.bindCategory(3,"News");
          this.showCategory = true;
          this.news();
+         this.showteacher = false;
         }
         else if (this.requesttype == "audio") {
           this.shownews = false;
@@ -134,6 +138,7 @@ export class ServicesPage {
           this.bindCategory(2,"Audio");
           this.showCategory = true;
           this.audio();
+          this.showteacher = false;
         }
         else if (this.requesttype == "video") {
           this.shownews = false;
@@ -145,6 +150,7 @@ export class ServicesPage {
           this.scrollcount = 0;
           this.bindCategory(1,"Video");
           this.showCategory = true;
+          this.showteacher = false;
           this.video();
         }
         else if (this.requesttype == "article") {
@@ -157,6 +163,7 @@ export class ServicesPage {
           this.scrollcount = 0;
           this.bindCategory(4,"Articles");
           this.showCategory = true;
+          this.showteacher = false;
           this.article();
         }
         else if (this.requesttype == "TM") {

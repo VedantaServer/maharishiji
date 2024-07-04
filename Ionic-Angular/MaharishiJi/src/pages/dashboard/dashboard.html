@@ -1,19 +1,34 @@
-<!--
-  Generated template for the DashboardPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>Dashboard</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <div style="display: inline-flex;">
+      <div> <img height="40" src={{headerLogo}} style="vertical-align: baseline;" /></div> &nbsp;
+      <div style="margin-top: 10px; word-wrap: break-word;font-weight: 600; font-size:medium;color: orangered;">Dashboard
+      </div>
+    </div>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
+
+  <ion-row>
+
+    <ion-col size="12" class="service-box" style="height: auto;">
+      <a href="#" (click)="loadurl('https://e-gyaan.net')">
+        <img src="https://e-gyaan.net/images/e-gyan.jpg" />
+      </a>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12" class="service-box" style="height: auto;">
+      <a href="#" (click)="loadurl('https://mahamedia.in')">
+        <img src="https://mahamedia.in/images/mahamedia-header.png" />
+      </a>
+    </ion-col>    
+  </ion-row>
   <ion-card *ngIf="showstaffdetail" style="padding: 30px;">
   <h2 align="center">
     <ion-card align="center" style="border-radius: 180px;">
@@ -21,14 +36,17 @@
     <img style="border-radius: 180px;text-align: center;" src="{{image}}" />
   </ion-avatar>
 </ion-card>
+
+
+
 </h2>
- <h2 align="center">{{ fullName}}</h2>
- <h5 align="center"><ion-icon name="mail"></ion-icon> {{ email}}</h5>
- <h5 align="center"><ion-icon name="call"></ion-icon>  {{ contactNumber}}</h5>
- <h5 align="center">    {{ cityName}}</h5>
- <h5 align="center">     {{ stateName}}</h5>
- <h5 align="center">  Subscription {{ subscriptionStartDate}} from {{ subscriptionEndDate}}</h5>
- <h5 align="center"> <button ion-button color="primary" block (click)="logout()">Logout</button>
+ <h2 align="center" style="color: blue;">{{ fullName}}</h2>
+ <h5 align="center" style="color: blue;"><ion-icon name="mail"></ion-icon> {{ email}}</h5>
+ <h5 align="center" style="color: blue;"><ion-icon name="call"></ion-icon>  {{ contactNumber}}</h5>
+ <h5 align="center" style="color: blue;">    {{ cityName}}</h5>
+ <h5 align="center" style="color: blue;">     {{ stateName}}</h5>
+ <h5 align="center" style="color: blue;">  Subscription {{ subscriptionStartDate}} from {{ subscriptionEndDate}}</h5>
+ <h5 align="center" style="color: blue;"> <button ion-button color="primary" block (click)="logout()">Logout</button>
  </h5>
 </ion-card>
 </ion-content>

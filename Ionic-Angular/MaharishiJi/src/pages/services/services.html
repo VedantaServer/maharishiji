@@ -16,7 +16,7 @@
   <h1 class="header1">Services </h1>
   <ion-card *ngIf="showback">
     <ion-label style="margin-left: 10px;padding: 10px;">
-      <h2 style="font-size: medium;"><ion-icon name="arrow-back" style="font-size:medium;" *ngIf="showback" (click)="Back()"></ion-icon>  {{HeaderName}} </h2>
+      <h2 style="font-size: medium; color: blue;"><ion-icon name="arrow-back" style="font-size:medium;" *ngIf="showback" (click)="Back()"></ion-icon>  {{HeaderName}} </h2>
     </ion-label>
 
   </ion-card>
@@ -74,15 +74,15 @@
     </ion-row>
       <ion-row>
 
-      <ion-col size="12" class="service-box">
+      <ion-col size="12" class="service-box" style="height: auto;">
         <a href="#" (click)="loadurl('https://mwpm.in')">
           <img src="assets/mwpm.gif" />
         </a>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col size="12" class="service-box">
-        <a href="#" (click)="loadurl('https://worldpeace9000.com')">
+      <ion-col size="12" class="service-box" style="height: auto;">
+        <a href="#" (click)="loadurl('https://worldpeace9000.com/')">
           <img src="assets/worldpeace9000.gif" />
         </a>
       </ion-col>    
@@ -180,7 +180,7 @@
   </ion-card>
   </ion-list>
 
-  <ion-list>
+  <ion-list *ngIf="showteacher">
     <ion-card style="border-radius: 20px;">
     <ion-item>
       {{requesttype}}
@@ -194,7 +194,7 @@
   </ion-card>
   </ion-list>
 
-  <ion-grid>
+  <ion-grid *ngIf="showteacher">
    <p align="center" style='color: blueviolet;'> {{HeaderName}}(s) found in {{statetype}} {{cityName}} </p> 
     <ion-row>
       <ion-col size="6" size-md="6" size-lg="6" *ngFor="let teacher of tmTeachers">
