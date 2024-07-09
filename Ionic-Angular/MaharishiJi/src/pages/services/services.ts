@@ -249,6 +249,7 @@ export class ServicesPage {
     this.CategoryID=this.selectedItem.id;
     this.requesttype ==this.selectedItem.ctype;
 
+
     if (this.requesttype == "news") {
       this.news();
     }
@@ -261,6 +262,7 @@ export class ServicesPage {
     else if (this.requesttype == "article") {
       this.article();
     }
+    this.loadingData = false;
 
   }
   loadMore(infiniteScroll) {
@@ -330,6 +332,7 @@ export class ServicesPage {
     return this.apiService.getImageUrl('image/' + imagePath);
   }
   audio(infiniteScroll?) {
+    this.tracks =[];
     this.loadingData = true;
     const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
 
@@ -367,6 +370,7 @@ export class ServicesPage {
 
 
   video() {
+    this.videodata =[];
    this.loadingData = true;
     const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
 
@@ -401,6 +405,7 @@ export class ServicesPage {
   }
 
   article(infiniteScroll?) {
+    this.articalsdata =[];
     this.loadingData = true;
     const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
 

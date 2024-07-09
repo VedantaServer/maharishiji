@@ -79,6 +79,22 @@ page-home {
     } 
   } 
 
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .swiper .swiper-slide {
+    height: auto;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+  }
   .contactus {
     ion-card {
       background: lightblue;
@@ -114,6 +130,7 @@ page-home {
       }
     }
 
+    
   }
 
   

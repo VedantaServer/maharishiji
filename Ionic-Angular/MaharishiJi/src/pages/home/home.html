@@ -17,7 +17,7 @@
         <ion-spinner name="bubbles" *ngIf="loadingData1"></ion-spinner>
         <div *ngFor="let update of updates">
           <img [src]='getImageUrl(update.image)'>
-          <h3 align="center">{{ update.title }}</h3>
+          <h3 align="center" style="color: white;">{{ update.title }}</h3>
         </div>
       </ion-card-content>
     </ion-card>

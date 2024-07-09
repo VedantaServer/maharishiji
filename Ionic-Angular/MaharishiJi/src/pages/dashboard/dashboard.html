@@ -14,21 +14,8 @@
 
 <ion-content padding>
 
-  <ion-row>
-
-    <ion-col size="12" class="service-box" style="height: auto;">
-      <a href="#" (click)="loadurl('https://e-gyaan.net')">
-        <img src="https://e-gyaan.net/images/e-gyan.jpg" />
-      </a>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col size="12" class="service-box" style="height: auto;">
-      <a href="#" (click)="loadurl('https://mahamedia.in')">
-        <img src="https://mahamedia.in/images/mahamedia-header.png" />
-      </a>
-    </ion-col>    
-  </ion-row>
+ 
+  
   <ion-card *ngIf="showstaffdetail" style="padding: 30px;">
   <h2 align="center">
     <ion-card align="center" style="border-radius: 180px;">
@@ -49,4 +36,19 @@
  <h5 align="center" style="color: blue;"> <button ion-button color="primary" block (click)="logout()">Logout</button>
  </h5>
 </ion-card>
+<ion-row>
+
+  <ion-col size="12" class="service-box" style="height: auto;">
+    <a href="#" (click)="loadurl('https://e-gyaan.net')">
+      <img src="https://e-gyaan.net/images/e-gyan.jpg" />
+    </a>
+  </ion-col>
+</ion-row>
+<ion-row>
+  <ion-col size="12" class="service-box" style="height: auto;">
+    <a href="#" (click)="loadurl('https://mahamedia.in')">
+      <img src="https://mahamedia.in/images/mahamedia-header.png" />
+    </a>
+  </ion-col>    
+</ion-row>
 </ion-content>
