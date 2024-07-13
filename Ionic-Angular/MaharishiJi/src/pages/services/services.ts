@@ -32,17 +32,17 @@ export class ServicesPage {
   scrollcount: number = 0;
   ccount: number = 0;
   loadingData: boolean = false;
-  showCategory : boolean = false;
-  category:any[] = [];
-  CategoryID: number=0;
+  showCategory: boolean = false;
+  category: any[] = [];
+  CategoryID: number = 0;
   public categorytype: any;
   selectedItem: any;
-  state:any[]=[];
-  statetype:any='All';
-  city:any[]=[];
-  citytype:any='All';
-  cityName: any='All';
-  tracks: Array<{ title: string, path: string, image: string,audioFile:string }> = [];
+  state: any[] = [];
+  statetype: any = 'All';
+  city: any[] = [];
+  citytype: any = 'All';
+  cityName: any = 'All';
+  tracks: Array<{ title: string, path: string, image: string, audioFile: string }> = [];
 
   headerLogo = "https://maharishiji.net/ui-design/templates/news24/images/presets/preset1/logo-footer.png";
   constructor(public navCtrl: NavController, public navParams: NavParams, private apiService: ApiService, private storage: Storage) {
@@ -65,6 +65,7 @@ export class ServicesPage {
 
   Back() {
     this.showCategory = false;
+    this.showLoginForm = false;
     this.showback = false;
     this.showIcon = true;
     this.shownews = false;
@@ -72,14 +73,14 @@ export class ServicesPage {
     this.showaudio = false;
     this.showArticles = false;
     this.showJyotish = false;
-    this.CategoryID=0;
-    this.categorytype =[];
+    this.CategoryID = 0;
+    this.categorytype = [];
     this.videodata = [];
     this.audiodata = [];
     this.articalsdata = [];
     this.audiodata = [];
-    this.tmTeachers =[];
-    this.data=[];
+    this.tmTeachers = [];
+    this.data = [];
     this.requesttype = "";
   }
   callservice(ctype) {
@@ -96,9 +97,12 @@ export class ServicesPage {
       if (userDetailValue != null) {
         this.account.username = userDetailValue.data.email;
         this.doLogin();
+        this.showback = false;
       }
       else {
-        this.showLoginForm = true;   //if nothing in storage then show the form.
+        this.HeaderName = "Login";
+        this.showLoginForm = true;
+        this.showback = true;  //if nothing in storage then show the form.
       }
     });
 
@@ -122,10 +126,10 @@ export class ServicesPage {
           this.HeaderName = "News & Events";
           this.showJyotish = false;
           this.scrollcount = 0;
-         this.bindCategory(3,"News");
-         this.showCategory = true;
-         this.news();
-         this.showteacher = false;
+          this.bindCategory(3, "News");
+          this.showCategory = true;
+          this.news();
+          this.showteacher = false;
         }
         else if (this.requesttype == "audio") {
           this.shownews = false;
@@ -135,7 +139,7 @@ export class ServicesPage {
           this.showJyotish = false;
           this.HeaderName = "Audio";
           this.scrollcount = 0;
-          this.bindCategory(2,"Audio");
+          this.bindCategory(2, "Audio");
           this.showCategory = true;
           this.audio();
           this.showteacher = false;
@@ -148,7 +152,7 @@ export class ServicesPage {
           this.HeaderName = "Video";
           this.showJyotish = false;
           this.scrollcount = 0;
-          this.bindCategory(1,"Video");
+          this.bindCategory(1, "Video");
           this.showCategory = true;
           this.showteacher = false;
           this.video();
@@ -161,7 +165,7 @@ export class ServicesPage {
           this.HeaderName = "Articles";
           this.showJyotish = false;
           this.scrollcount = 0;
-          this.bindCategory(4,"Articles");
+          this.bindCategory(4, "Articles");
           this.showCategory = true;
           this.showteacher = false;
           this.article();
@@ -212,7 +216,7 @@ export class ServicesPage {
     console.log('ionDismiss fired');
   }
 
-  bindCategory(CategoryID,Type){
+  bindCategory(CategoryID, Type) {
     this.category = [];
     const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
 
@@ -220,34 +224,33 @@ export class ServicesPage {
       'Authorization': `Basic ${base64Credentials}`
     });
 
-    this.apiService.getServeData('main-category/json/min/'+CategoryID, this.authHeader).subscribe((response: any) => {
+    this.apiService.getServeData('main-category/json/min/' + CategoryID, this.authHeader).subscribe((response: any) => {
       if (response != null) {
-       
+
         for (let newdata of response.data.subCategory) {
-        
+
           if (this.category.find(item => item.id == newdata.id) == null) {
             this.ccount++;
             this.category.push({
               id: newdata.id,
               title: newdata.name,
-              ctype:Type
+              ctype: Type
             });
           }
         }
         this.loadingData = false;
 
-      }     
+      }
     }
     );
 
   }
-  loaddata()
-  {
+  loaddata() {
     console.log(this.categorytype);
     const selectedId = this.categorytype;
-     this.selectedItem= this.category.find(item => item.id === selectedId);
-    this.CategoryID=this.selectedItem.id;
-    this.requesttype ==this.selectedItem.ctype;
+    this.selectedItem = this.category.find(item => item.id === selectedId);
+    this.CategoryID = this.selectedItem.id;
+    this.requesttype == this.selectedItem.ctype;
 
 
     if (this.requesttype == "news") {
@@ -266,23 +269,33 @@ export class ServicesPage {
 
   }
   loadMore(infiniteScroll) {
-    this.scrollcount += 1;
-    if (this.requesttype == "news") {
-      this.news(infiniteScroll);
-    }
-    else if (this.requesttype == "audio") {
-      this.audio();
-    }
-    else if (this.requesttype == "video") {
-      this.video();
-    }
-    else if (this.requesttype == "article") {
-      this.article(infiniteScroll);
-    }
-    else {
-      infiniteScroll.complete();
-    }
 
+    this.storage.get('userDetail').then((userDetailValue) => {
+      if (userDetailValue != null) {
+
+
+        this.scrollcount += 1;
+        if (this.requesttype == "news") {
+          this.news(infiniteScroll);
+        }
+        else if (this.requesttype == "audio") {
+          this.audio();
+        }
+        else if (this.requesttype == "video") {
+          this.video();
+        }
+        else if (this.requesttype == "article") {
+          this.article(infiniteScroll);
+        }
+        else {
+          infiniteScroll.complete();
+        }
+      }
+      else
+      {
+        infiniteScroll.complete();
+      }
+    });
   }
   news(infiniteScroll?) {
     this.data = [];
@@ -292,14 +305,14 @@ export class ServicesPage {
     this.authHeader = new HttpHeaders({
       'Authorization': `Basic ${base64Credentials}`
     });
-    var sqlQueryData ='';
-    if(this.CategoryID != 0)
-       sqlQueryData  = '/'+this.CategoryID+'/' + this.scrollcount + '/20';
+    var sqlQueryData = '';
+    if (this.CategoryID != 0)
+      sqlQueryData = '/' + this.CategoryID + '/' + this.scrollcount + '/20';
 
     console.log(sqlQueryData);
 
 
-    this.apiService.getServeData('news-and-events/json/min'+sqlQueryData, this.authHeader).subscribe((response: any) => {
+    this.apiService.getServeData('news-and-events/json/min' + sqlQueryData, this.authHeader).subscribe((response: any) => {
       if (response != null) {
         for (let newdata of response.data) {
 
@@ -318,7 +331,7 @@ export class ServicesPage {
             });
           }
         }
-        this.shownews= true;
+        this.shownews = true;
         this.loadingData = false;
 
       }
@@ -332,7 +345,7 @@ export class ServicesPage {
     return this.apiService.getImageUrl('image/' + imagePath);
   }
   audio(infiniteScroll?) {
-    this.tracks =[];
+    this.tracks = [];
     this.loadingData = true;
     const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
 
@@ -340,11 +353,11 @@ export class ServicesPage {
       'Authorization': `Basic ${base64Credentials}`
     });
 
-    var sqlQueryData ='';
-    if(this.CategoryID != 0)
-       sqlQueryData  = '/'+this.CategoryID+'/' + this.scrollcount + '/20';
+    var sqlQueryData = '';
+    if (this.CategoryID != 0)
+      sqlQueryData = '/' + this.CategoryID + '/' + this.scrollcount + '/20';
 
-    this.apiService.getServeData('audio/json/min'+sqlQueryData, this.authHeader).subscribe((response: any) => {
+    this.apiService.getServeData('audio/json/min' + sqlQueryData, this.authHeader).subscribe((response: any) => {
       if (response != null) {
         for (let newdata of response.data) {
           if (this.tracks.find(item => item.title == newdata.name) == null) {
@@ -353,13 +366,13 @@ export class ServicesPage {
               title: newdata.name,
               path: this.apiService.baseUrl + newdata.audioFile,
               image: this.apiService.getImageUrl('image/' + newdata.image),
-              audioFile:this.apiService.baseUrl + 'stream/' + newdata.audioFile
+              audioFile: this.apiService.baseUrl + 'stream/' + newdata.audioFile
 
             });
           }
         }
         this.loadingData = false;
-        this.showaudio=true;
+        this.showaudio = true;
       }
       if (infiniteScroll) {
         infiniteScroll.complete();
@@ -370,19 +383,19 @@ export class ServicesPage {
 
 
   video() {
-    this.videodata =[];
-   this.loadingData = true;
+    this.videodata = [];
+    this.loadingData = true;
     const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
 
     this.authHeader = new HttpHeaders({
       'Authorization': `Basic ${base64Credentials}`
     });
-    var sqlQueryData ='/min';
-    if(this.CategoryID != 0)
-       sqlQueryData  = '/category-wise/'+this.CategoryID;
+    var sqlQueryData = '/min';
+    if (this.CategoryID != 0)
+      sqlQueryData = '/category-wise/' + this.CategoryID;
 
 
-    this.apiService.getServeData('video/json'+sqlQueryData, this.authHeader).subscribe((response: any) => {
+    this.apiService.getServeData('video/json' + sqlQueryData, this.authHeader).subscribe((response: any) => {
       if (response != null) {
         for (let newdata of response.data) {
           this.videodata.push({
@@ -399,13 +412,13 @@ export class ServicesPage {
 
       }
       this.loadingData = false;
-      this.showvideo=true;
+      this.showvideo = true;
     }
     );
   }
 
   article(infiniteScroll?) {
-    this.articalsdata =[];
+    this.articalsdata = [];
     this.loadingData = true;
     const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
 
@@ -413,12 +426,12 @@ export class ServicesPage {
       'Authorization': `Basic ${base64Credentials}`
     });
 
-    var sqlQueryData ='';
-    if(this.CategoryID != 0)
-       sqlQueryData  = '/'+this.CategoryID+'/' + this.scrollcount + '/20';
+    var sqlQueryData = '';
+    if (this.CategoryID != 0)
+      sqlQueryData = '/' + this.CategoryID + '/' + this.scrollcount + '/20';
 
 
-    this.apiService.getServeData('article/json/min'+sqlQueryData, this.authHeader).subscribe((response: any) => {
+    this.apiService.getServeData('article/json/min' + sqlQueryData, this.authHeader).subscribe((response: any) => {
       if (response != null) {
         for (let newdata of response.data) {
           if (this.articalsdata.find(item => item.id == newdata.id) == null) {
@@ -439,7 +452,7 @@ export class ServicesPage {
 
       }
       this.loadingData = false;
-      this.showArticles=true;
+      this.showArticles = true;
       if (infiniteScroll) {
         infiniteScroll.complete();
       }
@@ -448,7 +461,7 @@ export class ServicesPage {
 
 
   }
-  
+
 
   loadAudio(audio: any) {
     //fileUrl = 'https://maharishiji.net/stream/AUDIO/202406/e6fy_Dainik_Faladesh_20_June_2024_Mapp_Audio.mp3';
@@ -498,35 +511,35 @@ export class ServicesPage {
       .catch(error => console.error('Error:', error));
   }
 
-  
+
   loadurl(curl: any) {
     //fileUrl = 'https://maharishiji.net/stream/AUDIO/202406/e6fy_Dainik_Faladesh_20_June_2024_Mapp_Audio.mp3';
     //sending this data to the broswer widnows.
-    this.navCtrl.push(OpenWebUrlPage, { url: curl, Title: "", imagePath: "",webtype:"weburl"});
+    this.navCtrl.push(OpenWebUrlPage, { url: curl, Title: "", imagePath: "", webtype: "weburl" });
   }
 
-  loadState(){
+  loadState() {
     this.apiService.getServerData('/tm-city/json/state-list').subscribe((response: any) => {
       this.state = response.data;
     });
   }
 
-  loadCity(){
+  loadCity() {
     this.tmTeachers = [];
-    this.apiService.getServerData('tm-city/json/bystate/'+this.statetype).subscribe((response: any) => {
+    this.apiService.getServerData('tm-city/json/bystate/' + this.statetype).subscribe((response: any) => {
       this.city = response.data;
     });
   }
 
   loadTMTeachers() {
-    var sqlQueryData=""; 
-    if(this.citytype !='All'){
+    var sqlQueryData = "";
+    if (this.citytype != 'All') {
       this.cityName = this.citytype.name;
-      sqlQueryData='/bycity/'+this.citytype.id+'/'+ (this.requesttype=='TM' ?'TM Teacher': "Jyotish Consultant");
+      sqlQueryData = '/bycity/' + this.citytype.id + '/' + (this.requesttype == 'TM' ? 'TM Teacher' : "Jyotish Consultant");
     }
-  console.log(sqlQueryData);
+    console.log(sqlQueryData);
     //https://maharishiji.net/tm-info/json/bycity/86/TM Teacher
-    this.apiService.getServerData('tm-info/json'+sqlQueryData).subscribe((response: any) => {
+    this.apiService.getServerData('tm-info/json' + sqlQueryData).subscribe((response: any) => {
       this.tmTeachers = response.data;
 
     });

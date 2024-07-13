@@ -35,7 +35,11 @@
       <ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
     </ion-item>
     <button ion-button color="primary" block (click)="doLogin()">Login</button>
-    <ion-label color="danger" text-wrap>{{lblMessage}}</ion-label>
+    <ion-label color="danger" text-wrap>{{lblMessage}}</ion-label> <br/>
+    <a href="#" (click)="loadurl('https://maharishiji.net/subscribe')"  style="font-size: smaller;">
+      Registration
+    </a>
+    
   </ion-card>
 
 
