@@ -27,7 +27,7 @@ export class HomePage implements OnInit {
   }
   loadGallery() {
     this.loadingData = true
-    this.apiService.getServerData('photo-gallery/json/min').subscribe((response: any) => {
+    this.apiService.getServerData('photo-gallery/json/min/all/0/10').subscribe((response: any) => {
       this.images = response.data;
        this.slides.autoplay = 1000; // Example: set autoplay interval
       this.slides.loop = true; // Example: enable looping

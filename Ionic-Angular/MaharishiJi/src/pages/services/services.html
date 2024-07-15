@@ -51,27 +51,36 @@
         <p>Video</p>
       </ion-col>
       <ion-col size="6" class="service-box">
-        <img src="assets/audio.jpg" style="width: 100px;height: 100px;" (click)="callservice('audio')" />
-        <p>Audio</p>
+        <img src="assets/livevideo.jpg" style="width: 100px;height: 100px;" (click)="callservice('livevideo')" />
+        <p>Live Video </p>
       </ion-col>
+      
     </ion-row>
 
     <ion-row>
       <ion-col size="6" class="service-box">
+        <img src="assets/audio.jpg" style="width: 100px;height: 100px;" (click)="callservice('audio')" />
+        <p>Audio</p>
+      </ion-col>
+      <ion-col size="6" class="service-box">
         <img src="assets/news.jpeg" style="width: 100px;height: 100px;" (click)="callservice('news')" />
         <p>News & Events</p>
       </ion-col>
+     
+    </ion-row>
+    <ion-row>
       <ion-col size="6" class="service-box">
         <img src="assets/article.png" style="width: 100px;height: 100px;" (click)="callservice('article')" />
         <p>Articles</p>
       </ion-col>
-    </ion-row>
-    <ion-row>
       <ion-col size="6" class="service-box">
         <img src="assets/teacher.png" style="width: 100px;height: 100px;" (click)="callservice('TM')" />
         <p>TM Teacher</p>
       </ion-col>
-      <ion-col size="6" class="service-box">
+    
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" class="service-box">
         <img src="assets/jyotish.jpg" style="width: 100px;height: 100px;" (click)="callservice('Jyotish')" />
         <p>Jyotish Consultation</p>
       </ion-col>
@@ -140,6 +149,20 @@
       <br>
       <div class="no-padding" [innerHTML]="item.description"></div>
     </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="showlivevideo">
+
+
+    <ion-item *ngFor="let item of livevideodata" text-wrap>
+    <div> <img src="assets/livevideo.jpg" style="width: 100%;height: 100%;"
+      (click)='loadurl(item.id)'></div>
+  {{item.title}} 
+  <br>
+
+  <br>
+  <div class="no-padding" [innerHTML]="item.description"></div>
+</ion-item>
   </ion-list>
 
   <ion-list *ngIf="showaudio">

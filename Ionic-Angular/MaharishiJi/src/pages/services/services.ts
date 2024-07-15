@@ -15,6 +15,7 @@ export class ServicesPage {
   showIcon: boolean = true;
   shownews: boolean = false;
   showvideo: boolean = false;
+  showlivevideo: boolean = false;
   showaudio: boolean = false;
   showback: boolean = false;
   showArticles: boolean = false;
@@ -26,6 +27,7 @@ export class ServicesPage {
   HeaderName: string = 'Our Services';
   public data = [];
   public videodata = [];
+  public livevideodata = [];
   public audiodata = [];
   public articalsdata = [];
   tmTeachers: any[] = [];
@@ -64,6 +66,7 @@ export class ServicesPage {
   }
 
   Back() {
+    this.showlivevideo = false;
     this.showCategory = false;
     this.showLoginForm = false;
     this.showback = false;
@@ -80,6 +83,7 @@ export class ServicesPage {
     this.articalsdata = [];
     this.audiodata = [];
     this.tmTeachers = [];
+    this.livevideodata = [];
     this.data = [];
     this.requesttype = "";
   }
@@ -156,6 +160,20 @@ export class ServicesPage {
           this.showCategory = true;
           this.showteacher = false;
           this.video();
+        }
+        else if (this.requesttype == "livevideo") {
+          this.shownews = false;
+          this.showvideo = false;
+          this.showaudio = false;
+          this.showArticles = false;
+          this.HeaderName = "Live Video";
+          this.showJyotish = false;
+          this.scrollcount = 0;
+         this.showCategory = false;
+          this.showteacher = false;
+          this.livevideo();
+          
+          this.showlivevideo = true;
         }
         else if (this.requesttype == "article") {
           this.shownews = false;
@@ -261,6 +279,9 @@ export class ServicesPage {
     }
     else if (this.requesttype == "video") {
       this.video();
+    }
+    else if (this.requesttype == "livevideo") {
+      this.livevideo();
     }
     else if (this.requesttype == "article") {
       this.article();
@@ -381,6 +402,33 @@ export class ServicesPage {
     );
   }
 
+  livevideo() {
+    this.videodata = [];
+    this.loadingData = true;
+    const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
+
+    this.authHeader = new HttpHeaders({
+      'Authorization': `Basic ${base64Credentials}`
+    });
+
+    console.log("Live video");
+
+    this.apiService.getServeData('/video/live_video', this.authHeader).subscribe((response: any) => {
+      if (response != null) {
+        
+          this.livevideodata.push({
+            description: response.data.description,
+            id: response.data.videoUrl,
+            title: response.data.title
+
+          });
+      }
+      console.log(this.livevideodata);
+      this.loadingData = false;
+      this.showlivevideo = true;
+    }
+    );
+  }
 
   video() {
     this.videodata = [];
@@ -470,6 +518,47 @@ export class ServicesPage {
     this.navCtrl.push(OpenWebUrlPage, { url: audio.audioFile, Title: audio.title, imagePath: audio.image });
   }
 
+
+  
+  Loadlivevideo(url: any, title: any) {
+
+    this.storage.get('password').then((passValue) => {
+      if (passValue != null)
+        this.account.password = passValue;
+    });
+
+    this.storage.get('userDetail').then((userDetailValue) => {
+      if (userDetailValue != null) {
+        this.account.username = userDetailValue.data.email;
+      }
+    });
+
+
+    const username = this.account.username;
+    const password = this.account.password;
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "text/html"); // Expect HTML
+    myHeaders.append("Authorization", "Basic " + btoa(username + ":" + password)); // Basic authentication
+
+    const requestOptions: RequestInit = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow"
+    };
+    fetch(url, requestOptions)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok ' + response.statusText);
+        }
+        response.text().then((htmldata) => {
+          this.navCtrl.push(OpenWebUrlPage, { urldata: "", Title: title, htmldata: htmldata });
+        });
+
+
+      })
+      .then(result => result)
+      .catch(error => console.error('Error:', error));
+  }
 
   Loadvideo(id: any, title: any) {
 
