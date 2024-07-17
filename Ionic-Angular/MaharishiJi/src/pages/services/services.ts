@@ -418,7 +418,7 @@ export class ServicesPage {
         
           this.livevideodata.push({
             description: response.data.description,
-            id: response.data.videoUrl,
+            id: "https://ramrajtv.livebox.co.in/livebox/player/?chnl=Ramrajtv",
             title: response.data.title
 
           });
