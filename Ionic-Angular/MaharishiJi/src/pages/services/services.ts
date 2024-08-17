@@ -44,7 +44,8 @@ export class ServicesPage {
   city: any[] = [];
   citytype: any = 'All';
   cityName: any = 'All';
-  tracks: Array<{ title: string, path: string, image: string, audioFile: string }> = [];
+  found:any='';
+  tracks: Array<{ title: string, path: string, image: string, audioFile: string,viewcount:string }> = [];
 
   headerLogo = "https://maharishiji.net/ui-design/templates/news24/images/presets/preset1/logo-footer.png";
   constructor(public navCtrl: NavController, public navParams: NavParams, private apiService: ApiService, private storage: Storage) {
@@ -107,6 +108,7 @@ export class ServicesPage {
         this.HeaderName = "Login";
         this.showLoginForm = true;
         this.showback = true;  //if nothing in storage then show the form.
+        this.loadingData = false;
       }
     });
 
@@ -384,10 +386,11 @@ export class ServicesPage {
           if (this.tracks.find(item => item.title == newdata.name) == null) {
             this.ccount++;
             this.tracks.push({
-              title: newdata.name,
+              title: newdata.name+ '(' +newdata.subCategory.name+')',
               path: this.apiService.baseUrl + newdata.audioFile,
               image: this.apiService.getImageUrl('image/' + newdata.image),
-              audioFile: this.apiService.baseUrl + 'stream/' + newdata.audioFile
+              audioFile: this.apiService.baseUrl + 'stream/' + newdata.audioFile,
+              viewcount: newdata.viewCount
 
             });
           }
@@ -425,7 +428,7 @@ export class ServicesPage {
       }
       console.log(this.livevideodata);
       this.loadingData = false;
-      this.showlivevideo = true;
+      this.showlivevideo = false;
     }
     );
   }
@@ -446,10 +449,11 @@ export class ServicesPage {
     this.apiService.getServeData('video/json' + sqlQueryData, this.authHeader).subscribe((response: any) => {
       if (response != null) {
         for (let newdata of response.data) {
+          console.log(newdata.subCategory.name);
           this.videodata.push({
             description: newdata.hindiDescription,
             id: newdata.id,
-            title: newdata.name,
+            title: newdata.name+ '(' +newdata.subCategory.name+')',
             updationDate: newdata.updationDate,
             shareCount: newdata.shareCount,
             viewCount: newdata.viewCount,
@@ -626,11 +630,17 @@ export class ServicesPage {
       this.cityName = this.citytype.name;
       sqlQueryData = '/bycity/' + this.citytype.id + '/' + (this.requesttype == 'TM' ? 'TM Teacher' : "Jyotish Consultant");
     }
-    console.log(sqlQueryData);
+   
     //https://maharishiji.net/tm-info/json/bycity/86/TM Teacher
     this.apiService.getServerData('tm-info/json' + sqlQueryData).subscribe((response: any) => {
+       if (response.data.length != 0) {
       this.tmTeachers = response.data;
-
+      this.found ="";
+      }
+      else
+      {
+        this.found ="not" ;
+      }
     });
   }
 }

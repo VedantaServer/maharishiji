@@ -135,11 +135,8 @@
       <div> <img [src]='getImageUrl(item.urlToImage)' style="width: 100%;height: 100%;"
           (click)='Loadvideo(item.id,item.title)'></div>
       {{item.title}} <ion-icon name="eye" class="ion-text-right" style="font-size: 1.3em;"></ion-icon>{{item.viewCount}}
-      <ion-icon name="share" class="ion-text-right" style="font-size: 1.3em;"></ion-icon> {{item.shareCount}}
+      
       <br>
-
-      <br>
-      <div class="no-padding" [innerHTML]="item.description"></div>
     </ion-item>
   </ion-list>
 
@@ -162,7 +159,8 @@
         <ion-icon color="primary" item-start name="musical-note"></ion-icon>
         <ion-thumbnail>
           <img alt="" src='{{audio.image}}' />
-        </ion-thumbnail> {{audio.title }}
+        </ion-thumbnail> {{audio.title }}<ion-icon name="eye" class="ion-text-right"
+        style="font-size: 1.3em;"></ion-icon>{{audio.viewcount}}
       </ion-item>
     </ng-container>
   </ion-list>
@@ -213,7 +211,7 @@
   </ion-list>
 
   <ion-grid *ngIf="showteacher">
-    <p align="center" style='color: blueviolet;'> {{HeaderName}}(s) found in {{statetype}} {{cityName}} </p>
+    <p align="center" style='color: blueviolet;'> {{HeaderName}}(s) {{found}} found in {{statetype}} {{cityName}} </p>
     <ion-row>
       <ion-col size="6" size-md="6" size-lg="6" *ngFor="let teacher of tmTeachers">
         <ion-card class="tm-teacher-card">
