@@ -17,7 +17,8 @@ import { OpenWebUrlPage } from '../pages/open-web-url/open-web-url';
 import { ApiService } from './services/api.services'; 
 import { HttpClientModule } from '@angular/common/http';
 import { Media } from '@ionic-native/media'
-import {AudioPlayerComponent} from '../components/audio-player/audio-player'
+import {AudioPlayerComponent} from '../components/audio-player/audio-player';
+import { ServiceDetailPage } from '../pages/service-detail/service-detail';
  
  
 @NgModule({
@@ -32,7 +33,8 @@ import {AudioPlayerComponent} from '../components/audio-player/audio-player'
     TeachersPage,
     DashboardPage,
     OpenWebUrlPage,
-    AudioPlayerComponent 
+    AudioPlayerComponent ,
+    ServiceDetailPage
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,8 @@ import {AudioPlayerComponent} from '../components/audio-player/audio-player'
     ServicesPage,
     TeachersPage,
     DashboardPage,
-    OpenWebUrlPage 
+    OpenWebUrlPage ,
+    ServiceDetailPage
 
   ],
   providers: [

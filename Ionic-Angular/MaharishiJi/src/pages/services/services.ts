@@ -4,6 +4,7 @@ import { ApiService } from '../../app/services/api.services'
 import { HttpHeaders } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 import { OpenWebUrlPage } from '../open-web-url/open-web-url';
+import { ServiceDetailPage } from '../service-detail/service-detail';
 @IonicPage()
 @Component({
   selector: 'page-services',
@@ -108,7 +109,6 @@ export class ServicesPage {
         this.HeaderName = "Login";
         this.showLoginForm = true;
         this.showback = true;  //if nothing in storage then show the form.
-        this.loadingData = false;
       }
     });
 
@@ -622,6 +622,16 @@ export class ServicesPage {
     this.apiService.getServerData('tm-city/json/bystate/' + this.statetype).subscribe((response: any) => {
       this.city = response.data;
     });
+  }
+
+
+  servicedetail(objectdata,HeaderName) {
+    this.navCtrl.push(ServiceDetailPage,
+      {
+        objectdata: objectdata,
+        HeaderName:HeaderName
+      });
+
   }
 
   loadTMTeachers() {

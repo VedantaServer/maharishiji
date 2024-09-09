@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <div style="display: inline-flex;">
+      <div> <img height="40" src={{headerLogo}} style="vertical-align: baseline;" /></div> &nbsp;
+      <div style="margin-top: 10px; word-wrap: break-word;font-weight: 600; font-size:medium;color: orangered;">
+        {{HeaderName}}</div>
+
+    </div>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="padding">
+
+<ion-list >
+  <ion-item  text-wrap>
+    <div> 
+       <img [src]='getImageUrl(urlToImage)' style="width: 100%;height: 100%;">
+   </div> &nbsp;
+    {{title}} <ion-icon name="eye" class="ion-text-right"
+      style="font-size: 1.3em;"></ion-icon>{{viewCount}} <ion-icon name="share" class="ion-text-right"
+      style="font-size: 1.3em;"></ion-icon> {{shareCount}}
+    <br>
+
+    <br>
+    <div class="no-padding" [innerHTML]="description"></div>
+  </ion-item>
+
+</ion-list>
+</ion-content>

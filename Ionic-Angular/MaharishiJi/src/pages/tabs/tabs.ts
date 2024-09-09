@@ -5,6 +5,7 @@ import { ServicesPage } from '../services/services';
 //import { TeachersPage } from '../teachers/teachers';
 import { DashboardPage } from '../dashboard/dashboard';
 import { AboutPage } from '../about/about';
+import { ServiceDetailPage } from '../service-detail/service-detail';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class TabsPage {
   tab3Root = ServicesPage;
   tab4Root = AboutPage;
   tab5Root = DashboardPage;
+  ServiceDetailPage = ServiceDetailPage;
 
 
   constructor() {
