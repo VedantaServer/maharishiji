@@ -14,6 +14,29 @@
 
 <ion-content padding>
 
+  <ion-card padding style="text-align: center;" *ngIf="showLoginForm">
+    <ion-card-header>
+      <h1> Please Login </h1>
+    </ion-card-header>
+    <ion-item>
+      <ion-input type="text" placeholder="User Name" [(ngModel)]="account.username" name="username" autofocus="true"
+        #focusInput></ion-input>
+    </ion-item>
+    <ion-item>
+
+      <ion-input placeholder="Password" [type]="passwordType" [(ngModel)]="account.password"
+        name="password"></ion-input>
+      <ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
+    </ion-item>
+    <button ion-button color="primary" block (click)="doLogin()">Login</button> 
+    <ion-label color="danger" text-wrap>{{lblMessage}}</ion-label> <br />
+    <a href="#" (click)="loadurl('https://maharishiji.net/subscribe')" style="font-size: smaller;">
+      Registration
+    </a>
+
+  </ion-card>
+
+
  
   
   <ion-card *ngIf="showstaffdetail" style="padding: 30px;">

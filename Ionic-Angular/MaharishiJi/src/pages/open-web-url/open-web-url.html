@@ -5,6 +5,7 @@
 </ion-header> 
 
 <ion-content padding>
+  <button ion-button color="primary" block (click)="gottodashboard()">Continue with Mobile App</button> 
   <ion-spinner name="bubbles" *ngIf="loadingData"></ion-spinner> 
   <div *ngIf="showAudio"> 
     <ion-thumbnail>

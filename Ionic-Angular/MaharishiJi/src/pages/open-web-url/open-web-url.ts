@@ -1,6 +1,8 @@
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { ApiService } from '../../app/services/api.services'
+import { DashboardPage } from '../dashboard/dashboard';
+import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
@@ -87,6 +89,10 @@ export class OpenWebUrlPage {
     
       
     
+  }
+  gottodashboard()
+  {
+    this.navCtrl.push(HomePage);
   }
 
 
