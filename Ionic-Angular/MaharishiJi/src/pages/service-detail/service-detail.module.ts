@@ -3,9 +3,6 @@ import { IonicPageModule } from 'ionic-angular';
 import { ServiceDetailPage } from './service-detail';
 
 @NgModule({
-  declarations: [
-    ServiceDetailPage,
-  ],
   imports: [
     IonicPageModule.forChild(ServiceDetailPage),
   ],
