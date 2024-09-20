@@ -29,11 +29,14 @@
       <ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
     </ion-item>
     <button ion-button color="primary" block (click)="doLogin()">Login</button> 
+    <a href="#" (click)="loadurl('https://maharishiji.net/forgot-password-mobile')" style="font-size: smaller;">
+      Forget Password
+    </a>
     <ion-label color="danger" text-wrap>{{lblMessage}}</ion-label> <br />
     <a href="#" (click)="loadurl('https://maharishiji.net/mobilesubscribe?Source=MobileApp')" style="font-size: smaller;">
       Registration
     </a>
-
+    
   </ion-card>
 
 

@@ -319,6 +319,8 @@ export class ServicesPage {
         infiniteScroll.complete();
       }
     });
+    this.loadingData=false;
+    infiniteScroll.complete();
   }
   news(infiniteScroll?) {
     this.data = [];
@@ -369,6 +371,7 @@ export class ServicesPage {
   }
   audio(infiniteScroll?) {
     this.tracks = [];
+    this.loadingData = false;
     this.loadingData = true;
     const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
 
@@ -398,11 +401,15 @@ export class ServicesPage {
         this.loadingData = false;
         this.showaudio = true;
       }
-      if (infiniteScroll) {
+       if (infiniteScroll) {
+        this.loadingData = false;
         infiniteScroll.complete();
       }
     }
     );
+    this.loadingData = false;
+   
+   
   }
 
   livevideo() {
@@ -413,8 +420,6 @@ export class ServicesPage {
     this.authHeader = new HttpHeaders({
       'Authorization': `Basic ${base64Credentials}`
     });
-
-    console.log("Live video");
 
     this.apiService.getServeData('/video/live_video', this.authHeader).subscribe((response: any) => {
       if (response != null) {
@@ -431,6 +436,7 @@ export class ServicesPage {
       this.showlivevideo = false;
     }
     );
+    this.loadingData = false;
   }
 
   video() {
@@ -467,6 +473,8 @@ export class ServicesPage {
       this.showvideo = true;
     }
     );
+    this.loadingData = false;
+  
   }
 
   article(infiniteScroll?) {

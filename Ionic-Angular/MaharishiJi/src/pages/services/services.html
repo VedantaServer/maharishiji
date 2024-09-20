@@ -36,6 +36,9 @@
       <ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
     </ion-item>
     <button ion-button color="primary" block (click)="doLogin()">Login</button>
+    <a href="#" (click)="loadurl('https://maharishiji.net/forgot-password-mobile')" style="font-size: smaller;">
+      Forget Password
+    </a>
     <ion-label color="danger" text-wrap>{{lblMessage}}</ion-label> <br />
     <a href="#" (click)="loadurl('https://maharishiji.net/mobilesubscribe?Source=MobileApp')" style="font-size: smaller;">
       Registration
@@ -124,9 +127,6 @@
         style="font-size: 1.3em;"></ion-icon>{{image.viewCount}} <ion-icon name="share" class="ion-text-right"
         style="font-size: 1.3em;"></ion-icon> {{image.shareCount}}
       <br>
-
-      <br>
-      <div class="no-padding" [innerHTML]="image.description"></div>
     </ion-item>
 
   </ion-list>
@@ -181,7 +181,6 @@
         style="font-size: 1.3em;"></ion-icon> {{image.shareCount}}
       <br>
 
-      <div class="no-padding" [innerHTML]="image.description"></div>
     </ion-item>
 
   </ion-list>
