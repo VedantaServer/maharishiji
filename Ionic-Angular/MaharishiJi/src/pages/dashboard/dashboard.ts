@@ -106,6 +106,13 @@ export class DashboardPage {
     this.ionViewDidLoad();
   }
   
+  loaduserprofile()
+  {
+    this.loadurl('https://maharishiji.net/profile-mobile?user='+this.email);
+
+  }
+
+
   loadurl(curl: any) {
     //fileUrl = 'https://maharishiji.net/stream/AUDIO/202406/e6fy_Dainik_Faladesh_20_June_2024_Mapp_Audio.mp3';
     //sending this data to the broswer widnows.
