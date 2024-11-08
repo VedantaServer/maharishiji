@@ -48,9 +48,30 @@ export class DashboardPage {
     this.loaddata();
     this.storage.get('userDetail').then((userDetailValue) => {
       if (userDetailValue != null) {
+
+        this.email = userDetailValue.data.email;
+        const year = userDetailValue.data.subscriptionPayment[0].subscriptionEndDate[0]; // Replace with your actual year
+        const month = userDetailValue.data.subscriptionPayment[0].subscriptionEndDate[1];  // Replace with your actual month (e.g., November is 11)
+        const day = userDetailValue.data.subscriptionPayment[0].subscriptionEndDate[2];     // Replace with your actual day
+
+          // Create a new Date object
+          const subEndDate = new Date(year, month - 1, day); // Subtract 1 from month
+              
+          // Get the current date (no time component, just the date)
+          const currentDate = new Date();
+          currentDate.setHours(0, 0, 0, 0); // Set the time to midnight to avoid time comparisons
+
+          // Check if subscriptionEndDate is greater than the current date
+          if (subEndDate > currentDate) {
+              console.log("Subscription end date is in the future." );
+          } else {
+              this.loaduserprofile();
+              this.showstaffdetail = false;
+              return;
+          }
+
         this.showstaffdetail = true;
         this.fullName = userDetailValue.data.fullName;
-        this.email = userDetailValue.data.email;
         this.contactNumber = userDetailValue.data.contactNumber;
         this.cityName = userDetailValue.data.cityName;
         this.stateName = userDetailValue.data.stateName;
@@ -61,6 +82,9 @@ export class DashboardPage {
         this.subscriptionEndDate =userDetailValue.data.subscriptionPayment[0].subscriptionEndDate[2]+"-"+userDetailValue.data.subscriptionPayment[0].subscriptionEndDate[1] +"-"+userDetailValue.data.subscriptionPayment[0].subscriptionEndDate[0];
         this.showstaffdetail = true;
         this.showLoginForm = false;
+      
+      
+        
       }
       else{
         this.showstaffdetail = false;
@@ -75,9 +99,30 @@ export class DashboardPage {
   {
     this.storage.get('userDetail').then((userDetailValue) => {
       if (userDetailValue != null) {
+        
+        this.email = userDetailValue.data.email;
+        const year = userDetailValue.data.subscriptionPayment[0].subscriptionEndDate[0]; // Replace with your actual year
+        const month = userDetailValue.data.subscriptionPayment[0].subscriptionEndDate[1];  // Replace with your actual month (e.g., November is 11)
+        const day = userDetailValue.data.subscriptionPayment[0].subscriptionEndDate[2];     // Replace with your actual day
+
+          // Create a new Date object
+          const subEndDate = new Date(year, month - 1, day); // Subtract 1 from month
+              
+          // Get the current date (no time component, just the date)
+          const currentDate = new Date();
+          currentDate.setHours(0, 0, 0, 0); // Set the time to midnight to avoid time comparisons
+
+          // Check if subscriptionEndDate is greater than the current date
+          if (subEndDate > currentDate) {
+              console.log("Subscription end date is in the future." );
+          } else {
+              this.loaduserprofile();
+              this.showstaffdetail = false;
+              return;
+          }
+
         this.showstaffdetail = true;
         this.fullName = userDetailValue.data.fullName;
-        this.email = userDetailValue.data.email;
         this.contactNumber = userDetailValue.data.contactNumber;
         this.cityName = userDetailValue.data.cityName;
         this.stateName = userDetailValue.data.stateName;
@@ -88,6 +133,11 @@ export class DashboardPage {
         this.subscriptionEndDate =userDetailValue.data.subscriptionPayment[0].subscriptionEndDate[2]+"-"+userDetailValue.data.subscriptionPayment[0].subscriptionEndDate[1] +"-"+userDetailValue.data.subscriptionPayment[0].subscriptionEndDate[0];
         this.showstaffdetail = true;
         this.showLoginForm = false;
+
+        
+        
+        
+       
       }
       else{
         this.showstaffdetail = false;
@@ -130,11 +180,32 @@ export class DashboardPage {
        this.showLoginForm = false;
         this.storage.set("userDetail", response);
         this.storage.set("password", this.account.password);
-        console.log(response);
+
+        this.email = response.data.email;
+        const year = response.data.subscriptionPayment[0].subscriptionEndDate[0]; // Replace with your actual year
+        const month = response.data.subscriptionPayment[0].subscriptionEndDate[1];  // Replace with your actual month (e.g., November is 11)
+        const day = response.data.subscriptionPayment[0].subscriptionEndDate[2];     // Replace with your actual day
+
+          // Create a new Date object
+          const subEndDate = new Date(year, month - 1, day); // Subtract 1 from month
+              
+          // Get the current date (no time component, just the date)
+          const currentDate = new Date();
+          currentDate.setHours(0, 0, 0, 0); // Set the time to midnight to avoid time comparisons
+
+          // Check if subscriptionEndDate is greater than the current date
+          if (subEndDate > currentDate) {
+              console.log("Subscription end date is in the future." );
+          } else {
+              this.loaduserprofile();
+              this.showstaffdetail = false;
+              return;
+          }
+
         this.showLoginForm = false;
         this.showstaffdetail = true;
         this.fullName = response.data.fullName;
-        this.email = response.data.email;
+        
         this.contactNumber = response.data.contactNumber; 
         this.cityName = response.data.cityName;
         this.stateName = response.data.stateName;
@@ -142,6 +213,8 @@ export class DashboardPage {
         this.subscriptionStartDate =response.data.subscriptionPayment[0].subscriptionStartDate[2]+"-"+response.data.subscriptionPayment[0].subscriptionStartDate[1] +"-"+response.data.subscriptionPayment[0].subscriptionStartDate[0];
         this.subscriptionEndDate =response.data.subscriptionPayment[0].subscriptionEndDate[2]+"-"+response.data.subscriptionPayment[0].subscriptionEndDate[1] +"-"+response.data.subscriptionPayment[0].subscriptionEndDate[0];
         this.showstaffdetail = true;
+       
+
       }
       else {
         this.lblMessage = "Invalid Username and password..";

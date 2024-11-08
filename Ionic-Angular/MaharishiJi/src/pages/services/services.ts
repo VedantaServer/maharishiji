@@ -101,7 +101,26 @@ export class ServicesPage {
 
     this.storage.get('userDetail').then((userDetailValue) => {
       if (userDetailValue != null) {
+
         this.account.username = userDetailValue.data.email;
+        const year = userDetailValue.data.subscriptionPayment[0].subscriptionEndDate[0]; // Replace with your actual year
+        const month = userDetailValue.data.subscriptionPayment[0].subscriptionEndDate[1];  // Replace with your actual month (e.g., November is 11)
+        const day = userDetailValue.data.subscriptionPayment[0].subscriptionEndDate[2];     // Replace with your actual day
+
+          // Create a new Date object
+          const subEndDate = new Date(year, month - 1, day); // Subtract 1 from month
+              
+          // Get the current date (no time component, just the date)
+          const currentDate = new Date();
+          currentDate.setHours(0, 0, 0, 0); // Set the time to midnight to avoid time comparisons
+
+          // Check if subscriptionEndDate is greater than the current date
+          if (subEndDate > currentDate) {
+              console.log("Subscription end date is in the future." );
+          } else {
+              this.loaduserprofile();
+              return;
+          }
         this.doLogin();
         this.showback = false;
       }
@@ -111,6 +130,12 @@ export class ServicesPage {
         this.showback = true;  //if nothing in storage then show the form.
       }
     });
+
+  }
+  
+  loaduserprofile()
+  {
+    this.loadurl('https://maharishiji.net/profile-mobile?user='+this.account.username);
 
   }
   doLogin() {
