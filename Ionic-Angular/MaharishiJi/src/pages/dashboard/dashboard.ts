@@ -66,8 +66,7 @@ export class DashboardPage {
               console.log("Subscription end date is in the future." );
           } else {
               this.loaduserprofile();
-              this.showstaffdetail = false;
-              return;
+              
           }
 
         this.showstaffdetail = true;
@@ -117,8 +116,7 @@ export class DashboardPage {
               console.log("Subscription end date is in the future." );
           } else {
               this.loaduserprofile();
-              this.showstaffdetail = false;
-              return;
+              
           }
 
         this.showstaffdetail = true;
@@ -198,8 +196,6 @@ export class DashboardPage {
               console.log("Subscription end date is in the future." );
           } else {
               this.loaduserprofile();
-              this.showstaffdetail = false;
-              return;
           }
 
         this.showLoginForm = false;
