@@ -33,7 +33,10 @@
 
       <ion-input placeholder="Password" [type]="passwordType" [(ngModel)]="account.password"
         name="password"></ion-input>
-      <ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
+        <button ion-button clear item-end (click)="hideShowPassword()">
+          <ion-icon name="{{ passwordIcon }}"></ion-icon>
+        </button>  
+       
     </ion-item>
     <button ion-button color="primary" block (click)="doLogin()">Login</button>
     <a href="#" (click)="loadurl('https://maharishiji.net/forgot-password-mobile')" style="font-size: smaller;">
