@@ -78,6 +78,7 @@ export class ServicesPage {
     this.showaudio = false;
     this.showArticles = false;
     this.showJyotish = false;
+    this.showteacher = false;
     this.CategoryID = 0;
     this.categorytype = [];
     this.videodata = [];
