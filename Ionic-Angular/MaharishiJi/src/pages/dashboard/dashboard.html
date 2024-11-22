@@ -5,7 +5,8 @@
     </button>
     <div style="display: inline-flex;">
       <div> <img height="40" src={{headerLogo}} style="vertical-align: baseline;" /></div> &nbsp;
-      <div style="margin-top: 10px; word-wrap: break-word;font-weight: 600; font-size:medium;color: orangered;">Dashboard
+      <div style="margin-top: 10px; word-wrap: break-word;font-weight: 600; font-size:medium;color: orangered;">
+        Dashboard
       </div>
     </div>
   </ion-navbar>
@@ -25,66 +26,69 @@
     <ion-item>
 
       <ion-input placeholder="Password" [type]="passwordType" [(ngModel)]="account.password"
-        name="password"></ion-input>
-      <ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
+        name="password"></ion-input>  
+        <button ion-button clear item-end (click)="hideShowPassword()">
+          <ion-icon name="{{ passwordIcon }}"></ion-icon>
+        </button> 
     </ion-item>
-    <button ion-button color="primary" block (click)="doLogin()">Login</button> 
+    <button ion-button color="primary" block (click)="doLogin()">Login</button>
     <a href="#" (click)="loadurl('https://maharishiji.net/forgot-password-mobile')" style="font-size: smaller;">
       Forget Password
     </a>
     <ion-label color="danger" text-wrap>{{lblMessage}}</ion-label> <br />
-    <a href="#" (click)="loadurl('https://maharishiji.net/mobilesubscribe?Source=MobileApp')" style="font-size: smaller;">
+    <a href="#" (click)="loadurl('https://maharishiji.net/mobilesubscribe?Source=MobileApp')"
+      style="font-size: smaller;">
       Registration
     </a>
-    
+
   </ion-card>
 
 
- 
-  
+
+
   <ion-card *ngIf="showstaffdetail" style="padding: 30px;">
-  <h2 align="center">
-    <ion-card align="center" style="border-radius: 180px;">
-  <ion-avatar align="center">
-    <img style="border-radius: 180px;text-align: center;" src="{{image}}" />
-  </ion-avatar>
-</ion-card>
+    <h2 align="center">
+      <ion-card align="center" style="border-radius: 180px;">
+        <ion-avatar align="center">
+          <img style="border-radius: 180px;text-align: center;" src="{{image}}" />
+        </ion-avatar>
+      </ion-card>
 
 
 
-</h2>
- <h2 align="center" style="color: blue;">{{ fullName}}</h2>
- <h5 align="center" style="color: blue;"><ion-icon name="mail"></ion-icon> {{ email}}</h5>
- <h5 align="center" style="color: blue;"><ion-icon name="call"></ion-icon>  {{ contactNumber}}</h5>
- <h5 align="center" style="color: blue;">    {{ cityName}}</h5>
- <h5 align="center" style="color: blue;">     {{ stateName}}</h5>
- <h5 align="center" style="color: blue;">  Subscription {{ subscriptionStartDate}} from {{ subscriptionEndDate}}</h5>
+    </h2>
+    <h2 align="center" style="color: blue;">{{ fullName}}</h2>
+    <h5 align="center" style="color: blue;"><ion-icon name="mail"></ion-icon> {{ email}}</h5>
+    <h5 align="center" style="color: blue;"><ion-icon name="call"></ion-icon> {{ contactNumber}}</h5>
+    <h5 align="center" style="color: blue;"> {{ cityName}}</h5>
+    <h5 align="center" style="color: blue;"> {{ stateName}}</h5>
+    <h5 align="center" style="color: blue;"> Subscription {{ subscriptionStartDate}} from {{ subscriptionEndDate}}</h5>
 
- <h5 align="center" style="color: blue;">  
+    <h5 align="center" style="color: blue;">
 
-  <a href="#" (click)="loaduserprofile()" style="font-size: smaller;">
-    User Profile
-  </a>
- </h5>
+      <a href="#" (click)="loaduserprofile()" style="font-size: smaller;">
+        User Profile
+      </a>
+    </h5>
 
- 
- 
- <h5 align="center" style="color: blue;"> <button ion-button color="primary" block (click)="logout()">Logout</button>
- </h5>
-</ion-card>
-<ion-row>
 
-  <ion-col size="12" class="service-box" style="height: auto;">
-    <a href="#" (click)="loadurl('https://e-gyaan.net')">
-      <img src="https://e-gyaan.net/images/e-gyan.jpg" />
-    </a>
-  </ion-col>
-</ion-row>
-<ion-row>
-  <ion-col size="12" class="service-box" style="height: auto;">
-    <a href="#" (click)="loadurl('https://mahamedia.in')">
-      <img src="https://mahamedia.in/images/mahamedia-header.png" />
-    </a>
-  </ion-col>    
-</ion-row>
+
+    <h5 align="center" style="color: blue;"> <button ion-button color="primary" block (click)="logout()">Logout</button>
+    </h5>
+  </ion-card>
+  <ion-row>
+
+    <ion-col size="12" class="service-box" style="height: auto;">
+      <a href="#" (click)="loadurl('https://e-gyaan.net')">
+        <img src="https://e-gyaan.net/images/e-gyan.jpg" />
+      </a>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12" class="service-box" style="height: auto;">
+      <a href="#" (click)="loadurl('https://mahamedia.in')">
+        <img src="https://mahamedia.in/images/mahamedia-header.png" />
+      </a>
+    </ion-col>
+  </ion-row>
 </ion-content>
