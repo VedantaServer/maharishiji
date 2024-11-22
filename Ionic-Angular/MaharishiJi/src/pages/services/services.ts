@@ -599,7 +599,7 @@ export class ServicesPage {
   }
 
   Loadvideo(id: any, title: any) {
-
+  this.showvideo = false;
     this.storage.get('password').then((passValue) => {
       if (passValue != null)
         this.account.password = passValue;
