@@ -152,6 +152,7 @@ export class DashboardPage {
     this.storage.clear();
     this.showstaffdetail = false;
     this.ionViewDidLoad();
+    window.location.reload();
   }
   
   loaduserprofile()
