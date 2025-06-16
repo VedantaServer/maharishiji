@@ -6,8 +6,7 @@
     <div style="display: inline-flex;">
       <div> <img height="40" src={{headerLogo}} style="vertical-align: baseline;" /></div> &nbsp;
       <div style="margin-top: 10px; word-wrap: break-word;font-weight: 600; font-size:medium;color: orangered;">
-        {{HeaderName}}</div>
-
+        {{HeaderName}}</div> 
     </div>
   </ion-navbar>
 </ion-header>
@@ -84,6 +83,16 @@
         <img src="assets/teacher.png" style="width: 100px;height: 100px;" (click)="callservice('TM')" />
         <p>TM Teacher</p>
       </ion-col>
+    </ion-row>
+
+     <ion-row>
+      <ion-col size="6" class="service-box" style="height: auto;">
+        <a href="#" (click)="loadstotras()">
+          <img src="assets/Stotras.png" style="width: 100px;height: 100px;" />
+            <p>Stotras</p>
+        </a>
+      </ion-col>
+        <ion-col size="6" class="service-box"></ion-col>
     </ion-row>
 
     <ion-row>
@@ -187,6 +196,8 @@
     </ion-item>
 
   </ion-list>
+
+
 
 
 

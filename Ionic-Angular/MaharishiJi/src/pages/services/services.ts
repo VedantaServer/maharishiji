@@ -4,7 +4,8 @@ import { ApiService } from '../../app/services/api.services'
 import { HttpHeaders } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 import { OpenWebUrlPage } from '../open-web-url/open-web-url';
-import { ServiceDetailPage } from '../service-detail/service-detail';
+import { ServiceDetailPage } from '../service-detail/service-detail'; 
+
 @IonicPage()
 @Component({
   selector: 'page-services',
@@ -49,7 +50,8 @@ export class ServicesPage {
   tracks: Array<{ title: string, path: string, image: string, audioFile: string,viewcount:string }> = [];
 
   headerLogo = "https://maharishiji.net/ui-design/templates/news24/images/presets/preset1/logo-footer.png";
-  constructor(public navCtrl: NavController, public navParams: NavParams, private apiService: ApiService, private storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private apiService: ApiService, 
+    private storage: Storage) {
   }
   account: { password: string, username: string } = {
     password: '',
@@ -116,10 +118,12 @@ export class ServicesPage {
           currentDate.setHours(0, 0, 0, 0); // Set the time to midnight to avoid time comparisons
 
           // Check if subscriptionEndDate is greater than the current date
-          if (subEndDate > currentDate) {
+          //console.log(subEndDate,currentDate);
+          if (subEndDate >= currentDate) {
               console.log("Subscription end date is in the future." );
-          } else {
+          } else { 
               this.loaduserprofile();
+              this.storage.clear(); //clear login
               return;
           }
         this.doLogin();
@@ -137,6 +141,11 @@ export class ServicesPage {
   loaduserprofile()
   {
     this.loadurl('https://maharishiji.net/profile-mobile?user='+this.account.username);
+
+  }
+   loadstotras()
+  {
+    this.loadurl('https://maharishiji.net/stotras-mobile?user='+this.account.username);
 
   }
   doLogin() {
@@ -255,14 +264,15 @@ export class ServicesPage {
   }
 
   handleCancel() {
-    console.log('ionCancel fired');
+    //console.log('ionCancel fired');
   }
 
   handleDismiss() {
-    console.log('ionDismiss fired');
+    //console.log('ionDismiss fired');
   }
 
   bindCategory(CategoryID, Type) {
+    this.loadingData = true;
     this.category = [];
     const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
 
@@ -292,12 +302,12 @@ export class ServicesPage {
 
   }
   loaddata() {
-    console.log(this.categorytype);
+    //console.log(this.categorytype);
     const selectedId = this.categorytype;
     this.selectedItem = this.category.find(item => item.id === selectedId);
     this.CategoryID = this.selectedItem.id;
     this.requesttype == this.selectedItem.ctype;
-
+    this.loadingData = true;
 
     if (this.requesttype == "news") {
       this.news();
@@ -314,7 +324,7 @@ export class ServicesPage {
     else if (this.requesttype == "article") {
       this.article();
     }
-    this.loadingData = false;
+    //this.loadingData = false;
 
   }
   loadMore(infiniteScroll) {
@@ -360,7 +370,7 @@ export class ServicesPage {
     if (this.CategoryID != 0)
       sqlQueryData = '/' + this.CategoryID + '/' + this.scrollcount + '/20';
 
-    console.log(sqlQueryData);
+    //console.log(sqlQueryData);
 
 
     this.apiService.getServeData('news-and-events/json/min' + sqlQueryData, this.authHeader).subscribe((response: any) => {
@@ -396,8 +406,7 @@ export class ServicesPage {
     return this.apiService.getImageUrl('image/' + imagePath);
   }
   audio(infiniteScroll?) {
-    this.tracks = [];
-    this.loadingData = false;
+    this.tracks = []; 
     this.loadingData = true;
     const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
 
@@ -433,20 +442,16 @@ export class ServicesPage {
       }
     }
     );
-    this.loadingData = false;
-   
-   
+    
   }
 
   livevideo() {
     this.videodata = [];
     this.loadingData = true;
-    const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
-
+    const base64Credentials = btoa(`${this.account.username}:${this.account.password}`); 
     this.authHeader = new HttpHeaders({
       'Authorization': `Basic ${base64Credentials}`
-    });
-
+    }); 
     this.apiService.getServeData('/video/live_video', this.authHeader).subscribe((response: any) => {
       if (response != null) {
         
@@ -457,12 +462,12 @@ export class ServicesPage {
 
           });
       }
-      console.log(this.livevideodata);
+      //console.log(this.livevideodata);
       this.loadingData = false;
       this.showlivevideo = false;
     }
     );
-    this.loadingData = false;
+    
   }
 
   video() {
@@ -481,7 +486,7 @@ export class ServicesPage {
     this.apiService.getServeData('video/json' + sqlQueryData, this.authHeader).subscribe((response: any) => {
       if (response != null) {
         for (let newdata of response.data) {
-          console.log(newdata.subCategory.name);
+          //console.log(newdata.subCategory.name);
           this.videodata.push({
             description: newdata.hindiDescription,
             id: newdata.id,
@@ -499,7 +504,7 @@ export class ServicesPage {
       this.showvideo = true;
     }
     );
-    this.loadingData = false;
+  
   
   }
 
@@ -537,10 +542,11 @@ export class ServicesPage {
         }
 
       }
-      this.loadingData = false;
+      
       this.showArticles = true;
       if (infiniteScroll) {
         infiniteScroll.complete();
+        this.loadingData = false;
       }
     }
     );
@@ -552,7 +558,7 @@ export class ServicesPage {
   loadAudio(audio: any) {
     //fileUrl = 'https://maharishiji.net/stream/AUDIO/202406/e6fy_Dainik_Faladesh_20_June_2024_Mapp_Audio.mp3';
     //sending this data to the broswer widnows.
-    console.log(audio);
+    //console.log(audio);
     this.navCtrl.push(OpenWebUrlPage, { url: audio.audioFile, Title: audio.title, imagePath: audio.image });
   }
 
@@ -599,6 +605,7 @@ export class ServicesPage {
   }
 
   Loadvideo(id: any, title: any) {
+  this.loadingData = true;  
   this.showvideo = false;
     this.storage.get('password').then((passValue) => {
       if (passValue != null)
@@ -609,36 +616,32 @@ export class ServicesPage {
       if (userDetailValue != null) {
         this.account.username = userDetailValue.data.email;
       }
-    });
-
-
+    }); 
     const username = this.account.username;
     const password = this.account.password;
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "text/html"); // Expect HTML
-    myHeaders.append("Authorization", "Basic " + btoa(username + ":" + password)); // Basic authentication
-
+    myHeaders.append("Authorization", "Basic " + btoa(username + ":" + password)); // Basic authentication 
+    console.log(username,password);
     const requestOptions: RequestInit = {
       method: "GET",
       headers: myHeaders,
       redirect: "follow"
-    };
+    }; 
+    console.log(this.apiService.baseUrl + 'video/play/' + id, requestOptions);
     fetch(this.apiService.baseUrl + 'video/play/' + id, requestOptions)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok ' + response.statusText);
         }
         response.text().then((htmldata) => {
-          this.navCtrl.push(OpenWebUrlPage, { urldata: "", Title: title, htmldata: htmldata });
-        });
-
-
+          this.loadingData = false;
+          this.navCtrl.push(OpenWebUrlPage, { urldata: "", Title: title, htmldata: htmldata }); 
+        }); 
       })
       .then(result => result)
       .catch(error => console.error('Error:', error));
-  }
-
-
+  }  
   loadurl(curl: any) {
     //fileUrl = 'https://maharishiji.net/stream/AUDIO/202406/e6fy_Dainik_Faladesh_20_June_2024_Mapp_Audio.mp3';
     //sending this data to the broswer widnows.
@@ -656,9 +659,7 @@ export class ServicesPage {
     this.apiService.getServerData('tm-city/json/bystate/' + this.statetype).subscribe((response: any) => {
       this.city = response.data;
     });
-  }
-
-
+  } 
   servicedetail(objectdata,HeaderName) {
     this.navCtrl.push(ServiceDetailPage,
       {

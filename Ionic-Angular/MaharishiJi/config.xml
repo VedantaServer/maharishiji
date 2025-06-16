@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="300020000" id="com.mit.maharishiji" version="3.2.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="300040000" id="com.mit.maharishiji" version="3.4.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Maharishi</name>
     <description>Mobile Applicatio for Maharishiji.net website</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
@@ -11,8 +11,8 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <preference name="android-targetSdkVersion" value="33" />
-    <preference name="android-compileSdkVersion" value="33" />
+    <preference name="android-targetSdkVersion" value="34" />
+    <preference name="android-compileSdkVersion" value="34" />
     <preference name="AndroidPersistentFileLocation" value="Internal" />
     <preference name="AndroidXEnabled" value="true" />
     <preference name="AndroidInsecureFileModeEnabled" value="true" />

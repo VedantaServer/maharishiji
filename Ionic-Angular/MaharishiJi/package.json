@@ -41,7 +41,8 @@
     "cordova-plugin-ionic-webview": "^1.1.11",
     "cordova-plugin-splashscreen": "~4.0.1",
     "ionic-plugin-keyboard": "~2.2.1",
-    "typescript": "2.6.2"
+    "typescript": "2.6.2",
+    "cordova-plugin-inappbrowser": "^3.1.0"
   },
   "description": "An Ionic project",
   "cordova": {
@@ -51,7 +52,11 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-media": {},
-      "cordova-plugin-file": {}
+      "cordova-plugin-file": {},
+      "cordova-plugin-inappbrowser": {},
+      "cordova-plugin-camera": {
+        "ANDROIDX_CORE_VERSION": "1.6.+"
+      }
     },
     "platforms": [
       "android"
