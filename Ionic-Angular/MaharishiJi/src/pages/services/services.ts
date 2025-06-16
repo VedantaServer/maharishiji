@@ -143,11 +143,7 @@ export class ServicesPage {
     this.loadurl('https://maharishiji.net/profile-mobile?user='+this.account.username);
 
   }
-   loadstotras()
-  {
-    this.loadurl('https://maharishiji.net/stotras-mobile?user='+this.account.username);
-
-  }
+  
   doLogin() {
     const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
 
@@ -250,6 +246,9 @@ export class ServicesPage {
           this.loadState();
           this.loadCity();
           this.showteacher = true;
+        }
+        else if (this.requesttype == "stotras") {
+         this.loadurl('https://maharishiji.net/stotras-mobile?user='+this.account.username);
         }
 
       }
@@ -645,6 +644,7 @@ export class ServicesPage {
   loadurl(curl: any) {
     //fileUrl = 'https://maharishiji.net/stream/AUDIO/202406/e6fy_Dainik_Faladesh_20_June_2024_Mapp_Audio.mp3';
     //sending this data to the broswer widnows.
+    //console.log(curl);
     this.navCtrl.push(OpenWebUrlPage, { url: curl, Title: "", imagePath: "", webtype: "weburl" });
   }
 
