@@ -154,7 +154,22 @@ export class DashboardPage {
     this.ionViewDidLoad();
     window.location.reload();
   }
-  
+  accountdelete()
+  {
+
+   const body = {
+  fullName: this.fullName,
+  email: this.email,
+  contactNumber: this.contactNumber
+};
+    this.apiService.postServerData('user/json/delete', body, null).subscribe((response: any) => {
+      if (response != null) {
+        this.logout();
+      }
+    });
+  }
+
+
   loaduserprofile()
   {
     this.loadurl('https://maharishiji.net/profile-mobile?user='+this.email);
