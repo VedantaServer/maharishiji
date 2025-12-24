@@ -1,0 +1,379 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="Back()">
+        <ion-icon name="chevron-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <!-- Menu button -->
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <!-- Title + Logo -->
+    <ion-title>
+      <div style="display: flex; align-items: center;">
+        <img [src]="headerLogo" height="40" style="margin-right: 8px;" />
+        <span style="font-weight: 600; font-size: medium; color: orangered;">
+          {{ HeaderName }}
+        </span>
+      </div>
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="padding">
+  <h1 class="header1">Services </h1>
+  <!-- <ion-card *ngIf="showback">
+
+    <div (click)="Back()" style="
+      display: flex;
+      align-items: center;
+      padding: 12px;
+      cursor: pointer;
+    ">
+       <ion-icon aria-hidden="true" name="arrow-Back"></ion-icon>
+    </div>
+
+  </ion-card> -->
+
+
+  <ion-card *ngIf="showLoginForm" class="login-card">
+
+    <ion-card-header>
+      <ion-card-title class="login-title">
+        Please Login
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <!-- Username -->
+      <ion-item>
+        <ion-input type="text" placeholder="User Name" [(ngModel)]="account.username" name="username"
+          autofocus></ion-input>
+      </ion-item>
+
+      <!-- Password -->
+      <ion-item>
+        <ion-input placeholder="Password" [type]="passwordType" [(ngModel)]="account.password"
+          name="password"></ion-input>
+
+        <ion-button fill="clear" slot="end" (click)="hideShowPassword()">
+          <ion-icon [name]="passwordIcon"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+      <!-- Login Button -->
+      <ion-button expand="block" color="primary" (click)="doLogin()" style="margin-top: 16px;">
+        Login
+      </ion-button>
+
+      <!-- Links -->
+      <div class="login-links">
+        <a (click)="loadurl('https://maharishiji.net/forgot-password-mobile')">
+          Forget Password
+        </a>
+      </div>
+
+      <!-- Error Message -->
+      <ion-text color="danger" *ngIf="lblMessage">
+        {{ lblMessage }}
+      </ion-text>
+
+      <div class="login-links">
+        <a (click)="loadurl('https://maharishiji.net/mobilesubscribe?Source=MobileApp')">
+          Registration
+        </a>
+      </div>
+
+    </ion-card-content>
+
+  </ion-card>
+
+
+  <ion-grid fixed *ngIf="showIcon">
+    <ion-row>
+
+      <ion-col size="6" class="service-box">
+        <img src="assets/video.jpg" style="width: 100px;height: 100px;" (click)="callservice('video')" />
+        <p>Video</p>
+      </ion-col>
+      <ion-col size="6" class="service-box">
+        <img src="assets/livevideo.jpg" style="width: 100px;height: 100px;" (click)="callservice('livevideo')" />
+        <p>Live Video </p>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6" class="service-box">
+        <img src="assets/audio.jpg" style="width: 100px;height: 100px;" (click)="callservice('audio')" />
+        <p>Audio</p>
+      </ion-col>
+      <ion-col size="6" class="service-box">
+        <img src="assets/news.jpeg" style="width: 100px;height: 100px;" (click)="callservice('news')" />
+        <p>News & Events</p>
+      </ion-col>
+
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="service-box">
+        <img src="assets/article.png" style="width: 100px;height: 100px;" (click)="callservice('article')" />
+        <p>Articles</p>
+      </ion-col>
+      <ion-col size="6" class="service-box">
+        <img src="assets/teacher.png" style="width: 100px;height: 100px;" (click)="callservice('TM')" />
+        <p>TM Teacher</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6" class="service-box" style="height: auto;">
+        <a href="#" (click)="callservice('stotras')">
+          <img src="assets/Stotras.png" style="width: 100px;height: 100px;" />
+          <p>Stotras</p>
+        </a>
+      </ion-col>
+      <ion-col size="6" class="service-box"></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12" class="service-box" style="height: auto;">
+        <a href="#" (click)="loadurl('https://mwpm.in/sign-up')">
+          <img src="assets/mwpm.gif" />
+        </a>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" class="service-box" style="height: auto;">
+        <a href="#" (click)="loadurl('https://worldpeace9000.com')">
+          <img src="assets/worldpeace9000.jpeg" />
+        </a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list *ngIf="showCategory">
+    <ion-card style="border-radius: 20px;">
+      <ion-item>
+        <ion-select [(ngModel)]="categorytype" (ionChange)="loaddata()" (ionCancel)="handleCancel()"
+          (ionDismiss)="handleDismiss()" placeholder="Category" name="categorytype"
+          style="max-width:100%;font-size: x-large;width:100%;color: blue;">
+          <ion-select-option *ngFor="let field of category" [value]="field.id" style="font-size: x-large;">
+            {{field.title}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+  <ion-spinner name="bubbles" *ngIf="loadingData"></ion-spinner>
+
+
+
+
+  <ion-list *ngIf="shownews" class="news-list">
+
+    <ion-card *ngFor="let item of data" class="news-card">
+
+      <!-- IMAGE -->
+      <img [src]="getImageUrl(item.urlToImage)" class="news-image" (click)="servicedetail(item, 'News & Events')" />
+
+      <!-- CONTENT -->
+      <ion-card-content>
+
+        <h3 class="news-title">
+          {{ item.title }}
+        </h3>
+
+        <!-- META INFO -->
+        <div class="news-meta">
+          <span>
+            <ion-icon name="eye-outline"></ion-icon>
+           <p>{{ item.viewCount }}</p>  
+          </span>
+
+          <span>
+            <ion-icon name="share-social-outline"></ion-icon>
+           <p>{{ item.shareCount }}</p> 
+          </span>
+        </div>
+
+      </ion-card-content>
+
+    </ion-card>
+
+  </ion-list>
+
+
+  <ion-list *ngIf="showvideo" class="video-list">
+
+    <ion-card *ngFor="let item of videodata" class="video-card">
+
+      <!-- THUMBNAIL -->
+      <div class="video-thumb" (click)="Loadvideo(item.id, item.title)">
+        <img [src]="getImageUrl(item.urlToImage)" />
+        <ion-icon name="play-circle-outline" class="play-icon"></ion-icon>
+      </div>
+
+      <!-- CONTENT -->
+      <ion-card-content>
+        <h3 class="video-title">{{ item.title }}</h3>
+
+        <div class="video-meta">
+          <span>
+            <ion-icon name="eye-outline"></ion-icon>
+          <p> {{ item.viewCount }}</p> 
+          </span>
+        </div>
+      </ion-card-content>
+
+    </ion-card>
+
+  </ion-list>
+
+
+  <ion-list *ngIf="showlivevideo" class="video-list">
+
+    <ion-card *ngFor="let item of livevideodata" class="video-card live-card">
+
+      <div class="video-thumb" (click)="loadurl(item.id)">
+        <img src="assets/livevideo.jpg" />
+        <span class="live-badge">LIVE</span>
+      </div>
+
+      <ion-card-content>
+        <h3 class="video-title">{{ item.title }}</h3>
+
+        <div class="video-description" [innerHTML]="item.description">
+        </div>
+      </ion-card-content>
+
+    </ion-card>
+
+  </ion-list>
+
+
+  <ion-list *ngIf="showaudio" class="audio-list">
+
+    <ion-card *ngFor="let audio of tracks" class="audio-card" (click)="loadAudio(audio)">
+
+      <div class="audio-row">
+        <img [src]="audio.image" class="audio-thumb" />
+
+        <div class="audio-info">
+          <h4>{{ audio.title }}</h4>
+
+          <span class="audio-meta">
+            <ion-icon name="eye-outline"></ion-icon>
+           <p>{{ audio.viewcount }}</p>  
+          </span>
+        </div>
+
+        <ion-icon name="play-circle-outline" class="audio-play">
+        </ion-icon>
+      </div>
+
+    </ion-card>
+
+  </ion-list>
+
+
+
+  <ion-list *ngIf="showArticles" class="article-list">
+
+    <ion-card *ngFor="let item of articalsdata" class="article-card">
+
+      <!-- IMAGE -->
+      <img [src]="getImageUrl(item.urlToImage)" class="article-image" (click)="servicedetail(item, 'Articles')" />
+
+      <!-- CONTENT -->
+      <ion-card-content>
+
+        <h3 class="article-title">
+          {{ item.title }}
+        </h3>
+
+        <!-- META INFO -->
+        <div class="article-meta">
+          <span>
+            <ion-icon name="eye-outline"></ion-icon>
+            {{ item.viewCount }}
+          </span>
+
+          <span>
+            <ion-icon name="share-social-outline"></ion-icon>
+            {{ item.shareCount }}
+          </span>
+        </div>
+
+      </ion-card-content>
+
+    </ion-card>
+
+  </ion-list>
+
+
+
+
+
+
+
+  <ion-list *ngIf="showteacher">
+    <h2 align="center" style="color:red;">Find {{HeaderName}} ? </h2>
+    <ion-card style="border-radius: 20px;">
+      <ion-item>
+        <ion-select [(ngModel)]="statetype" (ionChange)="loadCity()" placeholder="State" name="statetype"
+          style="max-width:100%;font-size: x-large;width:100%">
+          <ion-select-option *ngFor="let field of state" [value]="field" style="font-size: x-large;">
+            {{field}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+
+  <ion-list *ngIf="showteacher">
+    <ion-card style="border-radius: 20px;">
+      <ion-item>
+        {{requesttype}}
+        <ion-select [(ngModel)]="citytype" (ionChange)="loadTMTeachers()" placeholder="City" name="citytype"
+          style="max-width:100%;font-size: x-large;width:100%">
+          <ion-select-option *ngFor="let field of city" [value]="field" style="font-size: x-large;">
+            {{field.name}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+
+  <ion-grid *ngIf="showteacher">
+    <p align="center" style='color: blueviolet;'> {{HeaderName}}(s) {{found}} found in {{statetype}} {{cityName}} </p>
+    <ion-row>
+      <ion-col size="6" size-md="6" size-lg="6" *ngFor="let teacher of tmTeachers">
+        <ion-card class="tm-teacher-card">
+          <!-- Sample Image (Replace with actual image URL or local path) -->
+          <img class="teacher-image" src="assets/teacher.png">
+
+          <!-- Teacher Details -->
+          <ion-card-content class="card-content">
+            <!-- Teacher Name -->
+            <h2>{{ teacher.name }}</h2>
+            <p><ion-icon name="address"></ion-icon>
+              {{ teacher.tmCity.name }}, {{ teacher.tmCity.state }}</p>
+            <p><ion-icon name="call"></ion-icon> &nbsp;{{teacher.phone}}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..." position="top">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

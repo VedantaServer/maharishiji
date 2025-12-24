@@ -1,0 +1,129 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>
+      <div style="display: inline-flex; align-items: center;">
+        <img height="40" [src]="headerLogo" style="margin-right: 8px;" />
+        <span
+          style="font-weight: 600; font-size: medium; color: orangered;"
+        >
+          Dashboard
+        </span>
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- LOGIN CARD -->
+  <ion-card *ngIf="showLoginForm" style="text-align:center;">
+    <ion-card-header>
+      <ion-card-title>Please Login</ion-card-title>
+    </ion-card-header>
+
+    <ion-item>
+      <ion-input
+        type="text"
+        placeholder="User Name"
+        [(ngModel)]="account.username"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        placeholder="Password"
+        [type]="passwordType"
+        [(ngModel)]="account.password"
+      ></ion-input>
+
+      <ion-button
+        fill="clear"
+        slot="end"
+        (click)="hideShowPassword()"
+      >
+        <ion-icon [name]="passwordIcon"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-button expand="block" (click)="doLogin()">
+      Login
+    </ion-button>
+
+    <div style="margin-top:10px;">
+      <a (click)="loadurl('https://maharishiji.net/forgot-password-mobile')">
+        Forget Password
+      </a>
+    </div>
+
+    <ion-text color="danger">
+      {{ lblMessage }}
+    </ion-text>
+
+    <div style="margin-top:10px;">
+      <a (click)="loadurl('https://maharishiji.net/mobilesubscribe?Source=MobileApp')">
+        Registration
+      </a>
+    </div>
+  </ion-card>
+
+  <!-- USER DETAIL CARD -->
+  <ion-card *ngIf="showstaffdetail" style="padding:20px;">
+    <div style="text-align:center;">
+      <ion-avatar style="margin:auto;">
+        <img [src]="image" />
+      </ion-avatar>
+    </div>
+
+    <h2 class="ion-text-center" style="color:blue;">
+      {{ fullName }}
+    </h2>
+
+    <p class="ion-text-center">
+      <ion-icon name="mail"></ion-icon> {{ email }}
+    </p>
+
+    <p class="ion-text-center">
+      <ion-icon name="call"></ion-icon> {{ contactNumber }}
+    </p>
+
+    <p class="ion-text-center">
+      {{ cityName }}, {{ stateName }}
+    </p>
+
+    <p class="ion-text-center">
+      Subscription {{ subscriptionStartDate }} – {{ subscriptionEndDate }}
+    </p>
+
+    <ion-button expand="block" (click)="loaduserprofile()">
+      User Profile
+    </ion-button>
+
+    <ion-button expand="block" color="medium" (click)="logout()">
+      Logout
+    </ion-button>
+
+    <ion-button expand="block" color="danger" (click)="accountdelete()">
+      Delete Account
+    </ion-button>
+  </ion-card>
+
+  <!-- EXTERNAL LINKS -->
+  <ion-card>
+    <img
+      src="https://e-gyaan.net/images/e-gyan.jpg"
+      (click)="loadurl('https://e-gyaan.net')"
+    />
+  </ion-card>
+
+  <ion-card>
+    <img
+      src="https://mahamedia.in/images/mahamedia-header.png"
+      (click)="loadurl('https://mahamedia.in')"
+    />
+  </ion-card>
+
+</ion-content>

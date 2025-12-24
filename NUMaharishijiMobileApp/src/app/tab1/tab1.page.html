@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <div style="display: inline-flex; align-items: center;">
+        <img height="40" [src]="headerLogo" style="vertical-align: middle; margin-right: 8px;" />
+        <span class="header">{{ headerTitle }}</span>
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+
+<ion-content class="ion-padding" style="background-color: lightblue;">
+
+  <!-- WELCOME CARD -->
+  <div class="curved-card" >
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title style="font-size: large;">
+          Welcome to <br />
+          Maharishi Digital Media House
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-spinner name="bubbles" *ngIf="loadingData1"></ion-spinner>
+
+        <div *ngFor="let update of updates">
+          <img [src]="getImageUrl(update.image)" />
+          <h3 class="ion-text-center" style="color: white;">
+            {{ update.title }}
+          </h3>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- PHOTO GALLERY (SWIPER) -->
+  <div class="curved-card1">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Photo Gallery</ion-card-title>
+      </ion-card-header>
+
+      <ion-spinner name="bubbles" *ngIf="loadingData"></ion-spinner>
+
+      <!-- ✅ Ionic 7 Swiper -->
+      <!-- MULTIPLE IMAGES → LOOP ENABLED -->
+      <swiper-container *ngIf="images.length > 1" slides-per-view="1" loop="true" autoplay="true">
+        <swiper-slide *ngFor="let image of images">
+          <img [src]="getImageUrl(image.image)" style="width: 100%; height: auto;" />
+        </swiper-slide>
+      </swiper-container>
+
+      <!-- SINGLE IMAGE → NO LOOP -->
+      <div *ngIf="images.length === 1">
+        <img [src]="getImageUrl(images[0].image)" style="width: 100%; height: auto;" />
+      </div>
+
+
+
+
+    </ion-card>
+  </div>
+
+  <!-- CONTACT US -->
+  <div class="contactus">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          <h2 class="ion-text-center" style="color: white; font-size: xx-large;">
+            Let's Stay in Touch
+          </h2>
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <h3 style="color: blueviolet;">
+          Maharishi Information Technology Pvt. Ltd.
+        </h3>
+
+        <p>
+          Flat No. 808, 8th Floor, Marcantile House <br />
+          15 Kasturba Gandhi Marg, Connaught Place <br />
+          New Delhi - 110001 (INDIA) <br />
+          Phone: +91 755 408 7300, +91 755 663 0100 <br />
+          Mobile: +91 9893700746 <br />
+          maharishjimdmh108@gmail.com
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+</ion-content>

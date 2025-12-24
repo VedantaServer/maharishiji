@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-button
+    expand="block"
+    color="primary"
+    (click)="goToDashboard()"
+    *ngIf="showContinue"
+  >
+    Continue with Mobile
+  </ion-button>
+
+  <ion-card *ngIf="imagePath">
+    <ion-thumbnail>
+      <img [src]="imagePath" />
+    </ion-thumbnail>
+    <ion-card-content>
+      {{ title }}
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 🌐 WEB URL IFRAME (THIS WAS MISSING 🔥) -->
+  <iframe
+    *ngIf="showweburl"
+    #webIframe
+    width="100%"
+    height="100%"
+    frameborder="0"
+    style="min-height: 70vh;"
+  ></iframe>
+
+  <!-- 🎥 HTML VIDEO -->
+  <div id="iframeContainer" *ngIf="showVideo"></div>
+
+  <!-- 🎧 AUDIO -->
+  <audio
+    #myAudioElement
+    controls
+    *ngIf="showAudio"
+    style="width: 100%; margin-top: 16px;"
+  ></audio>
+
+</ion-content>

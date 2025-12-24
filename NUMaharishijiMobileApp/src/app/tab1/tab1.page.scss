@@ -1,0 +1,132 @@
+:host {
+
+
+  swiper-container {
+    width: 100%;
+    display: block;
+    touch-action: pan-y;
+  }
+
+
+  .header {
+    margin-top: 10px;
+    word-wrap: break-word;
+    font-size: x-large;
+    color: orange;
+  }
+
+  img {
+    border-radius: 10px 10px 0 0;
+  }
+
+  /* ---------------- WELCOME CARD ---------------- */
+  .curved-card {
+    ion-card {
+      background: hwb(30 2% 4%);
+      color: white;
+      border-radius: 30px 30px 0 0;
+      overflow: hidden;
+      padding: 5px;
+      margin: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+      ion-card-header {
+        ion-card-title {
+          text-align: center;
+          font-size: 1.5em;
+          font-weight: normal;
+          color: whitesmoke;
+        }
+      }
+
+      ion-card-content {
+        h2 {
+          color: whitesmoke;
+          text-wrap: wrap;
+          padding: 5px;
+        }
+      }
+    }
+  }
+
+  /* ---------------- PHOTO GALLERY CARD ---------------- */
+  .curved-card1 {
+    ion-card {
+      background: rgb(8, 137, 188);
+      color: white;
+      border-radius: 0 0 30px 30px;
+      overflow: hidden;
+      padding: 5px;
+      margin: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+      ion-card-header {
+        ion-card-title {
+          font-size: 1.5em;
+          color: white;
+          font-weight: bold;
+        }
+      }
+
+      ion-card-content {
+        font-size: 1.1em;
+        text-align: justify;
+      }
+    }
+  }
+
+  /* ---------------- SWIPER STYLES ---------------- */
+  swiper-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  swiper-slide {
+    height: auto;
+  }
+
+  swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+
+  /* ---------------- CONTACT US ---------------- */
+  .contactus {
+    ion-card {
+      background: lightblue;
+      color: skyblue;
+      border-radius: 5px;
+      overflow: hidden;
+      padding: 5px;
+      margin: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+
+      ion-card-header {
+        ion-card-title {
+          text-align: left;
+          font-size: larger;
+          color: red;
+        }
+      }
+
+      ion-card-content {
+        margin: 5px;
+
+        h2 {
+          font-size: medium;
+          color: blueviolet;
+          text-wrap: wrap;
+          padding: 5px;
+        }
+
+        p {
+          color: blueviolet;
+        }
+      }
+    }
+  }
+
+}

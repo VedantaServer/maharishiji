@@ -1,0 +1,64 @@
+﻿S.No.,Used For,Method,URL,Example,
+1,City Data,GET,https://maharishiji.net/tm-city/json/bystate/{state_name},https://maharishiji.net/tm-city/json/bystate/Madhya Pradesh,
+2,Sub Category Data,GET,https://maharishiji.net/main-category/json/min/4{cat_id},https://maharishiji.net/main-category/json/min/4,
+3,Video Data,GET,https://maharishiji.net/video/json/min,https://maharishiji.net/video/json/min,
+4,Video Detail Data,GET,https://maharishiji.net/video/play/{video_id},https://maharishiji.net/video/play/2464,
+5,Audio Data,GET,https://maharishiji.net/audio/json/min/{subcat_id}/{page_no.}/{page_size},https://maharishiji.net/audio/json/min/60/0/20,
+6,Audio Play,GET,https://maharishiji.net/audio/json/min/{audio_id},https://maharishiji.net/audio/json/min/506,
+7,News Data,GET,https://maharishiji.net/news-and-events/json/min/{subcat_id}/{page_no.}/{page_size},https://maharishiji.net/news-and-events/json/min/20/0/20,
+8,Magazine Data,GET,https://maharishiji.net/article/json/min/{subcat_id}/{page_no.}/{page_size},https://maharishiji.net/article/json/min/41/0/20,
+9,Upcoming Event Data,GET,https://maharishiji.net/calender/json/all/min/false,https://maharishiji.net/calender/json/all/min/false,
+10,Blogs Data,GET,https://maharishiji.net/blog/json/min/all/{page_no.}/{page_size},https://maharishiji.net/blog/json/min/all/0/1,
+11,Gallery,GET,https://maharishiji.net/photo-gallery/json/min,https://maharishiji.net/photo-gallery/json/min,
+12,Live Video Data,GET,https://maharishiji.net/video/live_video,https://maharishiji.net/video/live_video,
+13,Slider Data,GET,https://maharishiji.net/home-gallery/json/all/true,https://maharishiji.net/home-gallery/json/all/true,
+14,Promo Video,GET,https://maharishiji.net/product-promo/json/all/false,https://maharishiji.net/product-promo/json/all/false,
+15,TM Teacher,GET,https://maharishiji.net/tm-info/json/bycity/{city_id}/TM Teacher,https://maharishiji.net/tm-info/json/bycity/86/TM Teacher,
+16,Jyotish Consultant,GET,https://maharishiji.net/tm-info/json/bycity/{city_id}/Jyotish Consultant,https://maharishiji.net/tm-info/json/bycity/86/Jyotish Consultant,
+17,Login,POST,https://maharishiji.net/user/json/login,param name: Username and Password,
+18,User Subscription,GET,https://maharishiji.net/subscription-plan/json/all/min/true,https://maharishiji.net/subscription-plan/json/all/min/true ,
+19,User Registration,POST,https://maharishiji.net/user/json/sign-up,"{
+    ""fullName"":""Test"",
+    ""contactNumber"":""4747575798"",
+    ""email"":""test@gmail.com"",
+    ""password"":""test@123"",
+    ""stateName"":""Chhattisgarh"",
+    ""cityName"":""Raipur"",
+    ""username"":""4747575798""
+}",
+20,Renew Plan,POST,https://maharishiji.net/user/json/renew-plan,"{
+""txnNumber"":"""",
+""postTxnNumber"":"""",
+""subscriptionPlanId"":"""",
+""transctionStatus"":"""",
+""contactNumber"":"""",
+""plateform"":""""
+}",
+21,To get OTP,POST,https://maharishiji.net/user/json/get-otp,"{
+""email"":"""",
+""contactNumber"":""""
+}",
+22,Verify OTP,POST,https://maharishiji.net/user/json/validate-otp,"{
+""resetToken"":"""",
+""email"":""""
+}",
+23,Change Password,POST,https://maharishiji.net/user/json/change-pass,"{
+""contactNumber"":"""",
+""email"":"""",
+""password"":"""",
+""resetToken"":""""
+}",
+24,Update Password,POST,https://maharishiji.net/user/json/update-pass,"{
+""password"":"""",
+""contactNumber"":"""",
+""passwordConfirm"":""""
+}",
+25,User Profile,GET,https://maharishiji.net/user/json/load-profile,https://maharishiji.net/user/json/load-profile,
+26,Update Profile,POST,https://maharishiji.net/user/json/update-profile,"{
+""username"":"""",
+""contactNumber"":"""",
+""email"":""""
+}",
+27,Jyotish Slider,GET,https://maharishiji.net/jyotish-tm-slider/jyotish/json/min,https://maharishiji.net/jyotish-tm-slider/jyotish/json/min,
+28,Image Showing,GET,https://maharishiji.net/image/,https://maharishiji.net/image/{image_name},
+,,,,,

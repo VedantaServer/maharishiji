@@ -1,0 +1,46 @@
+:host {
+
+  /* ---------- HEADER ---------- */
+  ion-toolbar {
+    --background: #ffffff;
+  }
+
+  ion-title img {
+    border-radius: 6px;
+  }
+
+  /* ---------- HERO (IMAGE + TITLE IN SAME LINE) ---------- */
+  .hero {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+     margin: 14px;
+  }
+
+  .hero img {
+    width: 220px;
+    height: auto;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+
+  .hero h1 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: darkgoldenrod;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  /* ---------- CONTENT PARAGRAPHS ---------- */
+  .content-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgb(44, 9, 241);
+    text-align: justify;
+    margin-bottom: 14px;
+    margin: 14px;
+  }
+
+}

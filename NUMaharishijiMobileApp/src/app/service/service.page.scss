@@ -1,0 +1,296 @@
+:host {
+
+  .service-box {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    height: 180px;
+  }
+
+  ion-icon {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+  }
+
+  .header1 {
+    background-color: rgb(116, 64, 5);
+    color: white;
+    text-wrap: wrap;
+    padding: 2px;
+    text-align: center;
+  }
+
+  ion-thumbnail {
+    --size: 140px;
+    --border-radius: 14px;
+  }
+
+  /* ---------- TM TEACHER CARD ---------- */
+  .tm-teacher-card {
+    border-radius: 5px 20px 25px 0;
+    padding: 2px;
+    height: 100%;
+    width: 98%;
+    margin: 5px;
+    background-color: skyblue;
+    color: white;
+
+    .teacher-image {
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .card-content {
+      padding: 5px;
+
+      h2 {
+        margin-top: 0;
+        font-size: 1.5rem;
+        text-wrap: wrap;
+      }
+
+      p {
+        margin: 0;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  /* ---------- LIST / METADATA ---------- */
+  .unread-indicator {
+    background: var(--ion-color-primary);
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    position: absolute;
+    inset-inline-start: 12px;
+    top: 12px;
+  }
+
+  .metadata-end-wrapper {
+    position: absolute;
+    top: 10px;
+    inset-inline-end: 10px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+  }
+
+  ion-label strong {
+    display: block;
+    max-width: calc(100% - 60px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  ion-label ion-note {
+    font-size: 0.9rem;
+  }
+
+  .login-card {
+  max-width: 420px;
+  margin: 20px auto;
+  padding: 10px;
+}
+
+.login-title {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #ff6f00;
+  font-weight: 600;
+}
+
+.login-links {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.login-links a {
+  color: #3f51b5;
+  cursor: pointer;
+}
+
+}
+.news-list {
+  padding: 8px;
+}
+
+.news-card {
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+.news-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.news-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 8px;
+}
+
+.news-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #555;
+
+  ion-icon {
+    margin-right: 4px;
+    font-size: 1rem;
+    vertical-align: middle;
+  }
+
+  span {
+    display: flex;
+    align-items: center;
+  }
+}
+.article-list {
+  padding: 8px;
+}
+
+.article-card {
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+.article-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.article-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 8px;
+}
+
+.article-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #555;
+
+  ion-icon {
+    margin-right: 4px;
+    font-size: 1rem;
+    vertical-align: middle;
+  }
+
+  span {
+    display: flex;
+    align-items: center;
+  }
+}
+/* VIDEO / LIVE */
+.video-list {
+  padding: 8px;
+}
+
+.video-card {
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+.video-thumb {
+  position: relative;
+  cursor: pointer;
+}
+
+.video-thumb img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+}
+
+.play-icon {
+  position: absolute;
+  font-size: 56px;
+  color: white;
+  inset: 0;
+  margin: auto;
+  opacity: 0.9;
+}
+
+.live-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: red;
+  color: white;
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 12px;
+}
+
+.video-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.video-meta {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* AUDIO */
+.audio-list {
+  padding: 8px;
+}
+
+.audio-card {
+  border-radius: 14px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+.audio-row {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.audio-thumb {
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.audio-info {
+  flex: 1;
+  padding: 0 12px;
+}
+
+.audio-info h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+
+.audio-meta {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.audio-play {
+  font-size: 32px;
+  color: var(--ion-color-primary);
+}

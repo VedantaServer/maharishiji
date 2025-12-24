@@ -1,0 +1,30 @@
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+  <uses-permission android:name="android.permission.CAMERA" />
+  <uses-permission android:name="android.permission.FLASHLIGHT" />
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+  <uses-feature android:name="android.hardware.camera" android:required="false" />
+  <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+
+
+
+// <- ADD THIS BLOCK (exactly) in androidmanifext.xml
+    
+  packagingOptions {
+    // Make sure we exclude any occurrence under lib/** (all ABIs) and any other nested path
+    jniLibs {
+      excludes += ["**/libbarhopper_v3.so", "**/libimage_processing_util_jni.so", "lib/**/libbarhopper_v3.so", "lib/**/libimage_processing_util_jni.so"]
+    }
+    // Older AGP also supports plain excludes (keeps compatibility)
+    excludes += ["lib/**/libbarhopper_v3.so", "lib/**/libimage_processing_util_jni.so", "**/libbarhopper_v3.so", "**/libimage_processing_util_jni.so"]
+  }
+    // <- end added block
+
+
+
+configurations.all {
+    exclude group: "org.jetbrains.kotlin", module: "kotlin-stdlib-jdk7"
+    exclude group: "org.jetbrains.kotlin", module: "kotlin-stdlib-jdk8"
+}

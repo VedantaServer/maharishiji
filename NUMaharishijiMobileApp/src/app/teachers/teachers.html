@@ -1,0 +1,107 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>
+      <div style="display: inline-flex; align-items: center;">
+        <img
+          [src]="headerLogo"
+          height="40"
+          style="margin-right: 8px"
+        />
+        <span
+          style="font-weight: 600; font-size: medium; color: orangered;"
+        >
+          Our TM Teachers
+        </span>
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" style="background-color: rgb(152, 197, 68);">
+
+  <h2 class="ion-text-center" style="color:red;">
+    Where to learn TM ?
+  </h2>
+
+  <!-- STATE SELECT -->
+  <ion-card style="border-radius: 20px;">
+    <ion-item>
+      <ion-select
+        [(ngModel)]="statetype"
+        (ionChange)="loadCity()"
+        placeholder="State"
+        interface="popover"
+      >
+        <ion-select-option
+          *ngFor="let field of state"
+          [value]="field"
+        >
+          {{ field }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-card>
+
+  <!-- CITY SELECT -->
+  <ion-card style="border-radius: 20px;">
+    <ion-item>
+      <ion-select
+        [(ngModel)]="citytype"
+        (ionChange)="loadTMTeachers()"
+        placeholder="City"
+        interface="popover"
+      >
+        <ion-select-option
+          *ngFor="let field of city"
+          [value]="field"
+        >
+          {{ field.name }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-card>
+
+  <p class="ion-text-center" style="color: blueviolet;">
+    TM Teacher(s) found in {{ statetype }} {{ cityName }}
+  </p>
+
+  <!-- TEACHER LIST -->
+  <ion-grid>
+    <ion-row>
+      <ion-col
+        size="6"
+        size-md="6"
+        size-lg="6"
+        *ngFor="let teacher of tmTeachers"
+      >
+        <ion-card class="tm-teacher-card">
+
+          <img
+            class="teacher-image"
+            src="assets/teacher.png"
+          />
+
+          <ion-card-content>
+            <h2>{{ teacher.name }}</h2>
+
+            <p>
+              <ion-icon name="location-outline"></ion-icon>
+              {{ teacher.tmCity.name }}, {{ teacher.tmCity.state }}
+            </p>
+
+            <p>
+              <ion-icon name="call-outline"></ion-icon>
+              {{ teacher.phone }}
+            </p>
+          </ion-card-content>
+
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

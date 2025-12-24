@@ -1,0 +1,2423 @@
+{
+  "project_info": {
+    "project_number": "906173562209",
+    "firebase_url": "https://api-project-906173562209.firebaseio.com",
+    "project_id": "api-project-906173562209",
+    "storage_bucket": "api-project-906173562209.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:38728e430bb7c9a5ad1920",
+        "android_client_info": {
+          "package_name": "com.aimt.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:ac570e9f8f64daf5ad1920",
+        "android_client_info": {
+          "package_name": "com.arunachaluniversity.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:874112ab33d5b107ad1920",
+        "android_client_info": {
+          "package_name": "com.mobile.ArmyBaseSchool"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:874112ab33d5b107ad1920",
+        "android_client_info": {
+          "package_name": "com.mit.maharishiji"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:288fd5c9c052a781",
+        "android_client_info": {
+          "package_name": "com.mobile.BASAVA"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:f979d09c10101b88ad1920",
+        "android_client_info": {
+          "package_name": "com.mobile.BHARATIYAVIDYABHAVAN"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:76a03d84b1bcc666ad1920",
+        "android_client_info": {
+          "package_name": "com.mobile.BISGGN"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:3b46870d58355208",
+        "android_client_info": {
+          "package_name": "com.mobile.BRGSIP"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:6de0b56c8b5860edad1920",
+        "android_client_info": {
+          "package_name": "com.mobile.BharatPresidium"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:80f3416b00f9a11d",
+        "android_client_info": {
+          "package_name": "com.mobile.BuddhaInternational"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:d5924298db3f2fbf",
+        "android_client_info": {
+          "package_name": "com.mobile.DALIMS"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:2effaf2dbb7e4f25",
+        "android_client_info": {
+          "package_name": "com.mobile.DEVSAMAJ"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:d23f75714fa34bce",
+        "android_client_info": {
+          "package_name": "com.mobile.DPSJhansi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:9dbf2c69546875bcad1920",
+        "android_client_info": {
+          "package_name": "com.mobile.DPSPali"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:47aa033325f393d5",
+        "android_client_info": {
+          "package_name": "com.mobile.GAUTAM"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:bb07add88cedd2af",
+        "android_client_info": {
+          "package_name": "com.mobile.GoodShepherd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:f37d275d1c32c182ad1920",
+        "android_client_info": {
+          "package_name": "com.mobile.Gyaananda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:112a777f73487835",
+        "android_client_info": {
+          "package_name": "com.mobile.MVM"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:dc5494e4cf611b45",
+        "android_client_info": {
+          "package_name": "com.mobile.OM"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:804862d811250d89ad1920",
+        "android_client_info": {
+          "package_name": "com.mobile.PADMAM"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:6b34582dcf163b10",
+        "android_client_info": {
+          "package_name": "com.mobile.PGS"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:dc15a90706e4b8f9ad1920",
+        "android_client_info": {
+          "package_name": "com.mobile.PPSavani"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:ea1e6e5f5d212767",
+        "android_client_info": {
+          "package_name": "com.mobile.PRAVAX"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:ccd078b140400d65",
+        "android_client_info": {
+          "package_name": "com.mobile.RKPS"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:8b145ca600e01f5f",
+        "android_client_info": {
+          "package_name": "com.mobile.RRRA"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:3fe7d777e5cb4882",
+        "android_client_info": {
+          "package_name": "com.mobile.RVSERP"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:f13a72165d37c608ad1920",
+        "android_client_info": {
+          "package_name": "com.mobile.Radiant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:7cb09f75afe0688e",
+        "android_client_info": {
+          "package_name": "com.mobile.SAVYATA"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:998ef3ec56a5915b",
+        "android_client_info": {
+          "package_name": "com.mobile.SBM"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:afb07561207f9c72ad1920",
+        "android_client_info": {
+          "package_name": "com.mobile.SJIS"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:441b7db268983515",
+        "android_client_info": {
+          "package_name": "com.mobile.SRCSDOON"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:bc993c6458988695",
+        "android_client_info": {
+          "package_name": "com.mobile.SRCSDehradun"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:8b31ca34c36ea6a1",
+        "android_client_info": {
+          "package_name": "com.mobile.SRGS"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:2cb90c569c762780",
+        "android_client_info": {
+          "package_name": "com.mobile.SRInternational"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:09b728071730f293",
+        "android_client_info": {
+          "package_name": "com.mobile.SRInternationalSchool"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:03856c599f6a83f0",
+        "android_client_info": {
+          "package_name": "com.mobile.SRVS"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:8b9d81827980cab9ad1920",
+        "android_client_info": {
+          "package_name": "com.mobile.SatyaPrakash"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:03761bc8bfe0b689ad1920",
+        "android_client_info": {
+          "package_name": "com.mobile.SpringMeadows"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:a26167d8fc0f371bad1920",
+        "android_client_info": {
+          "package_name": "com.mobile.SummerFieldsGGN"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:a8bf8473a9d3cb85",
+        "android_client_info": {
+          "package_name": "com.mobile.VEDANTA"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:bd91a07fade0a451",
+        "android_client_info": {
+          "package_name": "com.mobile.VERP"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:ac8923c06f3032ac",
+        "android_client_info": {
+          "package_name": "com.mobile.VISI"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:4cd39edb3b4653d9ad1920",
+        "android_client_info": {
+          "package_name": "com.mobile.YesCampusConnectCollege"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:b3758e2a423c204bad1920",
+        "android_client_info": {
+          "package_name": "com.mobile.YesCampusConnectSchool"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:21ed015f92b080d2ad1920",
+        "android_client_info": {
+          "package_name": "com.mobile.alpineschool"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:43d13294b24bb416ad1920",
+        "android_client_info": {
+          "package_name": "com.mobile.alvas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:cbdd0382f318bcfe",
+        "android_client_info": {
+          "package_name": "com.mobile.aryansinternational"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:e2058ad064e2ab4fad1920",
+        "android_client_info": {
+          "package_name": "com.mobile.avs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:09379d408dd94d5a",
+        "android_client_info": {
+          "package_name": "com.mobile.brgssirsa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:a56a3c355a661ca5",
+        "android_client_info": {
+          "package_name": "com.mobile.dpsblb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:037dadb6759cdc37",
+        "android_client_info": {
+          "package_name": "com.mobile.educare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:526ff57dceca42e2ad1920",
+        "android_client_info": {
+          "package_name": "com.mobile.metropolitian"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:45d6e376fc40bf04",
+        "android_client_info": {
+          "package_name": "com.mobile.savyata"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:51158f1ce4c5c4c2",
+        "android_client_info": {
+          "package_name": "com.mobile.scholarpride"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:0bb0bcae3690fa72",
+        "android_client_info": {
+          "package_name": "com.mobile.theoasis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:349e6e409161eb40",
+        "android_client_info": {
+          "package_name": "com.mobile.tosha"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:71a6d37454671d22",
+        "android_client_info": {
+          "package_name": "com.mobile.toshasales"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:55c1d9b640a98dc1ad1920",
+        "android_client_info": {
+          "package_name": "com.mobile.vedika"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:b9a3402d08889e89ad1920",
+        "android_client_info": {
+          "package_name": "com.sgtu.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:0c5195711753af36ad1920",
+        "android_client_info": {
+          "package_name": "com.shining.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:c2c6b493aeceae2ead1920",
+        "android_client_info": {
+          "package_name": "com.shiningkidsschool.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:13cecc1eeca901cc",
+        "android_client_info": {
+          "package_name": "com.vedantaerp.mobileapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:53a3c81d40b670abad1920",
+        "android_client_info": {
+          "package_name": "mobile.aimtnoida.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:38357aec063ba3aead1920",
+        "android_client_info": {
+          "package_name": "mobile.aimtnoida1.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:2580349b351b2d64ad1920",
+        "android_client_info": {
+          "package_name": "mobile.vedantacollege.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:63ec4347b20cbc88ad1920",
+        "android_client_info": {
+          "package_name": "mobile.vyascollege.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906173562209:android:106b77c78ba00ac9ad1920",
+        "android_client_info": {
+          "package_name": "mobile.vyasmedicity.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906173562209-kc9censfk0m5qet2h13ij9hospbis0sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiO-BGOUg6AHI_pgCLs9kwqY6FhaEHqJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906173562209-494niq2km684omhm1fl731ki81jpfuf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906173562209-0815rpgpsq70fjfrabetgkcvuesd9fk1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "VedantaERP.MobileApp.RidgeValley1"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
