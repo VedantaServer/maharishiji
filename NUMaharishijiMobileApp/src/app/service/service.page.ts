@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Platform, NavController } from '@ionic/angular';
 import { Route, ActivatedRoute, Router } from '@angular/router';
-
+import { Browser } from '@capacitor/browser';
 
 
 @Component({
@@ -709,20 +709,27 @@ export class ServicePage {
       .then(result => result)
       .catch(error => console.error('Error:', error));
   }
-  loadurl(curl: any) {
-    //fileUrl = 'https://maharishiji.net/stream/AUDIO/202406/e6fy_Dainik_Faladesh_20_June_2024_Mapp_Audio.mp3';
-    //sending this data to the broswer widnows.
-    //console.log(curl);
-    this.router.navigate(['/open-web-url'], {
-      queryParams: {
-        url: curl,
-        title: '',
-        imagePath: '',
-        webtype: 'weburl'
-      }
-    });
+  // loadurl(curl: any) {
+  //   //fileUrl = 'https://maharishiji.net/stream/AUDIO/202406/e6fy_Dainik_Faladesh_20_June_2024_Mapp_Audio.mp3';
+  //   //sending this data to the broswer widnows.
+  //   //console.log(curl);
+  //   this.navCtrl.navigateForward('/tabs/open-web-url', {
+  //     queryParams: {
+  //       url: curl,
+  //       title: '',
+  //       imagePath: '',
+  //       webtype: 'weburl'
+  //     }
+  //   });
 
-  }
+  // }
+
+  
+async loadurl(curl: string) {
+  await Browser.open({
+    url: curl
+  });
+}
 
   loadState() {
     this.apiService.getServerData('/tm-city/json/state-list').subscribe((response: any) => {

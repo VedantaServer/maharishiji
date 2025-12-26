@@ -26,6 +26,10 @@ export class Tab1Page implements OnInit {
   loadingData1 = false;
   showInfo = false;
 
+
+
+
+
   // ✅ Swiper config
   swiperConfig = {
     loop: true,
@@ -44,6 +48,8 @@ export class Tab1Page implements OnInit {
     this.loadUpdates();
     this.loadGallery();
   }
+
+
 
   loadGallery() {
     this.loadingData = true;

@@ -1,6 +1,60 @@
 :host {
 
 
+  /* 🔹 Slide wrapper */
+.slide-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 🔹 Image */
+.slide-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* 🔹 Text container */
+.slide-text {
+  width: 100%;
+  padding: 8px 12px;
+  text-align: center;
+}
+
+/* 🔹 Image title */
+.image-name {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+/* 🔹 Description text */
+.image-desc {
+  color: #eaeaea;
+  font-size: 15px;
+  line-height: 1.4;
+  margin-top: 6px;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+/* 🔹 Toggle link */
+.toggle-link {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 11px;
+  color: #ffd54f;
+  text-decoration: none;
+}
+
+/* 🔹 Prevent Swiper extra space */
+swiper-slide {
+  height: auto !important;
+}
+
+
   swiper-container {
     width: 100%;
     display: block;

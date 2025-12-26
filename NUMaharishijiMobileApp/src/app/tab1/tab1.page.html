@@ -15,7 +15,7 @@
 <ion-content class="ion-padding" style="background-color: lightblue;">
 
   <!-- WELCOME CARD -->
-  <div class="curved-card" >
+  <div class="curved-card">
     <ion-card>
       <ion-card-header>
         <ion-card-title style="font-size: large;">
@@ -41,27 +41,58 @@
   <div class="curved-card1">
     <ion-card>
       <ion-card-header>
-        <ion-card-title>Photo Gallery</ion-card-title>
+        <ion-card-title style="text-align: center;">Photo Gallery</ion-card-title>
       </ion-card-header>
 
       <ion-spinner name="bubbles" *ngIf="loadingData"></ion-spinner>
 
       <!-- ✅ Ionic 7 Swiper -->
       <!-- MULTIPLE IMAGES → LOOP ENABLED -->
-      <swiper-container *ngIf="images.length > 1" slides-per-view="1" loop="true" autoplay="true">
-        <swiper-slide *ngFor="let image of images">
-          <img [src]="getImageUrl(image.image)" style="width: 100%; height: auto;" />
-        </swiper-slide>
-      </swiper-container>
+
+      
+      <swiper-container
+  *ngIf="images.length > 1"
+  slides-per-view="1"
+  loop="true"
+  autoplay="true"
+>
+  <swiper-slide *ngFor="let image of images">
+
+    <div class="slide-content">
+
+      <img
+        [src]="getImageUrl(image.image)"
+        class="slide-image"
+      />
+
+      <div class="slide-text">
+
+        <div class="image-name">
+          {{ image.name }}
+        </div>
+
+        <div *ngIf="showInfo" class="image-desc" [innerHTML]="image.description"></div>
+
+        <a
+          href="#"
+          class="toggle-link"
+          (click)="toggleInfo(); $event.preventDefault()"
+        >
+          {{ showInfo ? 'Hide Details' : 'Show Details' }}
+        </a>
+
+      </div>
+
+    </div>
+
+  </swiper-slide>
+</swiper-container>
+
 
       <!-- SINGLE IMAGE → NO LOOP -->
       <div *ngIf="images.length === 1">
         <img [src]="getImageUrl(images[0].image)" style="width: 100%; height: auto;" />
       </div>
-
-
-
-
     </ion-card>
   </div>
 

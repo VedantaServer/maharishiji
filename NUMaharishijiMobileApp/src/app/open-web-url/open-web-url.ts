@@ -8,6 +8,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { IonicModule, Platform } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
+import { take } from 'rxjs/operators';
 
 import { ApiService } from '../../services/api.services';
 
@@ -38,8 +39,16 @@ export class OpenWebUrlPage implements AfterViewInit {
 
   private url!: string;
   private htmldata: any;
-  @ViewChild('webIframe') webIframe!: ElementRef<HTMLIFrameElement>;
-  @ViewChild('myAudioElement') audioElement!: ElementRef<HTMLAudioElement>;
+  @ViewChild('webIframe', { static: false })
+  webIframe!: ElementRef<HTMLIFrameElement>;
+
+  @ViewChild('iframeContainer', { static: false })
+  iframeContainer!: ElementRef<HTMLDivElement>;
+
+  @ViewChild('myAudioElement', { static: false })
+  audioElement!: ElementRef<HTMLAudioElement>;
+
+
 
   constructor(
     private route: ActivatedRoute,
@@ -56,32 +65,46 @@ export class OpenWebUrlPage implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.route.queryParams.subscribe(params => {
-      this.title = params['title'];
-      this.imagePath = params['imagePath'];
-      this.webtype = params['webtype'];
-      this.url = params['url'];
-      this.htmldata = params['htmldata'];
+    this.route.queryParams
+      .pipe(take(1)) // 🔥 VERY IMPORTANT
+      .subscribe(params => {
+        this.title = params['title'];
+        this.imagePath = params['imagePath'];
+        this.webtype = params['webtype'];
+        this.url = params['url'];
+        this.htmldata = params['htmldata'];
 
-      this.handleContent();
-    });
+        this.handleContent();
+      });
   }
 
   // 🔥 Core logic moved here
   handleContent() {
+
+    if (!this.webtype) {
+      alert('sdfsd')
+      console.warn('webtype missing, ignoring second trigger');
+      return;
+    }
+
+
     if (this.webtype === 'weburl') {
       this.showweburl = true;
       this.showContinue = true;
 
       setTimeout(() => {
-        if (this.webIframe?.nativeElement) {
-          this.webIframe.nativeElement.src = this.url;
-          this.loadingData = false;
+        if (!this.webIframe || !this.webIframe.nativeElement) {
+          return; // 🛑 prevent null crash
         }
-      });
+
+        this.webIframe.nativeElement.src = this.url;
+        this.loadingData = false;
+      }, 0);
 
       return;
     }
+
+
 
 
     this.showweburl = false;
@@ -89,23 +112,46 @@ export class OpenWebUrlPage implements AfterViewInit {
 
     // HTML video
     if (this.htmldata) {
+
+
       this.showVideo = true;
 
-      const iframe = this.renderer.createElement('iframe');
-      iframe.srcdoc = this.htmldata;
-      iframe.width = this.screenWidth;
-      iframe.height = this.screenHeight;
-      iframe.frameBorder = '0';
+      setTimeout(() => {
+        if (!this.iframeContainer?.nativeElement) return;
 
-      const container =
-        this.renderer.selectRootElement('#iframeContainer');
+        const iframe = this.renderer.createElement('iframe');
+        iframe.srcdoc = this.htmldata;
+        iframe.width = this.screenWidth;
+        iframe.height = this.screenHeight;
+        iframe.frameBorder = '0';
 
-      while (container.firstChild) {
-        this.renderer.removeChild(container, container.firstChild);
-      }
+        const container = this.iframeContainer.nativeElement;
 
-      this.renderer.appendChild(container, iframe);
-      this.loadingData = false;
+        while (container.firstChild) {
+          this.renderer.removeChild(container, container.firstChild);
+        }
+
+        this.renderer.appendChild(container, iframe);
+        this.loadingData = false;
+      });
+
+      // this.showVideo = true;
+
+      // const iframe = this.renderer.createElement('iframe');
+      // iframe.srcdoc = this.htmldata;
+      // iframe.width = this.screenWidth;
+      // iframe.height = this.screenHeight;
+      // iframe.frameBorder = '0';
+
+      // const container =
+      //   this.renderer.selectRootElement('#iframeContainer');
+
+      // while (container.firstChild) {
+      //   this.renderer.removeChild(container, container.firstChild);
+      // }
+
+      // this.renderer.appendChild(container, iframe);
+      // this.loadingData = false;
     }
     // 🎧 Audio
     else {
