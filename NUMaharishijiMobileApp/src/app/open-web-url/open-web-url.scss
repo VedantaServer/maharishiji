@@ -1,3 +1,24 @@
-page-open-web-url {
+.open-browser-btn {
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: #1976d2; /* calm blue */
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
 
+.open-browser-btn:hover {
+  background-color: #1565c0;
+}
+
+.open-browser-btn:active {
+  background-color: #0d47a1;
+}
+
+.open-browser-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.3);
 }

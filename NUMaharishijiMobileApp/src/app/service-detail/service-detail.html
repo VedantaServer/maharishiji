@@ -3,14 +3,8 @@
 
     <ion-title>
       <div style="display: flex; align-items: center;">
-        <img
-          [src]="headerLogo"
-          height="40"
-          style="margin-right: 8px;"
-        />
-        <span
-          style="font-weight: 600; font-size: medium; color: orangered;"
-        >
+        <img [src]="headerLogo" height="40" style="margin-right: 8px;" />
+        <span style="font-weight: 600; font-size: medium; color: orangered;">
           {{ HeaderName }}
         </span>
       </div>
@@ -22,19 +16,25 @@
 
 <ion-content class="padding">
 
-<ion-list >
-  <ion-item  text-wrap>
-    <div> 
-       <img [src]='getImageUrl(urlToImage)' style="width: 100%;height: 100%;">
-   </div> &nbsp;
-    {{title}} <ion-icon name="eye" class="ion-text-right"
-      style="font-size: 1.3em;"></ion-icon>{{viewCount}} <ion-icon name="share" class="ion-text-right"
-      style="font-size: 1.3em;"></ion-icon> {{shareCount}}
-    <br>
+  <ion-list>
+    <ion-item text-wrap>
+      <div class="image-wrapper">
+        <img [src]="getImageUrl(urlToImage)" />
+      </div>
 
-    <br>
-    <div class="no-padding" [innerHTML]="description"></div>
-  </ion-item>
 
-</ion-list>
+    </ion-item>
+
+  </ion-list>
+ 
+
+  <div class="meta-row">
+     <h2>{{ title }}</h2>
+    <ion-icon name="eye"></ion-icon>
+    <span>{{ viewCount }}</span>
+
+    <ion-icon name="share"></ion-icon>
+    <span>{{ shareCount }}</span>
+  </div>
+  <div class="no-padding" [innerHTML]="description"></div>
 </ion-content>

@@ -133,7 +133,7 @@
 
     <ion-row>
       <ion-col size="6" class="service-box" style="height: auto;">
-        <a href="#" (click)="callservice('stotras')">
+        <a href="javascript:void(0)" (click)="openWebUrl()">
           <img src="assets/Stotras.png" style="width: 100px;height: 100px;" />
           <p>Stotras</p>
         </a>
@@ -143,14 +143,14 @@
 
     <ion-row>
       <ion-col size="12" class="service-box" style="height: auto;">
-        <a href="#" (click)="loadurl('https://mwpm.in/sign-up')">
+        <a href="javascript:void(0)" (click)="loadurl('https://mwpm.in/sign-up')">
           <img src="assets/mwpm.gif" />
         </a>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col size="12" class="service-box" style="height: auto;">
-        <a href="#" (click)="loadurl('https://worldpeace9000.com')">
+        <a href="javascript:void(0)" (click)="loadurl('https://worldpeace9000.com')">
           <img src="assets/worldpeace9000.jpeg" />
         </a>
       </ion-col>
@@ -192,12 +192,12 @@
         <div class="news-meta">
           <span>
             <ion-icon name="eye-outline"></ion-icon>
-           <p>{{ item.viewCount }}</p>  
+            <p>{{ item.viewCount }}</p>
           </span>
 
           <span>
             <ion-icon name="share-social-outline"></ion-icon>
-           <p>{{ item.shareCount }}</p> 
+            <p>{{ item.shareCount }}</p>
           </span>
         </div>
 
@@ -225,7 +225,7 @@
         <div class="video-meta">
           <span>
             <ion-icon name="eye-outline"></ion-icon>
-          <p> {{ item.viewCount }}</p> 
+            <p> {{ item.viewCount }}</p>
           </span>
         </div>
       </ion-card-content>
@@ -268,7 +268,7 @@
 
           <span class="audio-meta">
             <ion-icon name="eye-outline"></ion-icon>
-           <p>{{ audio.viewcount }}</p>  
+            <p>{{ audio.viewcount }}</p>
           </span>
         </div>
 
@@ -338,8 +338,8 @@
   <ion-list *ngIf="showteacher">
     <ion-card style="border-radius: 20px;">
       <ion-item>
-        {{requesttype}}
-        <ion-select [(ngModel)]="citytype" (ionChange)="loadTMTeachers()" placeholder="City" name="citytype"
+        <!-- {{requesttype}} -->
+        <ion-select [(ngModel)]="citytype" (ionChange)="loadTMTeachers($event)" placeholder="City" name="citytype"
           style="max-width:100%;font-size: x-large;width:100%">
           <ion-select-option *ngFor="let field of city" [value]="field" style="font-size: x-large;">
             {{field.name}}
@@ -361,8 +361,7 @@
           <ion-card-content class="card-content">
             <!-- Teacher Name -->
             <h2>{{ teacher.name }}</h2>
-            <p><ion-icon name="address"></ion-icon>
-              {{ teacher.tmCity.name }}, {{ teacher.tmCity.state }}</p>
+            <p>{{ teacher.tmCity.name }}, {{ teacher.tmCity.state }}</p>
             <p><ion-icon name="call"></ion-icon> &nbsp;{{teacher.phone}}</p>
           </ion-card-content>
         </ion-card>
@@ -372,8 +371,8 @@
 
 
 
-  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+  <!-- <ion-infinite-scroll (ionInfinite)="loadMore($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..." position="top">
     </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+  </ion-infinite-scroll> -->
 </ion-content>

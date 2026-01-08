@@ -1,17 +1,15 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/dashboard"></ion-back-button>
+    </ion-buttons>
     <ion-title>{{ title }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
 
-  <ion-button
-    expand="block"
-    color="primary"
-    (click)="goToDashboard()"
-    *ngIf="showContinue"
-  >
+  <ion-button expand="block" color="primary" (click)="goToDashboard()" *ngIf="showContinue">
     Continue with Mobile
   </ion-button>
 
@@ -25,22 +23,28 @@
   </ion-card>
 
   <!-- 🌐 WEB URL IFRAME (THIS WAS MISSING 🔥) -->
-<iframe
-  #webIframe
-  [hidden]="!showweburl"
-  class="web-frame">
-</iframe>
+  <iframe #webIframe [hidden]="!showweburl" class="web-frame"
+    style="height: 80vh;width: 99vw;border: none;margin-left: -2vw;">
+  </iframe>
+
+  <iframe *ngIf="safeUrl" [src]="safeUrl" width="100%" height="100%" frameborder="0">
+  </iframe>
 
 
-  <!-- 🎥 HTML VIDEO -->
-  <div #iframeContainer *ngIf="showVideo"></div>
+  <!-- 🎥 VIDEO IFRAME (WORKING) -->
+  <iframe #videoIframe *ngIf="showVideo" style="height: 70vh;width: 99vw;border: none;margin-left: -2vw;"
+    sandbox="allow-scripts allow-same-origin allow-presentation">
+  </iframe>
+  <button class="open-browser-btn" *ngIf="showVideo" (click)="openaudioinweb()">open in browser</button>
+
+
+
+
 
   <!-- 🎧 AUDIO -->
-  <audio
-    #myAudioElement
-    controls
-    *ngIf="showAudio"
-    style="width: 100%; margin-top: 16px;"
-  ></audio>
+  <audio #myAudioElement controls preload="metadata" *ngIf="showAudio" style="width: 100%; margin-top: 16px;">
+  </audio>
+
+  <button *ngIf="showAudio" class="open-browser-btn" (click)="openaudioinweb()">open in browser</button>
 
 </ion-content>

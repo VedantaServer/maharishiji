@@ -3,14 +3,16 @@ import {
   ElementRef,
   Renderer2,
   ViewChild,
-  AfterViewInit
+  AfterViewInit,
+  OnDestroy
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule, Platform } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs/operators';
-
+import { Browser } from '@capacitor/browser';
 import { ApiService } from '../../services/api.services';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-open-web-url',
@@ -19,7 +21,7 @@ import { ApiService } from '../../services/api.services';
   templateUrl: './open-web-url.html',
   styleUrls: ['./open-web-url.scss']
 })
-export class OpenWebUrlPage implements AfterViewInit {
+export class OpenWebUrlPage implements AfterViewInit, OnDestroy {
 
 
 
@@ -27,7 +29,7 @@ export class OpenWebUrlPage implements AfterViewInit {
   title: any;
   imagePath: any;
   webtype: any;
-
+  safeUrl!: SafeResourceUrl;
   loadingData = true;
   showAudio = false;
   showVideo = false;
@@ -42,11 +44,13 @@ export class OpenWebUrlPage implements AfterViewInit {
   @ViewChild('webIframe', { static: false })
   webIframe!: ElementRef<HTMLIFrameElement>;
 
-  @ViewChild('iframeContainer', { static: false })
-  iframeContainer!: ElementRef<HTMLDivElement>;
+  @ViewChild('videoIframe', { static: false })
+  videoIframe!: ElementRef<HTMLIFrameElement>;
+
 
   @ViewChild('myAudioElement', { static: false })
   audioElement!: ElementRef<HTMLAudioElement>;
+  details: any;
 
 
 
@@ -56,12 +60,40 @@ export class OpenWebUrlPage implements AfterViewInit {
     private renderer: Renderer2,
     private platform: Platform,
     private apiService: ApiService,
-    private hostElement: ElementRef
+    private hostElement: ElementRef,
+      private sanitizer: DomSanitizer
   ) {
     this.platform.ready().then(() => {
       this.screenWidth = this.platform.width();
       this.screenHeight = this.platform.height();
     });
+  }
+  // ngOnDestroy(): void {
+  //   throw new Error('Method not implemented.');
+  // }
+
+  private destroyAllMedia() {
+
+    // 🧹 Destroy web URL iframe
+    if (this.webIframe?.nativeElement) {
+      this.webIframe.nativeElement.src = 'about:blank';
+      this.webIframe.nativeElement.remove();
+    }
+
+
+
+    // 🧹 Stop and release audio
+    if (this.audioElement?.nativeElement) {
+      this.audioElement.nativeElement.pause();
+      this.audioElement.nativeElement.src = '';
+      this.audioElement.nativeElement.load();
+    }
+
+    // Reset flags
+    this.showweburl = false;
+    this.showVideo = false;
+    this.showAudio = false;
+    this.loadingData = false;
   }
 
   ngAfterViewInit() {
@@ -73,99 +105,109 @@ export class OpenWebUrlPage implements AfterViewInit {
         this.webtype = params['webtype'];
         this.url = params['url'];
         this.htmldata = params['htmldata'];
+        this.details = params['details'];
 
+        //  alert(this.url + 'inside open web')
         this.handleContent();
       });
   }
 
+  ionViewWillLeave() {
+    this.destroyAllMedia();
+  }
+
+  ngOnDestroy() {
+    this.destroyAllMedia();
+  }
+
+
   // 🔥 Core logic moved here
   handleContent() {
 
-    if (!this.webtype) {
-      alert('sdfsd')
-      console.warn('webtype missing, ignoring second trigger');
-      return;
-    }
-
+    // if (!this.webtype) {
+    //   alert('no')
+    //   console.warn('webtype missing, ignoring second trigger');
+    //   return;
+    // }
 
     if (this.webtype === 'weburl') {
+      // alert('gaddsfg')
+      //alert(this.url)
       this.showweburl = true;
       this.showContinue = true;
 
       setTimeout(() => {
         if (!this.webIframe || !this.webIframe.nativeElement) {
-          return; // 🛑 prevent null crash
+          alert('crashing')
+          return;
         }
+      //  alert(this.url)
+        this.webIframe.nativeElement.src = decodeURIComponent(this.url);
+        this.loadingData = false;
+      }, 0);
+    }
 
-        this.webIframe.nativeElement.src = this.url;
+    else if (this.webtype === 'weburlwithDetail') {
+   //   alert('weburlwithDetail')
+     // alert(`${this.url}?user=${this.details}`)
+
+
+      const finalUrl =
+        `${this.url}?user=${encodeURIComponent(this.details)}`;
+
+      console.log('FINAL URL:', finalUrl);
+
+      this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(finalUrl);
+
+      this.loadingData = false;
+    }
+
+
+
+
+
+    // HTML video
+    else if (this.htmldata) {
+      this.showVideo = true;
+
+      setTimeout(() => {
+        if (!this.videoIframe?.nativeElement) return;
+
+        // 🔥 FASTEST possible load
+        this.videoIframe.nativeElement.srcdoc = this.htmldata;
+
         this.loadingData = false;
       }, 0);
 
       return;
     }
 
-
-
-
-    this.showweburl = false;
-    this.showContinue = false;
-
-    // HTML video
-    if (this.htmldata) {
-
-
-      this.showVideo = true;
-
-      setTimeout(() => {
-        if (!this.iframeContainer?.nativeElement) return;
-
-        const iframe = this.renderer.createElement('iframe');
-        iframe.srcdoc = this.htmldata;
-        iframe.width = this.screenWidth;
-        iframe.height = this.screenHeight;
-        iframe.frameBorder = '0';
-
-        const container = this.iframeContainer.nativeElement;
-
-        while (container.firstChild) {
-          this.renderer.removeChild(container, container.firstChild);
-        }
-
-        this.renderer.appendChild(container, iframe);
-        this.loadingData = false;
-      });
-
-      // this.showVideo = true;
-
-      // const iframe = this.renderer.createElement('iframe');
-      // iframe.srcdoc = this.htmldata;
-      // iframe.width = this.screenWidth;
-      // iframe.height = this.screenHeight;
-      // iframe.frameBorder = '0';
-
-      // const container =
-      //   this.renderer.selectRootElement('#iframeContainer');
-
-      // while (container.firstChild) {
-      //   this.renderer.removeChild(container, container.firstChild);
-      // }
-
-      // this.renderer.appendChild(container, iframe);
-      // this.loadingData = false;
-    }
     // 🎧 Audio
     else {
       this.showAudio = true;
 
-      this.apiService.fetchServerUrl(this.url)
-        .then(response => response.blob())
-        .then(blob => {
-          const audio = this.audioElement.nativeElement;
-          audio.src = URL.createObjectURL(blob);
-          this.loadingData = false;
-          audio.play().catch(() => { });
-        });
+      setTimeout(() => {
+        const audio = this.audioElement?.nativeElement;
+        if (!audio) return;
+
+        audio.pause();
+        audio.src = '';
+        audio.load();
+
+        audio.src = this.url;      // 🔥 direct streaming
+        audio.load();
+
+        audio.play().catch(() => { });
+        this.loadingData = false;
+      }, 0);
     }
+  }
+
+  async openaudioinweb() {
+    // alert(this.url)
+    await Browser.open({
+      url: this.url
+    });
   }
 
   // ⬅ Back to dashboard

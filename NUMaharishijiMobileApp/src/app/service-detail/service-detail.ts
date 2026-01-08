@@ -33,14 +33,21 @@ export class ServiceDetailPage implements OnInit {
   // ✅ Ionic 7 lifecycle
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      const objectdata = params['objectdata'];
+      const objectdata = JSON.parse(params['objectdata']);
       this.HeaderName = params['HeaderName'];
 
+      console.log(objectdata)
+      console.log(this.HeaderName)
       if (objectdata) {
         this.urlToImage = objectdata.urlToImage;
         this.viewCount = objectdata.viewCount;
         this.shareCount = objectdata.shareCount;
+        this.title = objectdata.title
         this.description = objectdata.description;
+        console.log( this.urlToImage)
+        console.log( this.viewCount)
+        console.log(this.shareCount)
+        console.log(this.description)
       }
     });
   }

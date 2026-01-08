@@ -1,3 +1,63 @@
-page-service-detail {
+/* ===== TITLE ===== */
+ion-content h2 {
+  margin: 16px 14px 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f1f1f;
+  line-height: 1.4;
+}
 
+/* ===== META ROW ===== */
+.meta-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 14px 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e5e5; /* subtle divider */
+  font-size: 14px;
+  color: #666;
+}
+
+.meta-row ion-icon {
+  font-size: 18px;
+  color: orangered;
+}
+
+/* spacing between view & share group */
+.meta-row span + ion-icon {
+  margin-left: 16px;
+}
+
+/* ===== DESCRIPTION ===== */
+.no-padding {
+  margin: 14px;
+  font-size: 15px;
+  line-height: 1.75;
+  color: #333;
+  text-align: justify;
+}
+
+/* paragraph spacing */
+.no-padding p {
+  margin-bottom: 12px;
+}
+
+/* images inside description */
+.no-padding img {
+  max-width: 100%;
+  height: auto;
+  margin: 10px 0;
+  border-radius: 6px;
+}
+
+/* ===== SMALL DEVICES ===== */
+@media (max-width: 360px) {
+  ion-content h2 {
+    font-size: 16px;
+  }
+
+  .meta-row {
+    font-size: 13px;
+  }
 }

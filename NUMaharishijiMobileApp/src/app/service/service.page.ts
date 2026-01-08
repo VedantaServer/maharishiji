@@ -8,15 +8,15 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Platform, NavController } from '@ionic/angular';
-import { Route, ActivatedRoute, Router } from '@angular/router';
+import {  ActivatedRoute, Router } from '@angular/router';
 import { Browser } from '@capacitor/browser';
 
 
 @Component({
-    selector: 'app-service',
+  selector: 'app-service',
   templateUrl: './service.page.html',
   styleUrls: ['./service.page.scss'],
-  standalone : false
+  standalone: false
 })
 
 export class ServicePage {
@@ -103,67 +103,74 @@ export class ServicePage {
   callservice(ctype: any) {
 
     this.requesttype = ctype;
+    //alert(this.requesttype + '1')
     this.showIcon = false;
     this.storage.get('password').then((passValue) => {
       if (passValue != null)
         this.account.password = passValue;
     });
 
-
     this.storage.get('userDetail').then((userDetailValue) => {
-      if (userDetailValue != null) {
 
-        this.account.username = userDetailValue.data.email;
-        const year = userDetailValue.data.subscriptionPayment[0].subscriptionEndDate[0]; // Replace with your actual year
-        const month = userDetailValue.data.subscriptionPayment[0].subscriptionEndDate[1];  // Replace with your actual month (e.g., November is 11)
-        const day = userDetailValue.data.subscriptionPayment[0].subscriptionEndDate[2];     // Replace with your actual day
-
-        // Create a new Date object
-        const subEndDate = new Date(year, month - 1, day); // Subtract 1 from month
-
-        // Get the current date (no time component, just the date)
-        const currentDate = new Date();
-        currentDate.setHours(0, 0, 0, 0); // Set the time to midnight to avoid time comparisons
-
-        // Check if subscriptionEndDate is greater than the current date
-        //console.log(subEndDate,currentDate);
-        if (subEndDate >= currentDate) {
-          console.log("Subscription end date is in the future.");
-        } else {
-          this.loaduserprofile();
-          this.storage.clear(); //clear login
-          return;
-        }
-        this.doLogin();
-        this.showback = false;
-      }
-      else {
+      if (!userDetailValue) {
         this.HeaderName = "Login";
         this.showLoginForm = true;
-        this.showback = true;  //if nothing in storage then show the form.
+        this.showback = true;
+        return;
       }
+
+      this.account.username = userDetailValue.data.email;
+
+      const payment = userDetailValue.data.subscriptionPayment?.[0];
+      if (!payment) {
+        console.error('Subscription missing');
+        return;
+      }
+
+      const [year, month, day] = payment.subscriptionEndDate;
+      const subEndDate = new Date(year, month - 1, day);
+
+      const currentDate = new Date();
+      currentDate.setHours(0, 0, 0, 0);
+
+      if (subEndDate < currentDate) {
+        this.loaduserprofile();
+        this.storage.clear();
+        return;
+      }
+
+
+      // ✅ NOW IT WILL ALWAYS HIT
+      this.doLogin();
+      this.showback = false;
+
     });
 
   }
 
-  
+
   loaduserprofile() {
     this.loadurl('https://maharishiji.net/profile-mobile?user=' + this.account.username);
 
   }
 
   async ngOnInit() {
-  await this.storage.create();
-}
+    await this.storage.create();
+
+    this.storage.get('userDetail').then((userDetailValue) => {
+      this.account.username = userDetailValue.data.email;
+    })
+  }
 
   doLogin() {
     const base64Credentials = btoa(`${this.account.username}:${this.account.password}`);
-
+    // alert(this.requesttype + '2')
     this.authHeader = new HttpHeaders({
       'Authorization': `Basic ${base64Credentials}`
     });
     this.apiService.postServerData('user/json/login', null, this.authHeader).subscribe((response: any) => {
       if (response != null) {
+        //   alert(this.requesttype + '3')
         this.showback = true;
         this.showLoginForm = false;
         this.storage.set("userDetail", response);
@@ -260,7 +267,16 @@ export class ServicePage {
           this.showteacher = true;
         }
         else if (this.requesttype == "stotras") {
-          this.loadurl('https://maharishiji.net/stotras-mobile?user=' + this.account.username);
+          // alert('stotras')
+          this.router.navigate(['/open-web-url'], {
+            queryParams: {
+              url: 'https://maharishiji.net/stotras-mobile?user=' + this.account.username,
+              title: '',
+              imagePath: '',
+              webtype: 'weburl'
+            }
+          });
+          // this.loadurl('https://maharishiji.net/stotras-mobile?user=' + this.account.username);
         }
 
       }
@@ -312,6 +328,23 @@ export class ServicePage {
     );
 
   }
+
+  openWebUrl() {
+
+    const rawUrl = `https://maharishiji.net/stotras-mobile?user=${this.account.username}`;
+    
+    this.router.navigate(['/open-web-url'], {
+      queryParams: {
+        url:  `https://maharishiji.net/stotras-mobile`,
+        title: '',
+        imagePath: '',
+        details : this.account.username,
+        webtype: 'weburlwithDetail'
+      }
+    });
+    // this.loadurl(`https://maharishiji.net/stotras-mobile?user=${this.account.username}`)
+
+  }
   loaddata() {
     //console.log(this.categorytype);
     const selectedId = this.categorytype;
@@ -338,39 +371,48 @@ export class ServicePage {
     //this.loadingData = false;
 
   }
- 
   loadMore(event: any) {
 
-  this.storage.get('userDetail').then(userDetailValue => {
-
-    if (userDetailValue != null) {
-
-      this.scrollcount += 1;
-
-      if (this.requesttype === 'news') {
-        this.news(event);
-      } 
-      else if (this.requesttype === 'audio') {
-        this.audio(event);
-      } 
-      else if (this.requesttype === 'video') {
-        this.video();
-      } 
-      else if (this.requesttype === 'article') {
-        this.article(event);
-      }
-
+    // ⛔ Stop if requesttype is empty
+    if (!this.requesttype || this.requesttype.trim() === '') {
+      event.target.complete();
+      return;
     }
 
-    // ✅ VERY IMPORTANT
-    event.target.complete();
+    console.log(this.requesttype);
 
-  }).catch(() => {
-    event.target.complete();
-  });
+    this.storage.get('userDetail').then(userDetailValue => {
 
-  this.loadingData = false;
-}
+      if (userDetailValue != null) {
+
+        this.scrollcount += 1;
+
+        if (this.requesttype === 'news') {
+          this.news(event);
+        }
+        else if (this.requesttype === 'audio') {
+          this.audio(event);
+        }
+        else if (this.requesttype === 'video') {
+          this.video();
+        }
+        else if (this.requesttype === 'article') {
+          this.article(event);
+        } else if (this.requesttype === 'TM') {
+          //alert('fsfasf')
+          event.target.complete();
+          return;
+        }
+
+      }
+
+      this.loadingData = false;
+      event.target.complete();
+
+    }).catch(() => {
+      event.target.complete();
+    });
+  }
 
 
   news(event?: any) {
@@ -391,6 +433,7 @@ export class ServicePage {
     this.apiService
       .getServeData('news-and-events/json/min' + sqlQueryData, this.authHeader)
       .subscribe((response: any) => {
+        console.log(response)
         if (response?.data) {
           for (const newdata of response.data) {
             if (!this.data.find((item: any) => item.id === newdata.id)) {
@@ -415,7 +458,8 @@ export class ServicePage {
         }
 
         // ✅ Ionic 6/7 safe
-        event?.target?.complete();
+        event.target.complete();
+        return;
       });
   }
   getImageUrl(imagePath: string): string {
@@ -468,7 +512,7 @@ export class ServicePage {
   }
 
 
-  livevideo() {
+  livevideo(event?: any) {
     this.loadingData = true;
 
     const base64Credentials = btoa(
@@ -496,6 +540,8 @@ export class ServicePage {
 
           this.showlivevideo = true;
           this.loadingData = false;
+          event.target.complete();
+          return;
         },
         error: () => {
           this.loadingData = false;
@@ -612,7 +658,6 @@ export class ServicePage {
         webtype: 'audio'
       }
     });
-
   }
 
 
@@ -664,6 +709,38 @@ export class ServicePage {
       .catch(error => console.error('Error:', error));
   }
 
+  private patchVideoHtml(html: string): string {
+    if (!html) return html;
+
+    // 1️⃣ Remove IE compatibility meta (harmless)
+    html = html.replace(
+      /<meta[^>]*X-UA-Compatible[^>]*>/gi,
+      ''
+    );
+
+    // 2️⃣ DISABLE ONLY THE DEVTOOLS SCRIPT BLOCK COMPLETELY
+    // This avoids touching JS syntax inside it
+    html = html.replace(
+      /<script[^>]*src=["'][^"']*devtools-detector[^"']*["'][^>]*><\/script>/gi,
+      '<!-- devtools-detector disabled -->'
+    );
+
+    // 3️⃣ DISABLE INLINE SCRIPT THAT USES window.devtools
+    html = html.replace(
+      /<script[\s\S]*?window\.devtools[\s\S]*?<\/script>/gi,
+      '<!-- devtools inline script disabled -->'
+    );
+
+    // 4️⃣ DISABLE KEY-BLOCKING SCRIPT SAFELY
+    html = html.replace(
+      /<script[\s\S]*?document\.onkeydown[\s\S]*?<\/script>/gi,
+      '<!-- key blocking disabled -->'
+    );
+
+    return html;
+  }
+
+
   Loadvideo(id: any, title: any) {
     this.loadingData = true;
     this.showvideo = false;
@@ -695,15 +772,16 @@ export class ServicePage {
           throw new Error('Network response was not ok ' + response.statusText);
         }
         response.text().then((htmldata) => {
+          console.log(htmldata)
           this.loadingData = false;
+          const safeHtml = this.patchVideoHtml(htmldata);
           this.router.navigate(['/open-web-url'], {
             queryParams: {
-              urldata: '',
+              url: this.apiService.baseUrl + 'video/play/' + id, requestOptions,
               title: title,
-              htmldata: htmldata
+              htmldata: safeHtml
             }
           });
-
         });
       })
       .then(result => result)
@@ -724,12 +802,20 @@ export class ServicePage {
 
   // }
 
-  
-async loadurl(curl: string) {
-  await Browser.open({
-    url: curl
-  });
-}
+
+  async loadurl(curl: string) {
+    // await Browser.open({
+    //   url: curl
+    // });
+     this.router.navigate(['/open-web-url'], {
+      queryParams: {
+        url: curl,
+        title: '',
+        imagePath: '',
+        webtype: 'weburl'
+      }
+    });
+  }
 
   loadState() {
     this.apiService.getServerData('/tm-city/json/state-list').subscribe((response: any) => {
@@ -744,9 +830,11 @@ async loadurl(curl: string) {
     });
   }
   servicedetail(objectdata: any, HeaderName: any) {
+    console.log(objectdata)
+    console.log(HeaderName)
     this.router.navigate(['/service-detail'], {
       queryParams: {
-        objectdata: objectdata,
+        objectdata: JSON.stringify(objectdata),
         HeaderName: HeaderName
       }
     });
@@ -754,7 +842,7 @@ async loadurl(curl: string) {
 
   }
 
-  loadTMTeachers() {
+  loadTMTeachers(event: any) {
     var sqlQueryData = "";
     if (this.citytype != 'All') {
       this.cityName = this.citytype.name;
@@ -766,6 +854,9 @@ async loadurl(curl: string) {
       if (response.data.length != 0) {
         this.tmTeachers = response.data;
         this.found = "";
+        event.target.complete();
+        return;
+
       }
       else {
         this.found = "not";
