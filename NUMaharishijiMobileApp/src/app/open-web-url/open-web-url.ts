@@ -6,13 +6,15 @@ import {
   AfterViewInit,
   OnDestroy
 } from '@angular/core';
+import { Http } from '@capacitor-community/http';
 import { CommonModule } from '@angular/common';
 import { IonicModule, Platform } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { Browser } from '@capacitor/browser';
 import { ApiService } from '../../services/api.services';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
+import { Filesystem, Directory } from '@capacitor/filesystem';
 
 @Component({
   selector: 'app-open-web-url',
@@ -35,9 +37,13 @@ export class OpenWebUrlPage implements AfterViewInit, OnDestroy {
   showVideo = false;
   showContinue = false;
   showweburl = false;
-
+  safeHtml!: SafeHtml;
   screenWidth!: number;
   screenHeight!: number;
+  audioUrl = '';
+  audioInitialized = false;
+  private base64Credentials = btoa(`${'awdhesh@mssmail.org'}:${'123456'}`);
+
 
   private url!: string;
   private htmldata: any;
@@ -48,9 +54,10 @@ export class OpenWebUrlPage implements AfterViewInit, OnDestroy {
   videoIframe!: ElementRef<HTMLIFrameElement>;
 
 
-  @ViewChild('myAudioElement', { static: false })
-  audioElement!: ElementRef<HTMLAudioElement>;
   details: any;
+
+
+  @ViewChild('myAudioElement') audioElement!: ElementRef<HTMLAudioElement>;
 
 
 
@@ -61,7 +68,7 @@ export class OpenWebUrlPage implements AfterViewInit, OnDestroy {
     private platform: Platform,
     private apiService: ApiService,
     private hostElement: ElementRef,
-      private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer
   ) {
     this.platform.ready().then(() => {
       this.screenWidth = this.platform.width();
@@ -122,7 +129,7 @@ export class OpenWebUrlPage implements AfterViewInit, OnDestroy {
 
 
   // 🔥 Core logic moved here
-  handleContent() {
+  async handleContent() {
 
     // if (!this.webtype) {
     //   alert('no')
@@ -141,15 +148,15 @@ export class OpenWebUrlPage implements AfterViewInit, OnDestroy {
           alert('crashing')
           return;
         }
-      //  alert(this.url)
+        //  alert(this.url)
         this.webIframe.nativeElement.src = decodeURIComponent(this.url);
         this.loadingData = false;
       }, 0);
     }
 
     else if (this.webtype === 'weburlwithDetail') {
-   //   alert('weburlwithDetail')
-     // alert(`${this.url}?user=${this.details}`)
+      //   alert('weburlwithDetail')
+      // alert(`${this.url}?user=${this.details}`)
 
 
       const finalUrl =
@@ -161,45 +168,31 @@ export class OpenWebUrlPage implements AfterViewInit, OnDestroy {
 
       this.loadingData = false;
     }
-
-
-
-
-
     // HTML video
     else if (this.htmldata) {
+      this.safeHtml = this.sanitizer.bypassSecurityTrustHtml(this.htmldata);
       this.showVideo = true;
-
-      setTimeout(() => {
-        if (!this.videoIframe?.nativeElement) return;
-
-        // 🔥 FASTEST possible load
-        this.videoIframe.nativeElement.srcdoc = this.htmldata;
-
-        this.loadingData = false;
-      }, 0);
-
-      return;
     }
 
     // 🎧 Audio
     else {
+
       this.showAudio = true;
-
-      setTimeout(() => {
-        const audio = this.audioElement?.nativeElement;
-        if (!audio) return;
-
-        audio.pause();
-        audio.src = '';
-        audio.load();
-
-        audio.src = this.url;      // 🔥 direct streaming
-        audio.load();
-
-        audio.play().catch(() => { });
+      this.apiService.fetchServerUrl(this.url).then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.blob();
+      }).then(blob => {
+        const audio = this.audioElement.nativeElement;
+        const objectUrl = URL.createObjectURL(blob);
+        audio.src = objectUrl;
         this.loadingData = false;
-      }, 0);
+        audio.play().catch(error => {
+          console.error('Playback failed:', error);
+        });
+      });
+
     }
   }
 
@@ -214,4 +207,31 @@ export class OpenWebUrlPage implements AfterViewInit, OnDestroy {
   goToDashboard() {
     this.router.navigate(['/tabs/tab1']);
   }
+
+
+  arrayBufferToBase64(buffer: ArrayBuffer): string {
+    let binary = '';
+    const bytes = new Uint8Array(buffer);
+    const len = bytes.byteLength;
+
+    for (let i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+
+    return window.btoa(binary);
+  }
+
+
+  blobToBase64(blob: Blob): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onerror = reject;
+      reader.onload = () => {
+        const base64 = (reader.result as string).split(',')[1];
+        resolve(base64);
+      };
+      reader.readAsDataURL(blob);
+    });
+  }
+
 }

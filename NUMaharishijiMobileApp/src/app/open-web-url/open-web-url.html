@@ -32,18 +32,30 @@
 
 
   <!-- 🎥 VIDEO IFRAME (WORKING) -->
-  <iframe #videoIframe *ngIf="showVideo" style="height: 70vh;width: 99vw;border: none;margin-left: -2vw;"
+  <!-- <iframe #videoIframe *ngIf="showVideo"
     sandbox="allow-scripts allow-same-origin allow-presentation">
   </iframe>
-  <button class="open-browser-btn" *ngIf="showVideo" (click)="openaudioinweb()">open in browser</button>
+  <button class="open-browser-btn" *ngIf="showVideo" (click)="openaudioinweb()">open in browser</button> -->
 
-
+  <div *ngIf="showVideo" style="width:100%; height:100%;">
+    <iframe [srcdoc]="safeHtml" style="width:100%; height:100vh; border:none;"
+      sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-presentation"
+      allow="autoplay; encrypted-media"></iframe>
+  </div>
 
 
 
   <!-- 🎧 AUDIO -->
-  <audio #myAudioElement controls preload="metadata" *ngIf="showAudio" style="width: 100%; margin-top: 16px;">
-  </audio>
+  <!-- <audio #myAudioElement controls preload="metadata" *ngIf="showAudio" style="width: 100%; margin-top: 16px;">
+  </audio> -->
+  <div [hidden]="!showAudio">
+    <audio #myAudioElement controls>
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+
+
 
   <button *ngIf="showAudio" class="open-browser-btn" (click)="openaudioinweb()">open in browser</button>
 

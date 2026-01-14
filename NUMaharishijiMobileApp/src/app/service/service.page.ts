@@ -486,6 +486,7 @@ export class ServicePage {
     this.apiService
       .getServeData('audio/json/min' + sqlQueryData, this.authHeader)
       .subscribe((response: any) => {
+        console.log(response);
         if (response?.data) {
           for (const newdata of response.data) {
             if (!this.tracks.find(item => item.title === newdata.name)) {
@@ -494,7 +495,7 @@ export class ServicePage {
                 title: `${newdata.name} (${newdata.subCategory.name})`,
                 path: this.apiService.baseUrl + newdata.audioFile,
                 image: this.apiService.getImageUrl('image/' + newdata.image),
-                audioFile: this.apiService.baseUrl + 'stream/' + newdata.audioFile,
+                audioFile: this.apiService.baseUrl + 'play/' + newdata.audioFile,
                 viewcount: newdata.viewCount
               });
             }
@@ -649,7 +650,9 @@ export class ServicePage {
   loadAudio(audio: any) {
     //fileUrl = 'https://maharishiji.net/stream/AUDIO/202406/e6fy_Dainik_Faladesh_20_June_2024_Mapp_Audio.mp3';
     //sending this data to the broswer widnows.
-    //console.log(audio);
+    console.log(audio.audioFile);
+    console.log(audio)
+    console.log(audio.image);
     this.router.navigate(['/open-web-url'], {
       queryParams: {
         url: audio.audioFile,
@@ -709,36 +712,7 @@ export class ServicePage {
       .catch(error => console.error('Error:', error));
   }
 
-  private patchVideoHtml(html: string): string {
-    if (!html) return html;
-
-    // 1️⃣ Remove IE compatibility meta (harmless)
-    html = html.replace(
-      /<meta[^>]*X-UA-Compatible[^>]*>/gi,
-      ''
-    );
-
-    // 2️⃣ DISABLE ONLY THE DEVTOOLS SCRIPT BLOCK COMPLETELY
-    // This avoids touching JS syntax inside it
-    html = html.replace(
-      /<script[^>]*src=["'][^"']*devtools-detector[^"']*["'][^>]*><\/script>/gi,
-      '<!-- devtools-detector disabled -->'
-    );
-
-    // 3️⃣ DISABLE INLINE SCRIPT THAT USES window.devtools
-    html = html.replace(
-      /<script[\s\S]*?window\.devtools[\s\S]*?<\/script>/gi,
-      '<!-- devtools inline script disabled -->'
-    );
-
-    // 4️⃣ DISABLE KEY-BLOCKING SCRIPT SAFELY
-    html = html.replace(
-      /<script[\s\S]*?document\.onkeydown[\s\S]*?<\/script>/gi,
-      '<!-- key blocking disabled -->'
-    );
-
-    return html;
-  }
+  
 
 
   Loadvideo(id: any, title: any) {
@@ -774,12 +748,12 @@ export class ServicePage {
         response.text().then((htmldata) => {
           console.log(htmldata)
           this.loadingData = false;
-          const safeHtml = this.patchVideoHtml(htmldata);
+      //    const safeHtml = this.patchVideoHtml(htmldata);
           this.router.navigate(['/open-web-url'], {
             queryParams: {
               url: this.apiService.baseUrl + 'video/play/' + id, requestOptions,
               title: title,
-              htmldata: safeHtml
+              htmldata: htmldata
             }
           });
         });
